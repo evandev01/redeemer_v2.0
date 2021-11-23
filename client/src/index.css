@@ -1,0 +1,25 @@
+#stream-container {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+
+#player {
+  margin-top: 4rem;
+  max-width: 100%;
+  max-height: auto;
+}
+
+#video-player {
+  margin-top: 3rem;
+}
+
+#live-border {
+  border-top: 1px solid gray;
+  margin-top: 8rem;
+  margin-bottom: 4rem;
+}
+
+#joel {
+  width: 300px;
+  height: auto;
+}
