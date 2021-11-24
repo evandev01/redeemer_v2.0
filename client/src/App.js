@@ -18,12 +18,14 @@ function App() {
           <Container>
             <NavTabs />
             <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/connect' element={<Connect />} />
-              <Route path='/events' element={<Events />} />
-              <Route path='/giving' element={<Giving />} />
-              <Route path='/staff' element={<Staff />} />
-              <Route path='/watchlive' element={<WatchLive />} />
+              <Switch>
+                <Route path='/' element={<Home />} />
+                <Route path='/connect' element={<Connect />} />
+                <Route path='/events' element={<Events />} />
+                <Route path='/giving' element={<Giving />} />
+                <Route path='/staff' element={<Staff />} />
+                <Route path='/watchlive' element={<WatchLive />} />
+              </Switch>
             </Routes>
           </Container>
         </main>
