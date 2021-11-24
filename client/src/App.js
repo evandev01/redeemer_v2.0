@@ -8,6 +8,7 @@ import Staff from './components/Staff'
 import WatchLive from './components/WatchLive'
 import './index.css'
 import { Container } from 'react-bootstrap'
+import NavTabs from './components/NavTabs'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <>
         <main className='py-3'>
           <Container>
+            <NavTabs />
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/connect' element={<Connect />} />
