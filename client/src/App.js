@@ -7,18 +7,25 @@ import Giving from './components/Giving'
 import Staff from './components/Staff'
 import WatchLive from './components/WatchLive'
 import './index.css'
+import { Container } from 'react-bootstrap'
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/connect' element={<Connect />} />
-        <Route path='/events' element={<Events />} />
-        <Route path='/giving' element={<Giving />} />
-        <Route path='/staff' element={<Staff />} />
-        <Route path='/watchlive' element={<WatchLive />} />
-      </Routes>
+      <>
+        <main className='py-3'>
+          <Container>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/connect' element={<Connect />} />
+              <Route path='/events' element={<Events />} />
+              <Route path='/giving' element={<Giving />} />
+              <Route path='/staff' element={<Staff />} />
+              <Route path='/watchlive' element={<WatchLive />} />
+            </Routes>
+          </Container>
+        </main>
+      </>
     </Router>
   )
 }
