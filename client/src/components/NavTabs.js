@@ -12,30 +12,14 @@ const NavTabs = props => {
             <Navbar expand='md' className='justify-content-md-center'>
               <Navbar.Toggle aria-controls='basic-navbar-nav' />
               <Navbar.Collapse id='basic-navbar-nav'>
-                <Nav activeKey='/'>
+                <Navbar activeKey='/'>
                   <Nav.Item>
-                    <Nav.Link
-                      style={{
-                        color: props.linkColor,
-                        backgroundColor: props.navColor,
-                      }}
-                      href='/'
-                    >
-                      HOME
-                    </Nav.Link>
+                    <Nav.Link href='/'>HOME</Nav.Link>
                   </Nav.Item>
-                </Nav>
+                </Navbar>
                 <Nav>
                   <Nav.Item>
-                    <Nav.Link
-                      style={{
-                        color: props.linkColor,
-                        backgroundColor: props.navColor,
-                      }}
-                      href='/about'
-                    >
-                      ABOUT
-                    </Nav.Link>
+                    <Nav.Link href='/about'>ABOUT</Nav.Link>
                   </Nav.Item>
                 </Nav>
 
@@ -44,68 +28,28 @@ const NavTabs = props => {
                     {/* <Badge bg='primary' style={{ color: '#007bff' }}>
                       New
                     </Badge> */}
-                    <Nav.Link
-                      style={{
-                        color: props.linkColor,
-                        backgroundColor: props.navColor,
-                      }}
-                      href='/events'
-                    >
-                      EVENTS
-                    </Nav.Link>
+                    <Nav.Link href='/events'>EVENTS</Nav.Link>
                     {/* </Badge> */}
                   </Nav.Item>
                 </Nav>
                 <Nav>
                   <Nav.Item>
-                    <Nav.Link
-                      style={{
-                        color: props.linkColor,
-                        backgroundColor: props.navColor,
-                      }}
-                      href='/watchlive'
-                    >
-                      WATCH LIVE
-                    </Nav.Link>
+                    <Nav.Link href='/watchlive'>WATCH</Nav.Link>
+                  </Nav.Item>
+                </Nav>
+                {/* <Nav>
+                  <Nav.Item>
+                    <Nav.Link href='/connect'>CONNECT</Nav.Link>
+                  </Nav.Item>
+                </Nav> */}
+                <Nav>
+                  <Nav.Item>
+                    <Nav.Link href='/giving'>GIVING</Nav.Link>
                   </Nav.Item>
                 </Nav>
                 <Nav>
                   <Nav.Item>
-                    <Nav.Link
-                      style={{
-                        color: props.linkColor,
-                        backgroundColor: props.navColor,
-                      }}
-                      href='/connect'
-                    >
-                      CONNECT
-                    </Nav.Link>
-                  </Nav.Item>
-                </Nav>
-                <Nav>
-                  <Nav.Item>
-                    <Nav.Link
-                      style={{
-                        color: props.linkColor,
-                        backgroundColor: props.navColor,
-                      }}
-                      href='/giving'
-                    >
-                      GIVING
-                    </Nav.Link>
-                  </Nav.Item>
-                </Nav>
-                <Nav>
-                  <Nav.Item>
-                    <Nav.Link
-                      style={{
-                        color: props.linkColor,
-                        backgroundColor: props.navColor,
-                      }}
-                      href='/staff'
-                    >
-                      STAFF
-                    </Nav.Link>
+                    <Nav.Link href='/staff'>STAFF</Nav.Link>
                   </Nav.Item>
                 </Nav>
               </Navbar.Collapse>

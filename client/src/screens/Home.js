@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 import Church from '../assets/church/church.jpg'
 import Joel from '../assets/joel/joel_600x800.jpg'
@@ -7,20 +7,21 @@ import YouTube from '../assets/icons/youtube-logo2.png'
 
 const Home = () => {
   return (
-    <Fragment>
+    <>
       <Container id='home-body' className='mt-5'>
-        <Row id='home-border' />
-
         <Row className='text-center'>
-          <Col className='text-center mt-5'>
+          <Col className='text-left mb-3'>
             <h2 className='mb-4'>Proclaiming the gospel of Jesus Christ</h2>
           </Col>
         </Row>
-        <Row className='text-center'>
-          <Col md={6} className='text-center'>
-            <Image id='joel' src={Joel} className='ml-3'></Image>
+
+        {/* Begin content */}
+        <Row>
+          <Col md={1} />
+          <Col md={5} className='text-right'>
+            <Image id='joel' src={Joel}></Image>
           </Col>
-          <Col>
+          <Col md={5} className='text-left'>
             <p id='hebrew-home' className='text-left mt-3'>
               "so that at the name of Jesus every knee will bow in heaven and on
               earth and every tongue will confess that Jesus Christ is Lord, to
@@ -38,20 +39,17 @@ const Home = () => {
               DeMotte, IN 46310
             </p>
           </Col>
+          <Col md={1} />
         </Row>
 
-        <Row id='home-border' />
+        <Row id='live-border' />
 
-        <Row className='text-center mt-3'>
-          <Col lg={4}>
-            <Image
-              className='py-3'
-              src={Church}
-              alt='Wednesday night service'
-              style={{ maxHeight: '300px', width: 'auto' }}
-            />
+        <Row className='mt-3'>
+          <Col md={1} />
+          <Col md={5} className='text-right'>
+            <Image id='church' src={Church} alt='Wednesday night service' />
           </Col>
-          <Col lg={8} md={12} className='justify-content-center'>
+          <Col md={5} className='text-left'>
             <h6 id='lol-h6' className='text-center'>
               End Time Truths to encourage our hearts.
             </h6>
@@ -61,9 +59,10 @@ const Home = () => {
               We welcome each one to come and study the Bible with us.
             </p>
           </Col>
+          <Col md={1} />
         </Row>
 
-        <Row id='home-border' className='pt-4' />
+        <Row id='live-border' className='pt-4' />
 
         <Row className='text-center mt-5'>
           <Col md={1} />
@@ -81,7 +80,7 @@ const Home = () => {
             <p>
               Click here{' '}
               <a href='https://www.youtube.com/channel/UCTblLpAk1fUXwWiMm3-u6wQ'>
-                <Image id='youtube-logo' src={YouTube} alt='YouTube logo' />
+                <Image id='youtube' src={YouTube} alt='YouTube logo' />
               </a>
               {'  '}
               and subscribe to our channel!
@@ -90,9 +89,9 @@ const Home = () => {
           <Col md={1} />
         </Row>
 
-        <Row id='home-border' className='pt-4' />
+        <Row id='live-border' className='pt-4' />
       </Container>
-    </Fragment>
+    </>
   )
 }
 

@@ -2,6 +2,12 @@ main {
   min-height: 80vh;
 }
 
+#church {
+  max-width: 400px;
+  height: auto;
+  box-shadow: 10px 10px 20px rgb(95, 95, 95);
+}
+
 #stream-container {
   margin-top: 4rem;
   margin-bottom: 2rem;
@@ -24,6 +30,27 @@ main {
 }
 
 #joel {
-  width: 300px;
+  max-width: 400px;
+  height: auto;
+  box-shadow: 10px 10px 20px rgb(95, 95, 95);
+}
+
+#watch {
+  max-width: 250px;
+  height: auto;
+}
+
+#youtube {
+  max-width: 200px;
+  height: auto;
+}
+
+#tithes {
+  max-width: 50%;
+  height: auto;
+}
+
+#vanco {
+  max-width: 200px;
   height: auto;
 }
