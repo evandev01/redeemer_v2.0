@@ -8,7 +8,6 @@ const WatchLive = () => {
       <Container id='stream-container'>
         {/* THIS WEEKS SERVICE ========== */}
         <Container>
-          <Row id='live-border' />
           <Row id='stream-player' className='justify-content-center'>
             <Col md='auto' />
             <Col xs={12} sm={12} md={10} lg={10} className='text-center'>
@@ -44,7 +43,6 @@ const WatchLive = () => {
             </Col>
           </Row>
         </Container>
-        <Row id='live-border' className='p-5' />
       </Container>
     </Fragment>
   )

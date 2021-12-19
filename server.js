@@ -2,14 +2,17 @@ const path = require('path')
 const express = require('express')
 const dotenv = require('dotenv')
 const colors = require('colors')
-const routes = require('./routes/emailer')
+const emailRoute = require('./routes/emailer')
+const cors = require('cors')
 dotenv.config()
 
 const app = express()
 
 app.use(express.json())
 
-app.use(routes)
+app.use(cors())
+
+app.use('/send', emailRoute)
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/client/build')))

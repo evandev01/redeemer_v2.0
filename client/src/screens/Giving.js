@@ -10,7 +10,7 @@ const Giving = () => {
     <Fragment>
       <Container id='tithe-container'>
         <Row className='justify-content-center'>
-          <Card id='tithes' bg='dark' text='light'>
+          <Card id='tithes' bg='light' text='dark'>
             <Card.Img variant='top' src={Tithes} />
             <Card.Body>
               <Card.Title className='text-center'>

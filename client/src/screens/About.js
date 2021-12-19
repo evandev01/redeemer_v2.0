@@ -47,12 +47,12 @@ const About = () => {
           </p>
         </Row>
         <Row className='justify-content-md-center'>
-          <Col className='text-center'>
+          <Col className='text-center mb-5 mt-3'>
             <h6 id='about-h6' className='text-center'>
               About Pastor Joel Gilbert
             </h6>
             <Image
-              id='joel-niki'
+              id='photo'
               src={JoelandNiki}
               alt='Pastor Joel Gilbert and Niki Gilbert'
             />
@@ -77,9 +77,9 @@ const About = () => {
         </Row>
         <Row className='justify-content-md-center'>
           <Col md='auto'>
-            <p id='verse' className='text-left'>
+            <p id='para' className='text-left'>
               “But speaking the truth in love, let us grow in every way into him
-              who is the head—Christ.” (Ephesians 4:1)|
+              who is the head—Christ.” (Ephesians 4:1)
               <br />
               “Now the goal of our instruction is love that comes from a pure
               heart, a good conscience, and a sincere faith.” (1 Timothy 1:5)

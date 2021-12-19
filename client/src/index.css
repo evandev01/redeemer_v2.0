@@ -2,6 +2,42 @@ main {
   min-height: 80vh;
 }
 
+#link {
+  color: rgba(63, 63, 63, 0.795);
+  background-color: rgba(233, 233, 233, 0.356);
+  /* border: 1px solid rgba(167, 167, 167, 0.24); */
+  font-size: large;
+}
+#link:hover {
+  color: rgba(126, 240, 82, 0.795);
+  font-size: large;
+  background-color: rgba(109, 109, 109, 0.493);
+  text-shadow: 5px 5px 5px 5px rgb(0, 0, 0);
+}
+
+body {
+  background-image: url('./assets/bkgd//palm-leaves20.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+h6 h3 {
+  color: rgba(0, 0, 0, 0.685);
+}
+
+#para {
+  font-size: large;
+}
+
+#about-h6 {
+  font-size: large;
+}
+
+#photo {
+  max-width: 300px;
+  height: auto;
+}
+
 #church {
   max-width: 400px;
   height: auto;
@@ -25,8 +61,8 @@ main {
 
 #live-border {
   border-top: 1px solid gray;
-  margin-top: 8rem;
-  margin-bottom: 4rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 #joel {

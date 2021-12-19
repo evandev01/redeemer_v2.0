@@ -1,23 +1,34 @@
+require('dotenv').config()
 const router = require('express').Router()
 const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
-router.post('/send', (req, res) => {
+router.post('/', async (req, res) => {
+  const subject = req.body.subject
+  const email = req.body.email
+  const text = req.body.text
+
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
   const msg = {
-    to: 'test@example.com', // Change to your recipient
-    from: 'test@example.com', // Change to your verified sender
-    subject: 'Sending with SendGrid is Fun',
-    text: 'and easy to do anywhere, even with Node.js',
-    html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    to: '<redeemerchurch33@gmail.com>',
+    from: '<redeemerchurch33@gmail.com>',
+    subject: subject,
+    text: text,
+    html: `
+    <h3>Email: <strong>${email}</strong></h3>
+    <h3>Subject: <strong>${subject}</strong></h3>
+    <h3>Message:</h3>
+    <h4><strong>${text}</strong></h4>`,
   }
-  sgMail
-    .send(msg)
-    .then(() => {
-      res.send('Email sent')
-    })
-    .catch(err => {
-      res.send(err)
-    })
+  await sgMail.send(msg).then(
+    () => {},
+    error => {
+      console.error(error)
+
+      if (error.response) {
+        console.error(error.response.body)
+      }
+    }
+  )
 })
 
 module.exports = router

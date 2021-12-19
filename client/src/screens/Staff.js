@@ -11,7 +11,7 @@ const Staff = () => {
   return (
     <Fragment>
       <Container id='staff'>
-        <Row className='justify-content-md-center mb-3'>
+        <Row className='justify-content-md-center'>
           <Col xs={12} lg={12} className='text-center'>
             <h4 id='title'>Our Servant Leaders</h4>
           </Col>
@@ -23,9 +23,9 @@ const Staff = () => {
           </Col>
         </Row>
 
-        <Row className='justify-content-md-center mb-3'>
+        <Row className='justify-content-md-center'>
           <Col md={5} className='text-center'>
-            <Image src={Joel} alt='Pastor Joel and Niki Gilbert' id='photo' />
+            <Image src={Joel} alt='Pastor Joel' id='photo' />
             <h6 id='staff-h6'>Pastor Joel Gilbert</h6>
           </Col>
           <Col md={2} />
@@ -35,20 +35,20 @@ const Staff = () => {
           </Col>
         </Row>
 
-        <Row className='justify-content-md-center mt-3'>
+        <Row className='justify-content-md-center'>
           <Col md={12} className='text-center'>
             <h5 id='staff-h5'>Deacons</h5>
           </Col>
         </Row>
 
-        <Row className='justify-content-md-center mb-3'>
+        <Row className='justify-content-md-center'>
           <Col md={12} className='text-center'>
             <Image src={Steve} alt='Steve - Elder' id='photo' />
             <h6 id='staff-h6'>Steve Renfrow</h6>
           </Col>
         </Row>
 
-        <Row className='justify-content-md-center mb-3'>
+        <Row className='justify-content-md-center'>
           <Col md={12} className='text-center'>
             <Image
               src={David}

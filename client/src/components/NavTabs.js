@@ -2,7 +2,7 @@ import React from 'react'
 import { Nav, Container, Row, Col, Navbar } from 'react-bootstrap'
 import '../index.css'
 
-const NavTabs = props => {
+const NavTabs = () => {
   return (
     <>
       <Container id='nav-container' className='justify-content-center'>
@@ -12,14 +12,18 @@ const NavTabs = props => {
             <Navbar expand='md' className='justify-content-md-center'>
               <Navbar.Toggle aria-controls='basic-navbar-nav' />
               <Navbar.Collapse id='basic-navbar-nav'>
-                <Navbar activeKey='/'>
+                <Navbar>
                   <Nav.Item>
-                    <Nav.Link href='/'>HOME</Nav.Link>
+                    <Nav.Link id='link' href='/'>
+                      HOME
+                    </Nav.Link>
                   </Nav.Item>
                 </Navbar>
                 <Nav>
                   <Nav.Item>
-                    <Nav.Link href='/about'>ABOUT</Nav.Link>
+                    <Nav.Link id='link' href='/about'>
+                      ABOUT
+                    </Nav.Link>
                   </Nav.Item>
                 </Nav>
 
@@ -28,28 +32,38 @@ const NavTabs = props => {
                     {/* <Badge bg='primary' style={{ color: '#007bff' }}>
                       New
                     </Badge> */}
-                    <Nav.Link href='/events'>EVENTS</Nav.Link>
+                    <Nav.Link id='link' href='/events'>
+                      EVENTS
+                    </Nav.Link>
                     {/* </Badge> */}
                   </Nav.Item>
                 </Nav>
                 <Nav>
                   <Nav.Item>
-                    <Nav.Link href='/watchlive'>WATCH</Nav.Link>
-                  </Nav.Item>
-                </Nav>
-                {/* <Nav>
-                  <Nav.Item>
-                    <Nav.Link href='/connect'>CONNECT</Nav.Link>
-                  </Nav.Item>
-                </Nav> */}
-                <Nav>
-                  <Nav.Item>
-                    <Nav.Link href='/giving'>GIVING</Nav.Link>
+                    <Nav.Link id='link' href='/watchlive'>
+                      WATCH
+                    </Nav.Link>
                   </Nav.Item>
                 </Nav>
                 <Nav>
                   <Nav.Item>
-                    <Nav.Link href='/staff'>STAFF</Nav.Link>
+                    <Nav.Link id='link' href='/connect'>
+                      CONNECT
+                    </Nav.Link>
+                  </Nav.Item>
+                </Nav>
+                <Nav>
+                  <Nav.Item>
+                    <Nav.Link id='link' href='/giving'>
+                      GIVING
+                    </Nav.Link>
+                  </Nav.Item>
+                </Nav>
+                <Nav>
+                  <Nav.Item>
+                    <Nav.Link id='link' href='/staff'>
+                      STAFF
+                    </Nav.Link>
                   </Nav.Item>
                 </Nav>
               </Navbar.Collapse>
