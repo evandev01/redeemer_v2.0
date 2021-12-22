@@ -9,28 +9,26 @@ const Home = () => {
   return (
     <>
       <Container id='home-body' className='mt-5'>
-        <Row className='text-center'>
-          <Col className='text-left mb-3'>
+        <Row>
+          <Col className='text-center mb-3'>
             <h3 className='mb-4'>Proclaiming the gospel of Jesus Christ</h3>
           </Col>
         </Row>
 
-        {/* Begin content */}
         <Row>
-          <Col md={1} />
-          <Col md={5} className='text-right'>
-            <Image id='joel' src={Joel}></Image>
+          <Col className='text-center'>
+            <Image id='joel' className='mb-5' src={Joel}></Image>
           </Col>
-          <Col md={5} className='text-left'>
-            <h5 id='hebrew-home' className='text-left mt-3'>
+          <Col>
+            <h5 className='text-left mt-3'>
               "so that at the name of Jesus every knee will bow in heaven and on
               earth and every tongue will confess that Jesus Christ is Lord, to
               the glory of God the Father."
               <br />
               (Phillippians 2:10)
             </h5>
-            <h5 className=' text-left mt-5 ml-1'>Join us for service!</h5>
-            <h5 id='hebrew-home' className='text-left mt-3 ml-1'>
+            <h5 className='text-left mt-5 ml-1'>Join us for service!</h5>
+            <h5 className='text-left mt-3 ml-1'>
               Sunday: 10:00am <br />
               Wednesday: 6:30pm
               <br />
@@ -39,34 +37,36 @@ const Home = () => {
               DeMotte, IN 46310
             </h5>
           </Col>
-          <Col md={1} />
         </Row>
 
         <Row id='live-border' />
 
         <Row className='mt-3'>
-          <Col md={1} />
-          <Col md={5} className='text-right'>
-            <Image id='church' src={Church} alt='Wednesday night service' />
+          <Col className='text-center'>
+            <Image
+              className='mb-5'
+              id='church'
+              src={Church}
+              alt='Wednesday night service'
+            />
           </Col>
-          <Col md={5} className='text-left'>
-            <h5 id='lol-h5' className='text-center'>
+          <Col>
+            <h5 className='text-center mt-3'>
               End Time Truths to encourage our hearts.
             </h5>
-            <h5 className='text-center'>
+            <h5 className='text-center mt-3 mb-3'>
               <strong>Wednesday at 6:30pm</strong>
-              <br />
+            </h5>
+            <h5 className='text-center'>
               We welcome each one to come and study the Bible with us.
             </h5>
           </Col>
-          <Col md={1} />
         </Row>
 
         <Row id='live-border' className='pt-4' />
 
-        <Row className='text-center mt-5'>
-          <Col md={1} />
-          <Col md={5}>
+        <Row className='mt-5'>
+          <Col className='text-center'>
             <Image
               className='mb-3'
               id='watch'
@@ -75,7 +75,7 @@ const Home = () => {
             />
           </Col>
 
-          <Col md={5}>
+          <Col className='text-center'>
             <Row>
               <h5 className='mb-3'>Sermons Streaming Live Now!</h5>
 
@@ -94,7 +94,6 @@ const Home = () => {
               </Row>
             </Row>
           </Col>
-          <Col md={1} />
         </Row>
 
         <Row id='live-border' className='pt-4' />
