@@ -43,11 +43,16 @@ const Giving = () => {
               </Card.Text>
               <Container id='app-stores'>
                 <Row id='vanco-icon-row' className='justify-content-center'>
-                  <Col className='text-center' xs={12} md={12} lg={12}>
+                  <Col className='text-center'>
                     <Image
                       id='vanco'
                       src={VancoIcon}
                       alt='Vanco Mobile Faith Engagement'
+                      style={{
+                        maxWidth: '200px',
+                        height: 'auto',
+                        textAlign: 'center !important',
+                      }}
                     />
                   </Col>
                 </Row>
