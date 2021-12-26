@@ -7,8 +7,8 @@ const WatchLive = () => {
     <Fragment>
       <Container id='stream-container'>
         {/* THIS WEEKS SERVICE ========== */}
+        <Row id='live-border' />
         <Container>
-          <Row id='live-border' />
           <Row id='stream-player' className='justify-content-center'>
             <Col md='auto' />
             <Col xs={12} sm={12} md={10} lg={10} className='text-center'>
@@ -18,7 +18,7 @@ const WatchLive = () => {
                 src='https://www.youtube.com/embed/DYpJV4VrGbg'
                 title='YouTube video player'
                 frameborder='0'
-                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                allow='accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                 allowfullscreen='true'
               ></iframe>
             </Col>
