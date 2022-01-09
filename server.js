@@ -1,10 +1,10 @@
+const dotenv = require('dotenv')
+dotenv.config()
 const path = require('path')
 const express = require('express')
-const dotenv = require('dotenv')
 const colors = require('colors')
 const emailRoute = require('./routes/emailer')
 const cors = require('cors')
-dotenv.config()
 
 const app = express()
 

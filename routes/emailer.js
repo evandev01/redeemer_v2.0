@@ -1,4 +1,6 @@
-require('dotenv').config()
+const path = require('path')
+const dotenv = require('dotenv')
+dotenv.config({ path: '../.env' })
 const router = require('express').Router()
 const sgMail = require('@sendgrid/mail')
 
@@ -9,8 +11,8 @@ router.post('/', async (req, res) => {
 
   sgMail.setApiKey(process.env.SENDGRID_API_KEY)
   const msg = {
-    to: '<redeemerchurch33@gmail.com>',
-    from: '<redeemerchurch33@gmail.com>',
+    to: `<${process.env.EMAIL}>`,
+    from: `<${process.env.EMAIL}>`,
     subject: subject,
     text: text,
     html: `

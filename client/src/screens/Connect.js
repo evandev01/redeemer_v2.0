@@ -36,6 +36,7 @@ const Connect = () => {
       .then(resetForm())
       .catch(err => {
         console.log(err)
+        alert('Message failed')
       })
   }
 
