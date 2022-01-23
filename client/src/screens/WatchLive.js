@@ -7,7 +7,7 @@ const WatchLive = () => {
     <Fragment>
       <Container id='stream-container'>
         {/* THIS WEEKS SERVICE ========== */}
-        <Row id='live-border' />
+        {/* <Row id='live-border' /> */}
         <Container>
           <Row id='stream-player' className='justify-content-center'>
             <Col md='auto' />
@@ -16,7 +16,7 @@ const WatchLive = () => {
                 id='player'
                 width='560'
                 height='315'
-                src='https://www.youtube.com/embed/Yq4I23dQfaE'
+                src='https://www.youtube.com/embed/Ml2nhfV9sfQ'
                 title='YouTube video player'
                 frameborder='0'
                 allow='accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
@@ -36,7 +36,7 @@ const WatchLive = () => {
                 id='player'
                 width='560'
                 height='315'
-                src='https://www.youtube.com/embed/gzPS7nC5TWM'
+                src='https://www.youtube.com/embed/Yq4I23dQfaE'
                 title='YouTube video player'
                 frameborder='0'
                 allow='accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
@@ -45,7 +45,7 @@ const WatchLive = () => {
             </Col>
           </Row>
         </Container>
-        <Row id='live-border' />
+        {/* <Row id='live-border' /> */}
       </Container>
     </Fragment>
   )
