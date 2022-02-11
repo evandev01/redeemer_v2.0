@@ -12,6 +12,7 @@ const Giving = () => {
         <Row className='justify-content-center'>
           <Card id='tithes' bg='light' text='dark'>
             <Card.Img variant='top' src={Tithes} />
+
             <Card.Body>
               <Card.Title className='text-center'>
                 Tithes and Offering
@@ -41,51 +42,38 @@ const Giving = () => {
               <Card.Text className='text-center'>
                 Download the Vanco Mobile App
               </Card.Text>
-              <Container id='app-stores'>
-                <Row id='vanco-icon-row' className='justify-content-center'>
-                  <Col className='text-center'>
-                    <Image
-                      id='vanco'
-                      src={VancoIcon}
-                      alt='Vanco Mobile Faith Engagement'
-                      style={{
-                        maxWidth: '200px',
-                        height: 'auto',
-                        textAlign: 'center !important',
-                      }}
-                    />
-                  </Col>
-                </Row>
+              <Row id='vanco-icon-row'>
+                <Col className='text-center p-3'>
+                  <Image
+                    id='app-icons'
+                    src={VancoIcon}
+                    alt='Vanco Mobile Faith Engagement'
+                  />
+                </Col>
+              </Row>
 
-                <Row className='justify-content-center'>
-                  <Col className='text-center'>
-                    <a href='https://apps.apple.com/us/app/vanco-mobile-faith-engagement/id1504961674?itsct=apps_box_badge&amp;itscg=30200'>
-                      <Image
-                        src={AppStore}
-                        alt='Download on the App Store'
-                        style={{
-                          width: '150px',
-                          height: 'auto',
-                        }}
-                      />
-                    </a>
-                  </Col>
-                </Row>
-                <Row className='justify-content-center'>
-                  <Col className='text-center'>
-                    <a href='https://play.google.com/store/apps/details?id=com.vancopayments.vancomobile&hl=en_US&gl=US'>
-                      <Image
-                        src={GooglePlay}
-                        alt='Get it on Google Play'
-                        style={{
-                          width: '150px',
-                          height: 'auto',
-                        }}
-                      />
-                    </a>
-                  </Col>
-                </Row>
-              </Container>
+              <Row>
+                <Col md={12} className='text-center'>
+                  <a href='https://apps.apple.com/us/app/vanco-mobile-faith-engagement/id1504961674?itsct=apps_box_badge&amp;itscg=30200'>
+                    <Image
+                      id='app-icons'
+                      src={AppStore}
+                      alt='Download on the App Store'
+                    />
+                  </a>
+                </Col>
+              </Row>
+              <Row>
+                <Col className='text-center'>
+                  <a href='https://play.google.com/store/apps/details?id=com.vancopayments.vancomobile&hl=en_US&gl=US'>
+                    <Image
+                      id='app-icons'
+                      src={GooglePlay}
+                      alt='Get it on Google Play'
+                    />
+                  </a>
+                </Col>
+              </Row>
             </Card.Body>
 
             <Card.Body>

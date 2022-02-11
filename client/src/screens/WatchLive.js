@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import '../index.css'
 
 const WatchLive = () => {
   return (
