@@ -11,6 +11,7 @@ import About from './screens/About'
 import { Container } from 'react-bootstrap'
 import NavTabs from './components/NavTabs'
 import Header from './components/Header'
+import Admin from './screens/Admin'
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               <Route path='/giving' element={<Giving />} />
               <Route path='/staff' element={<Staff />} />
               <Route path='/watchlive' element={<WatchLive />} />
+              <Route path='/admin' element={<Admin />} />
             </Routes>
           </Container>
         </main>
