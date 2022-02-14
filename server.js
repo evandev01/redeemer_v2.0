@@ -1,10 +1,15 @@
-const dotenv = require('dotenv')
-dotenv.config()
 const path = require('path')
 const express = require('express')
+const dotenv = require('dotenv')
+const cors = require('cors')
+const connectDB = require('./config/db')
 const colors = require('colors')
 const emailRoute = require('./routes/emailer')
-const cors = require('cors')
+const embedRoutes = require('./routes/embedRoutes')
+
+dotenv.config()
+
+connectDB()
 
 const app = express()
 
@@ -13,6 +18,7 @@ app.use(express.json())
 app.use(cors())
 
 app.use('/send', emailRoute)
+app.use('/embed', embedRoutes)
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/client/build')))
