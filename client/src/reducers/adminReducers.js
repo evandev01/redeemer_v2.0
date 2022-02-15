@@ -10,11 +10,11 @@ export const adminLoginReducer = (state = {}, action) => {
     case ADMIN_LOGIN_REQUEST:
       return { loading: true }
     case ADMIN_LOGIN_SUCCESS:
-      return { loading: false, isLoggedIn: true }
+      return { loading: false, success: true }
     case ADMIN_LOGIN_FAIL:
-      return { loading: false, isLoggedIn: false }
+      return { loading: false }
     case ADMIN_LOGOUT:
-      return { isLoggedIn: false }
+      return {}
     default:
       return state
   }

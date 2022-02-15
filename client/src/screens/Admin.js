@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
@@ -9,18 +10,12 @@ const Admin = () => {
 
   let navigate = useNavigate()
 
-  const login = e => {
+  const login = async e => {
     e.preventDefault()
-    if (password === '1234') {
-      // process.env.ADMIN_PASSWORD
-      setMessageColor('black')
-      let path = '/watchlive'
-      navigate(path)
-    } else {
-      setMessageColor('red')
-      setMessage('Incorrect Password')
-      setPassword('')
+    const data = {
+      password: password,
     }
+    await axios.post('/api/login', data)
   }
 
   return (
@@ -36,7 +31,7 @@ const Admin = () => {
                 onChange={e => setPassword(e.target.value)}
                 value={password}
               />
-              <Form.Text style={{ color: messageColor }}>{message}</Form.Text>
+              {/* <Form.Text style={{ color: messageColor }}>{message}</Form.Text> */}
             </Form.Group>
             <Button
               id='login'

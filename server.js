@@ -6,6 +6,7 @@ const connectDB = require('./config/db')
 const colors = require('colors')
 const emailRoute = require('./routes/emailer')
 const embedRoutes = require('./routes/embedRoutes')
+const auth = require('./routes/auth')
 
 dotenv.config()
 
@@ -19,6 +20,8 @@ app.use(cors())
 
 app.use('/send', emailRoute)
 app.use('/api', embedRoutes)
+app.use('/api/login', auth)
+app.get('/watchlive', auth)
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/client/build')))
