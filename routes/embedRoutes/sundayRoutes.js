@@ -1,17 +1,13 @@
 const router = require('express').Router()
 const {
-  createSundayEmbedLink,
-  getSundayEmbedLinks,
-  getSundayEmbedLink,
-  updateSundayEmbedLink,
-  deleteSundayEmbedLink,
+  createSunday,
+  getSundays,
+  getSunday,
+  updateSunday,
+  deleteSunday,
 } = require('../../controllers/sundayController')
 
-router.route('/').post(createSundayEmbedLink).get(getSundayEmbedLinks)
-router
-  .route('/:id')
-  .get(getSundayEmbedLink)
-  .put(updateSundayEmbedLink)
-  .delete(deleteSundayEmbedLink)
+router.route('/').post(createSunday).get(getSundays)
+router.route('/:id').get(getSunday).put(updateSunday).delete(deleteSunday)
 
 module.exports = router

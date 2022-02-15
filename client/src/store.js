@@ -1,37 +1,37 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { adminLoginReducer, embedLinkReducer } from './reducers/adminReducers'
+import { adminLoginReducer } from './reducers/adminReducers'
 import {
-  createSundayEmbedLinkReducer,
-  updateSundayEmbedLinkReducer,
-  listSundayEmbedLinkReducer,
-  getSundayEmbedLinkReducer,
-  deleteSundayEmbedLinkReducer,
+  sundayCreateReducer,
+  sundayUpdateReducer,
+  sundayListReducer,
+  sundayGetReducer,
+  sundayDeleteReducer,
 } from './reducers/sundayReducers'
 import {
-  createWednesdayEmbedLinkReducer,
-  updateWednesdayEmbedLinkReducer,
-  listWednesdayEmbedLinkReducer,
-  getWednesdayEmbedLinkReducer,
-  deleteWednesdayEmbedLinkReducer,
+  wedCreateReducer,
+  wedUpdateReducer,
+  wedListReducer,
+  wedGetReducer,
+  wedDeleteReducer,
 } from './reducers/wednesdayReducers'
 
 const reducer = combineReducers({
   // Admin Login
   adminLogin: adminLoginReducer,
   // Sunday
-  createSundayEmbedLink: createSundayEmbedLinkReducer,
-  updateSundayEmbedLink: createSundayEmbedLinkReducer,
-  listSundayEmbedLink: listSundayEmbedLinkReducer,
-  getSundayEmbedLink: getSundayEmbedLinkReducer,
-  deleteSundayEmbedLink: deleteSundayEmbedLinkReducer,
+  sundayCreate: sundayCreateReducer,
+  sundayUpdate: sundayUpdateReducer,
+  sundayList: sundayListReducer,
+  sundayGet: sundayGetReducer,
+  sundayDelete: sundayDeleteReducer,
   // Wednesday
-  createWednesdayEmbedLink: createWednesdayEmbedLinkReducer,
-  updateWednesdayEmbedLink: updateWednesdayEmbedLinkReducer,
-  listWednesdayEmbedLink: listWednesdayEmbedLinkReducer,
-  getWednesdayEmbedLink: getWednesdayEmbedLinkReducer,
-  deleteWednesdayEmbedLink: deleteWednesdayEmbedLinkReducer,
+  wedCreate: wedCreateReducer,
+  wedUpdate: wedUpdateReducer,
+  wedList: wedListReducer,
+  wedGet: wedGetReducer,
+  wedDelete: wedDeleteReducer,
 })
 
 const middleware = [thunk]

@@ -1,17 +1,17 @@
 const router = require('express').Router()
 const {
-  createWednesdayEmbedLink,
-  getWednesdayEmbedLinks,
-  getWednesdayEmbedLink,
-  updateWednesdayEmbedLink,
-  deleteWednesdayEmbedLink,
+  createWednesday,
+  getWednesdays,
+  getWednesday,
+  updateWednesday,
+  deleteWednesday,
 } = require('../../controllers/wednesdayController')
 
-router.route('/').post(createWednesdayEmbedLink).get(getWednesdayEmbedLinks)
+router.route('/').post(createWednesday).get(getWednesdays)
 router
   .route('/:id')
-  .get(getWednesdayEmbedLink)
-  .put(updateWednesdayEmbedLink)
-  .delete(deleteWednesdayEmbedLink)
+  .get(getWednesday)
+  .put(updateWednesday)
+  .delete(deleteWednesday)
 
 module.exports = router

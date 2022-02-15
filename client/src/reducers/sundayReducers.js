@@ -1,76 +1,80 @@
 import {
-  CREATE_SUNDAY_EMBED_LINK_REQUEST,
-  CREATE_SUNDAY_EMBED_LINK_SUCCESS,
-  CREATE_SUNDAY_EMBED_LINK_FAIL,
-  CREATE_SUNDAY_EMBED_LINK_RESET,
-  UPDATE_SUNDAY_EMBED_LINK_REQUEST,
-  UPDATE_SUNDAY_EMBED_LINK_SUCCESS,
-  UPDATE_SUNDAY_EMBED_LINK_FAIL,
-  UPDATE_SUNDAY_EMBED_LINK_RESET,
-  LIST_SUNDAY_EMBED_LINK_REQUEST,
-  LIST_SUNDAY_EMBED_LINK_SUCCESS,
-  LIST_SUNDAY_EMBED_LINK_FAIL,
-  GET_SUNDAY_EMBED_LINK_REQUEST,
-  GET_SUNDAY_EMBED_LINK_SUCCESS,
-  GET_SUNDAY_EMBED_LINK_FAIL,
-  DELETE_SUNDAY_EMBED_LINK_REQUEST,
-  DELETE_SUNDAY_EMBED_LINK_SUCCESS,
-  DELETE_SUNDAY_EMBED_LINK_FAIL,
+  SUNDAY_CREATE_REQUEST,
+  SUNDAY_CREATE_SUCCESS,
+  SUNDAY_CREATE_FAIL,
+  SUNDAY_CREATE_RESET,
+  SUNDAY_UPDATE_REQUEST,
+  SUNDAY_UPDATE_SUCCESS,
+  SUNDAY_UPDATE_FAIL,
+  SUNDAY_UPDATE_RESET,
+  SUNDAY_LIST_REQUEST,
+  SUNDAY_LIST_SUCCESS,
+  SUNDAY_LIST_FAIL,
+  SUNDAY_GET_REQUEST,
+  SUNDAY_GET_SUCCESS,
+  SUNDAY_GET_FAIL,
+  SUNDAY_DELETE_REQUEST,
+  SUNDAY_DELETE_SUCCESS,
+  SUNDAY_DELETE_FAIL,
 } from '../constants/sundayConstants'
 
-export const createSundayEmbedLinkReducer = (state = {}, action) => {
+export const sundayCreateReducer = (state = {}, action) => {
   switch (action.type) {
-    case CREATE_SUNDAY_EMBED_LINK_REQUEST:
+    case SUNDAY_CREATE_REQUEST:
       return { loading: true }
-    case CREATE_SUNDAY_EMBED_LINK_SUCCESS:
+    case SUNDAY_CREATE_SUCCESS:
       return {
         loading: false,
         success: true,
-        embedLink: action.payload,
+        sunday: action.payload,
       }
-    case CREATE_SUNDAY_EMBED_LINK_FAIL:
+    case SUNDAY_CREATE_FAIL:
       return {
         loading: false,
         error: action.payload,
       }
-    case CREATE_SUNDAY_EMBED_LINK_RESET:
+    case SUNDAY_CREATE_RESET:
       return {}
     default:
       return state
   }
 }
 
-export const updateSundayEmbedLinkReducer = (state = {}, action) => {
+export const sundayUpdateReducer = (state = { sunday: {} }, action) => {
   switch (action.type) {
-    case UPDATE_SUNDAY_EMBED_LINK_REQUEST:
+    case SUNDAY_UPDATE_REQUEST:
       return { loading: true }
-    case UPDATE_SUNDAY_EMBED_LINK_SUCCESS:
-      return { loading: false, embedLink: action.payload }
-    case UPDATE_SUNDAY_EMBED_LINK_FAIL:
-      return { loading: false, error: action.payload }
-    case UPDATE_SUNDAY_EMBED_LINK_RESET:
-      return {}
+    case SUNDAY_UPDATE_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        sunday: action.payload,
+      }
+    case SUNDAY_UPDATE_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      }
+    case SUNDAY_UPDATE_RESET:
+      return { sunday: {} }
     default:
       return state
   }
 }
-export const listSundayEmbedLinkReducer = (
-  state = { embedLinks: [] },
-  action
-) => {
+export const sundayListReducer = (state = { sundays: [] }, action) => {
   switch (action.type) {
-    case LIST_SUNDAY_EMBED_LINK_REQUEST:
+    case SUNDAY_LIST_REQUEST:
       return {
         loading: true,
-        embedLinks: [],
+        sundays: [],
       }
-    case LIST_SUNDAY_EMBED_LINK_SUCCESS:
+    case SUNDAY_LIST_SUCCESS:
       return {
         loading: false,
         success: true,
-        embedLinks: action.payload.embedLinks,
+        sundays: action.payload,
       }
-    case LIST_SUNDAY_EMBED_LINK_FAIL:
+    case SUNDAY_LIST_FAIL:
       return {
         loading: false,
         error: action.payload,
@@ -79,22 +83,19 @@ export const listSundayEmbedLinkReducer = (
       return state
   }
 }
-export const getSundayEmbedLinkReducer = (
-  state = { embedLink: {} },
-  action
-) => {
+export const sundayGetReducer = (state = { sunday: {} }, action) => {
   switch (action.type) {
-    case GET_SUNDAY_EMBED_LINK_REQUEST:
+    case SUNDAY_GET_REQUEST:
       return {
         loading: true,
-        embedLink: {},
+        sunday: {},
       }
-    case GET_SUNDAY_EMBED_LINK_SUCCESS:
+    case SUNDAY_GET_SUCCESS:
       return {
         loading: false,
-        embedLink: action.payload,
+        sunday: action.payload,
       }
-    case GET_SUNDAY_EMBED_LINK_FAIL:
+    case SUNDAY_GET_FAIL:
       return {
         loading: false,
         error: action.payload,
@@ -103,16 +104,16 @@ export const getSundayEmbedLinkReducer = (
       return state
   }
 }
-export const deleteSundayEmbedLinkReducer = (state = {}, action) => {
+export const sundayDeleteReducer = (state = {}, action) => {
   switch (action.type) {
-    case DELETE_SUNDAY_EMBED_LINK_REQUEST:
+    case SUNDAY_DELETE_REQUEST:
       return { loading: true }
-    case DELETE_SUNDAY_EMBED_LINK_SUCCESS:
+    case SUNDAY_DELETE_SUCCESS:
       return {
         loading: false,
         success: true,
       }
-    case DELETE_SUNDAY_EMBED_LINK_FAIL:
+    case SUNDAY_DELETE_FAIL:
       return {
         loading: false,
         error: action.payload,

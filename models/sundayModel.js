@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const sundaySchema = mongoose.Schema(
   {
-    embedLink: { type: String, required: true },
+    embedURL: { type: String, required: true },
   },
   {
     timestamps: true,

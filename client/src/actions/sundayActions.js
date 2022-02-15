@@ -1,120 +1,127 @@
 import axios from 'axios'
 import {
-  CREATE_SUNDAY_EMBED_LINK_REQUEST,
-  CREATE_SUNDAY_EMBED_LINK_SUCCESS,
-  CREATE_SUNDAY_EMBED_LINK_FAIL,
-  UPDATE_SUNDAY_EMBED_LINK_REQUEST,
-  UPDATE_SUNDAY_EMBED_LINK_SUCCESS,
-  UPDATE_SUNDAY_EMBED_LINK_FAIL,
-  LIST_SUNDAY_EMBED_LINK_REQUEST,
-  GET_SUNDAY_EMBED_LINK_REQUEST,
-  GET_SUNDAY_EMBED_LINK_SUCCESS,
-  GET_SUNDAY_EMBED_LINK_FAIL,
-  DELETE_SUNDAY_EMBED_LINK_REQUEST,
-  DELETE_SUNDAY_EMBED_LINK_SUCCESS,
-  DELETE_SUNDAY_EMBED_LINK_FAIL,
+  SUNDAY_CREATE_REQUEST,
+  SUNDAY_CREATE_SUCCESS,
+  SUNDAY_CREATE_FAIL,
+  SUNDAY_UPDATE_REQUEST,
+  SUNDAY_UPDATE_SUCCESS,
+  SUNDAY_UPDATE_FAIL,
+  SUNDAY_LIST_REQUEST,
+  SUNDAY_LIST_SUCCESS,
+  SUNDAY_LIST_FAIL,
+  SUNDAY_GET_REQUEST,
+  SUNDAY_GET_SUCCESS,
+  SUNDAY_GET_FAIL,
+  SUNDAY_DELETE_REQUEST,
+  SUNDAY_DELETE_SUCCESS,
+  SUNDAY_DELETE_FAIL,
 } from '../constants/sundayConstants'
 
-export const createSundayEmbedLink = embedLink => async dispatch => {
+export const createSunday = sunday => async dispatch => {
   try {
     dispatch({
-      type: CREATE_SUNDAY_EMBED_LINK_REQUEST,
+      type: SUNDAY_CREATE_REQUEST,
     })
 
-    const { data } = await axios.post('/embed/sunday', embedLink)
+    const { data } = await axios.post('/api/sunday', sunday)
 
     dispatch({
-      type: CREATE_SUNDAY_EMBED_LINK_SUCCESS,
+      type: SUNDAY_CREATE_SUCCESS,
       payload: data,
     })
   } catch (error) {
     const message = `Update failed. Please try again.\nIf the issue persists, please contact your developing administrator.`
     dispatch({
-      type: CREATE_SUNDAY_EMBED_LINK_FAIL,
+      type: SUNDAY_CREATE_FAIL,
       payload: message,
     })
   }
 }
 
-export const updateSundayEmbedLink = (id, embedLink) => async dispatch => {
+export const updateSunday = sunday => async dispatch => {
+  console.log(`at sunday action: \n${sunday._id}\n${sunday.embedURL}`)
+  const id = sunday._id
+  // const embedURL = sunday.embedURL
   try {
     dispatch({
-      type: UPDATE_SUNDAY_EMBED_LINK_REQUEST,
+      type: SUNDAY_UPDATE_REQUEST,
     })
 
-    const { data } = await axios.put(`/embed/sunday/${id}`, embedLink)
+    const { data } = await axios.put(`/api/sunday/${id}`, sunday)
 
     dispatch({
-      type: UPDATE_SUNDAY_EMBED_LINK_SUCCESS,
+      type: SUNDAY_UPDATE_SUCCESS,
+      loading: false,
       payload: data,
     })
   } catch (error) {
+    console.error(error)
     const message = `Update failed. Please try again.\nIf the issue persists, please contact your developing administrator.`
     dispatch({
-      type: UPDATE_SUNDAY_EMBED_LINK_FAIL,
+      type: SUNDAY_UPDATE_FAIL,
       payload: message,
     })
   }
 }
 
-export const listSundayEmbedLinks = () => async dispatch => {
+export const listSundays = () => async dispatch => {
   try {
     dispatch({
-      type: LIST_SUNDAY_EMBED_LINK_REQUEST,
+      type: SUNDAY_LIST_REQUEST,
     })
 
-    const { data } = await axios.get('/embed/sunday')
+    const { data } = await axios.get('/api/sunday')
 
     dispatch({
-      type: CREATE_SUNDAY_EMBED_LINK_SUCCESS,
+      type: SUNDAY_LIST_SUCCESS,
       payload: data,
     })
   } catch (error) {
     const message = `Update failed. Please try again.\nIf the issue persists, please contact your developing administrator.`
     dispatch({
-      type: EMBED_LINK_FAIL,
+      type: SUNDAY_LIST_FAIL,
       payload: message,
     })
   }
 }
 
-export const getSundayEmbedLink = id => async dispatch => {
+export const getSunday = id => async dispatch => {
   try {
     dispatch({
-      type: GET_SUNDAY_EMBED_LINK_REQUEST,
+      type: SUNDAY_GET_REQUEST,
     })
 
-    const { data } = await axios.get(`/embed/sunday/${id}`)
+    const { data } = await axios.get(`/api/sunday/${id}`)
 
     dispatch({
-      type: GET_SUNDAY_EMBED_LINK_SUCCESS,
+      type: SUNDAY_GET_SUCCESS,
       payload: data,
     })
   } catch (error) {
     const message = `Update failed. Please try again.\nIf the issue persists, please contact your developing administrator.`
     dispatch({
-      type: GET_SUNDAY_EMBED_LINK_FAIL,
+      type: SUNDAY_GET_FAIL,
       payload: message,
     })
   }
 }
 
-export const deleteSundayEmbedLink = id => async dispatch => {
+export const deleteSunday = id => async dispatch => {
   try {
     dispatch({
-      type: DELETE_SUNDAY_EMBED_LINK_REQUEST,
+      type: SUNDAY_DELETE_REQUEST,
     })
 
-    const { data } = await axios.delete(`/embed/sunday/${id}`)
+    const { data } = await axios.delete(`/api/sunday/${id}`)
 
     dispatch({
-      type: DELETE_SUNDAY_EMBED_LINK_SUCCESS,
+      type: SUNDAY_DELETE_SUCCESS,
       payload: data,
     })
   } catch (error) {
     const message = `Update failed. Please try again.\nIf the issue persists, please contact your developing administrator.`
     dispatch({
-      type: DELETE_SUNDAY_EMBED_LINK_FAIL,
+      type: SUNDAY_DELETE_FAIL,
       payload: message,
     })
   }

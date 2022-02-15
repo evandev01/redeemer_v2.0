@@ -18,7 +18,7 @@ app.use(express.json())
 app.use(cors())
 
 app.use('/send', emailRoute)
-app.use('/embed', embedRoutes)
+app.use('/api', embedRoutes)
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/client/build')))
