@@ -9,6 +9,7 @@ const Giving = () => {
   return (
     <Fragment>
       <Container id='tithe-container'>
+        <Row id='live-border' />
         <Row className='justify-content-center'>
           <Card id='tithes' bg='light' text='dark'>
             <Card.Img variant='top' src={Tithes} />
