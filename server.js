@@ -21,7 +21,6 @@ app.use(cors())
 app.use('/send', emailRoute)
 app.use('/api', embedRoutes)
 app.use('/api/login', auth)
-app.get('/watchlive', auth)
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/client/build')))

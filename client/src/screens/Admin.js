@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 
@@ -7,16 +7,28 @@ const Admin = () => {
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('Please login')
   const [messageColor, setMessageColor] = useState('black')
+  const [bool, setBool] = useState(false)
 
-  let navigate = useNavigate()
+  const navigate = useNavigate()
 
   const login = async e => {
     e.preventDefault()
     const data = {
       password: password,
     }
-    await axios.post('/api/login', data)
+    await axios.post('/api/login', data).then(response => {
+      console.log(response)
+      if (response === true) {
+        navigate('/watchlive')
+      }
+    })
   }
+
+  // useEffect(() => {
+  //   if (bool === true) {
+  //     history.push('/watchlive')
+  //   }
+  // }, [bool])
 
   return (
     <Container>
