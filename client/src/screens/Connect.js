@@ -43,6 +43,7 @@ const Connect = () => {
   return (
     <>
       <Container>
+        <Row id='live-border' />
         <Row className='mt-3'>
           <Col md={3} sm={1} />
           <Col md={6} sm={10}>

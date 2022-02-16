@@ -6,6 +6,7 @@ const About = () => {
   return (
     <Fragment>
       <Container id='about-container'>
+        <Row id='live-border' />
         <Row className='justify-content-md-center'>
           <Col md='auto'>
             <h6 id='about-h6' className='text-center'>
