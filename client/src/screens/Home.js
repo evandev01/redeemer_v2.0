@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Row, Col, Image } from 'react-bootstrap'
+import Footer from '../components/Footer'
 import Church from '../assets/church/church.jpg'
 import Joel from '../assets/joel/joel_600x800.jpg'
 import Watch from '../assets/icons/video-icon.png'
@@ -9,13 +10,14 @@ const Home = () => {
   return (
     <>
       <Container id='home-body' className='mt-5'>
+        <Row id='live-border' />
         <Row>
-          <Col className='text-center mb-3'>
-            <h3 className='mb-4'>Proclaiming the gospel of Jesus Christ</h3>
+          <Col className='text-center m-3 p-3'>
+            <h3 className='mb-4'>Proclaiming the gospel of Jesus Christ!</h3>
           </Col>
         </Row>
 
-        <Row>
+        <Row className='text-center m-3 p-3'>
           <Col className='text-center'>
             <Image id='joel' className='mb-5' src={Joel}></Image>
           </Col>
@@ -41,7 +43,7 @@ const Home = () => {
 
         <Row id='live-border' />
 
-        <Row className='mt-3'>
+        <Row className=' m-3 p-3'>
           <Col className='text-center'>
             <Image
               className='mb-5'
@@ -51,21 +53,22 @@ const Home = () => {
             />
           </Col>
           <Col>
+            <h5 className='text-center'>
+              We welcome each one to come and study the Bible with us.
+            </h5>
             <h5 className='text-center mt-3'>
-              End Time Truths to encourage our hearts.
+              Please gather with us and be impacted one verse at a time from{' '}
+              <strong>Psalms 119!</strong>
             </h5>
             <h5 className='text-center mt-3 mb-3'>
               <strong>Wednesday at 6:30pm</strong>
-            </h5>
-            <h5 className='text-center'>
-              We welcome each one to come and study the Bible with us.
             </h5>
           </Col>
         </Row>
 
         <Row id='live-border' className='pt-4' />
 
-        <Row className='mt-5'>
+        <Row className='text-center m-3 p-3'>
           <Col className='text-center'>
             <Image
               className='mb-3'
@@ -96,7 +99,9 @@ const Home = () => {
           </Col>
         </Row>
 
-        <Row id='live-border' className='pt-4' />
+        <Row id='live-border' />
+
+        <Footer />
       </Container>
     </>
   )

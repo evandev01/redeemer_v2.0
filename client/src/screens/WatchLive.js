@@ -13,16 +13,10 @@ const WatchLive = () => {
     <Fragment>
       <Container id='stream-container'>
         {/* SUNDAY SERVICE */}
-        <Row id='live-border' />
         <Container>
-          <Row>
-            <Col className='text-center'>
-              <h5 style={h5Style}>Sunday Service</h5>
-            </Col>
-          </Row>
           <Row id='stream-player' className='justify-content-center'>
             <Col md='auto' />
-            <Col xs={12} sm={12} md={10} lg={10} className='text-center'>
+            <Col xs={12} sm={12} md={12} lg={12} className='text-center'>
               <iframe
                 id='player'
                 width='560'
@@ -40,14 +34,9 @@ const WatchLive = () => {
 
         {/* WEDNESDAY SERVICE */}
         <Container>
-          <Row>
-            <Col className='text-center'>
-              <h5 style={h5Style}>Wednesday Service</h5>
-            </Col>
-          </Row>
           <Row id='stream-player' className='justify-content-center'>
             <Col md='auto' />
-            <Col xs={12} sm={12} md={10} lg={10} className='text-center'>
+            <Col xs={12} sm={12} md={12} lg={12} className='text-center'>
               <iframe
                 id='player'
                 width='560'
@@ -61,7 +50,7 @@ const WatchLive = () => {
             </Col>
           </Row>
         </Container>
-        <Row id='live-border' />
+        {/* <Row id='live-border' /> */}
       </Container>
     </Fragment>
   )

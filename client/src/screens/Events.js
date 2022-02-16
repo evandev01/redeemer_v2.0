@@ -1,5 +1,8 @@
 import React, { Fragment } from 'react'
-import { Row, Container } from 'react-bootstrap'
+import { Row, Col, Container, Image } from 'react-bootstrap'
+import Shoebox from '../assets/events/shoebox.jpg'
+import FoodDrive from '../assets/events/food_drive.png'
+import Bible from '../assets/events/Bible.jpg'
 // import Parents from '../assets/events/parents.png'
 // import Church from '../assets/church/church.jpg'
 // import Watch from '../assets/icons/video-icon.jpg'
@@ -8,59 +11,81 @@ import { Row, Container } from 'react-bootstrap'
 const Events = () => {
   return (
     <Fragment>
-      <Container id='events-body'>
-        <Row id='live-border' />
-        <h3 className='text-center'>Coming Soon!</h3>
-        {/* <Row className='text-center mt-3'>
+      <Container id='events-container'>
+        {/* MENS BIBLE STUDY */}
+        <Row className='text-center m-3 p-3'>
           <Col lg={4}>
             <Image
+              id='shadow'
               className='py-3'
-              src={Parents}
-              alt='Parents'
+              src={Bible}
+              alt="Men's Bible Study"
               style={{ maxHeight: '300px', width: 'auto' }}
             />
           </Col>
           <Col lg={8} md={12} className='justify-content-center'>
-            <h6 id='lol-h6' className='text-center'>
-              Parenting for God's Glory
-            </h6>
-            <p id='hebrew' className='text-center'>
-              <strong>Nov 7th and 14th</strong>
+            <h3 className='text-center'>Mens Bible Study</h3>
+            <p style={{ fontSize: 'large' }} className='text-center'>
+              <strong>- Saturday Mornings -</strong>
               <br />
-              Instruction from God's Word, fellowship sharing joys and struggles
-              of parenting.
-            </p>
-            <p>
-              For further details and directions, please call (219) 345-5725.
-            </p>
-          </Col>
-        </Row>
-
-        <Row id='live-border' />
-        <Row className='text-center mt-3'>
-          <Col lg={4}>
-            <Image
-              className='py-3'
-              src={Church}
-              alt='Wednesday night service'
-              style={{ maxHeight: '300px', width: 'auto' }}
-            />
-          </Col>
-          <Col lg={8} md={12} className='justify-content-center'>
-            <h6 id='lol-h6' className='text-center'>
-              End Time Truths to encourage our hearts.
-            </h6>
-            <p className='text-center'>
-              <strong>Wednesday at 6:30pm</strong>
-              <br />
-              We welcome each one to come and study the Bible with us.
+              <strong>7:00am - 8:30am</strong> through{' '}
+              <strong>March 12th</strong>
             </p>
           </Col>
         </Row>
 
         <Row id='live-border' />
 
-        <Row className='text-center'>
+        {/* FOOD DRIVE */}
+        <Row className='text-center m-3 p-3'>
+          <Col lg={4}>
+            <Image
+              id='shadow'
+              className='py-3'
+              src={FoodDrive}
+              alt='Food drive'
+              style={{ maxHeight: '300px', width: 'auto' }}
+            />
+          </Col>
+          <Col lg={8} md={12} className='justify-content-center'>
+            <h3 className='text-center'>Food Drive</h3>
+            <p id='events-text' className='text-center'>
+              <strong>- February -</strong>
+              <br />
+              Items: <strong>RICE</strong> and <strong>BEANS</strong>
+              <br />
+              (Please look for 2023 expirations)
+            </p>
+          </Col>
+        </Row>
+
+        <Row id='live-border' />
+
+        {/* SHOEBOX COLLECTION */}
+        <Row className='text-center m-3 p-3'>
+          <Col lg={4}>
+            <Image
+              id='shadow'
+              className='py-3'
+              src={Shoebox}
+              alt='Shoebox collection'
+              style={{ maxHeight: '300px', width: 'auto' }}
+            />
+          </Col>
+          <Col lg={8} md={12} className='justify-content-center'>
+            <h3 className='text-center'>Shoebox Collection</h3>
+            <p id='events-text' className='text-center'>
+              <strong>- February -</strong>
+              <br />
+              Items: <strong>Accessories</strong>
+            </p>
+            <p id='events-text'>
+              For further details, please <a href='/connect'>contact us</a>.
+            </p>
+          </Col>
+        </Row>
+
+        {/* <Row className='text-center'>
           <Col md={1} />
           <Col md={5}>
             <Image
@@ -73,7 +98,7 @@ const Events = () => {
 
           <Col md={5} className='text-center'>
             <h4>Sermons Streaming Live Now!</h4>
-            <p className='mt-3'>
+            <p id='events-text' className='mt-3'>
               Click here{' '}
               <a href='https://www.youtube.com/channel/UCTblLpAk1fUXwWiMm3-u6wQ'>
                 <Image id='youtube-logo' src={YouTube} alt='YouTube logo' />
@@ -84,7 +109,6 @@ const Events = () => {
           </Col>
           <Col md={1} />
         </Row> */}
-        <Row id='live-border' />
       </Container>
     </Fragment>
   )

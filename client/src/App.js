@@ -11,6 +11,7 @@ import About from './screens/About'
 import { Container } from 'react-bootstrap'
 import NavTabs from './components/NavTabs'
 import Header from './components/Header'
+import Footer from './components/Footer'
 
 function App() {
   return (
