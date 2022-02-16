@@ -35,8 +35,10 @@ const Home = () => {
               Wednesday: 6:30pm
               <br />
               Location: <br />
-              5417 IN-10 <br />
-              DeMotte, IN 46310
+              <a href='https://www.google.com/maps/place/5417+IN-10,+De+Motte,+IN+46310/@41.1441656,-87.2869983,16z/data=!4m5!3m4!1s0x8812196950e82fd5:0xda907da34fcb744c!8m2!3d41.1441014!4d-87.2871268?hl=en'>
+                5417 IN-10 <br />
+                DeMotte, IN 46310
+              </a>
             </h5>
           </Col>
         </Row>
