@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const auth = require('../middleware/auth')
 const { body, validationResult } = require('express-validator')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -6,18 +7,28 @@ require('dotenv').config()
 
 const User = require('../models/UserModel')
 
-// @route   POST /users
-// @desc    Register User
-// @access  Public
+// @route   GET /auth
+// @desc
+// @access  Private/Admin
+router.get('/', auth, async (req, res) => {
+  try {
+    // Returns the decoded user object (decoded token) from auth.js minus the password
+    const user = await User.findById(req.user.id).select('-password')
+    res.json(user)
+  } catch (error) {
+    console.error(err.message)
+    res.status(500).send('Server error')
+  }
+})
+
+// @route   POST /auth
+// @desc    Authenticate user & get token
+// @access  Private
 router.post(
   '/',
   [
-    body('name', 'Name is required').not().isEmpty(),
     body('email', 'Please enter a valid email').isEmail(),
-    body(
-      'password',
-      'Please enter a password with 6 or more characters'
-    ).isLength({ min: 6 }),
+    body('password', 'Password is required').exists(),
   ],
   async (req, res) => {
     const errors = validationResult(req)
@@ -25,28 +36,25 @@ router.post(
       return res.status(400).json({ errors: errors.array() })
     }
 
-    const { name, email, password } = req.body
+    const { email, password } = req.body
 
     try {
       let user = await User.findOne({ email })
 
-      // See if the user exists
-      if (user) {
+      // See if the user does not exist
+      if (!user) {
         return res
           .status(400)
-          .json({ errors: [{ msg: 'User already exists' }] })
+          .json({ errors: [{ msg: 'Invalid Credentials' }] })
       }
 
-      user = new User({ name, email, password })
+      const isMatch = await bcrypt.compare(password, user.password)
 
-      // Encrypt password
-      // Hash password (10 rounds - the more rounds, the more secure)
-      const salt = await bcrypt.genSalt(10)
-
-      // Takes the user password and hashes it
-      user.password = await bcrypt.hash(password, salt)
-
-      await user.save()
+      if (!isMatch) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'Invalid Credentials' }] })
+      }
 
       // Return jsonwebtoken
       const payload = {
@@ -66,7 +74,7 @@ router.post(
       res.status(500).send('Server error')
     }
 
-    res.send('In the user route')
+    res.send(`In the auth route...\nToken: ${token}`)
   }
 )
 

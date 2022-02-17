@@ -3,38 +3,24 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 
-const Admin = () => {
+const Login = () => {
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [message, setMessage] = useState('Please login')
-  const [messageColor, setMessageColor] = useState('black')
-  const [bool, setBool] = useState(false)
-
-  const navigate = useNavigate()
-
-  const login = async e => {
-    e.preventDefault()
-    const data = {
-      password: password,
-    }
-    await axios.post('/api/login', data).then(response => {
-      console.log(response)
-      if (response === true) {
-        navigate('/watchlive')
-      }
-    })
-  }
-
-  // useEffect(() => {
-  //   if (bool === true) {
-  //     history.push('/watchlive')
-  //   }
-  // }, [bool])
 
   return (
     <Container>
       <Row>
         <Col>
           <Form>
+            <Form.Group className='mb-3' controlId='formBasicEmail'>
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type='email'
+                placeholder='Email'
+                onChange={e => setEmail(e.target.value)}
+                value={email}
+              />
+            </Form.Group>
             <Form.Group className='mb-3' controlId='formBasicPassword'>
               <Form.Label>Password</Form.Label>
               <Form.Control
@@ -43,11 +29,10 @@ const Admin = () => {
                 onChange={e => setPassword(e.target.value)}
                 value={password}
               />
-              {/* <Form.Text style={{ color: messageColor }}>{message}</Form.Text> */}
             </Form.Group>
             <Button
-              id='login'
-              onClick={e => login(e)}
+              // id='login'
+              // onClick={e => login(e)}
               variant='success'
               type='submit'
             >
@@ -60,4 +45,4 @@ const Admin = () => {
   )
 }
 
-export default Admin
+export default Login
