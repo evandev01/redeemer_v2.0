@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <>
       <Row id='live-border' />
-      <Row className='text-center mt-5'>
+      <Row className='text-center'>
         <Col className='text-center p-3'>
           <h3 style={{ fontSize: '1.5em' }}>
             Proclaiming the gospel of Jesus Christ!
