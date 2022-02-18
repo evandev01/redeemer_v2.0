@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <>
       <Row id='live-border' />
-      <Row className='mt-5'>
+      <Row className='text-center mt-5'>
         <Col className='text-center p-3'>
           <h3 style={{ fontSize: '1.5em' }}>
             Proclaiming the gospel of Jesus Christ!
@@ -19,7 +19,7 @@ const Home = () => {
       </Row>
 
       <Row>
-        <Col className='text-center'>
+        <Col>
           <Image className='text-center' id='joel' src={Joel}></Image>
         </Col>
         <Col className='p-3'>
