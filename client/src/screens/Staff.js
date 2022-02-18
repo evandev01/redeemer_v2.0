@@ -9,7 +9,7 @@ import Bob from '../assets/staff/IMG_2475.jpeg'
 
 const Staff = () => {
   return (
-    <Fragment>
+    <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
       <Container id='staff' className='mt-5'>
         <Row className='justify-content-md-center'>
           <Col xs={12} lg={12} className='text-center'>
@@ -75,7 +75,7 @@ const Staff = () => {
         </Row>
         <div id='bottom' />
       </Container>
-    </Fragment>
+    </div>
   )
 }
 

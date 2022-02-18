@@ -8,7 +8,7 @@ import YouTube from '../assets/icons/youtube-logo2.png'
 
 const Home = () => {
   return (
-    <>
+    <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
       <Row id='live-border' />
       <Row className='text-center'>
         <Col className='text-center p-3'>
@@ -110,7 +110,7 @@ const Home = () => {
       <Row id='live-border' />
 
       <Footer />
-    </>
+    </div>
   )
 }
 
