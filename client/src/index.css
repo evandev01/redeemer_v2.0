@@ -48,7 +48,17 @@ p h1 h2 h3 h4 h5 {
   background-color: rgba(255, 255, 255, 0.5);
   padding: 40px;
 }
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 767px) {
+  #about-div {
+    font-weight: 500;
+    line-height: 24px;
+    font-style: normal;
+    font-size: small;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+  }
+}
+@media screen and (min-width: 991px) {
   #about-div {
     font-weight: 500;
     line-height: 40px;
@@ -74,10 +84,53 @@ p h1 h2 h3 h4 h5 {
   height: auto;
 }
 
+#tithe-container {
+  background-color: rgba(255, 255, 255, 0.5);
+}
 #tithes {
-  max-width: 50%;
+  max-width: 100%;
   height: auto;
   padding: 20px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+#tithe-graphic {
+  max-width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
+  height: auto;
+  padding: 20px;
+  vertical-align: middle !important;
+}
+@media screen and(max-width: 767px) {
+  #tithe-graphic {
+    width: 100%;
+    /* margin-left: 20%;
+    margin-right: 20%; */
+    height: auto;
+    padding: 20px;
+  }
+}
+@media screen and(min-width: 200px) {
+  #tithe-graphic {
+    max-width: 100%;
+    /* margin-left: 20%;
+    margin-right: 20%; */
+    height: auto;
+    padding: 20px;
+  }
+}
+/* @media screen and(max-width: 767px) {
+  #tithe-graphic {
+    max-width: 100%;
+    margin-left: 0%;
+    margin-right: 0%;
+    height: auto;
+    padding: 20px;
+  }
+} */
+*/ #online-giving-btn {
+  width: 40%;
 }
 
 @media screen and (max-width: 450px) {
