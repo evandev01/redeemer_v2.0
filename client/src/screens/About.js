@@ -4,17 +4,15 @@ import JoelandNiki from '../assets/staff/IMG_2487.jpeg'
 
 const About = () => {
   return (
-    <>
+    <div id='about-div'>
       <Row id='live-border' />
       <Row className='justify-content-md-center mt-5'>
         <Col md='auto'>
-          <h6 id='about-h6' className='text-center'>
-            Mission statement:
-          </h6>
+          <p className='text-center'>Mission statement:</p>
         </Col>
       </Row>
       <Row>
-        <p id='para' className='text-left'>
+        <p className='text-left'>
           At Redeemer Church, we seek to bring together God's mission and the
           mission of the Church by making disciples who delight in, display, and
           declare the glorious gospel of Jesus Christ!
@@ -23,16 +21,14 @@ const About = () => {
 
       <Row className='justify-content-md-center'>
         <Col md='auto'>
-          <h6 id='about-h6' className='text-center'>
-            Our Vision:
-          </h6>
-          <h6 id='about-h6' className='text-center'>
+          <p className='text-center'>Our Vision:</p>
+          <p className='text-center'>
             Treasuring Christ and Proclaiming His Worth
-          </h6>
+          </p>
         </Col>
       </Row>
       <Row>
-        <p id='para' className='text-left'>
+        <p className='text-left'>
           Because God the Father is so delighted in His Son, He designed a
           masterful plan that stretches across all eternity to honor and exalt
           Jesus as the centerpiece of all heavenly and earthly existence. By the
@@ -47,9 +43,7 @@ const About = () => {
       </Row>
       <Row className='justify-content-md-center'>
         <Col className='text-center mb-5 mt-3'>
-          <h6 id='about-h6' className='text-center'>
-            About Pastor Joel Gilbert
-          </h6>
+          <p className='text-center'>About Pastor Joel Gilbert</p>
           <Image
             id='photo'
             src={JoelandNiki}
@@ -58,7 +52,7 @@ const About = () => {
         </Col>
       </Row>
       <Row>
-        <p id='para' className='text-left'>
+        <p className='text-left'>
           By His grace, God called me to preach His Word about 15 years ago. He
           put His Word in my mouth and has not let me be silent since He called
           me. At the end 2010 God called me to preach at Redeemer Church. My aim
@@ -76,7 +70,7 @@ const About = () => {
       </Row>
       <Row className='justify-content-md-center'>
         <Col md='auto'>
-          <p id='para' className='text-left'>
+          <p className='text-left'>
             “But speaking the truth in love, let us grow in every way into him
             who is the head—Christ.” (Ephesians 4:1)
             <br />
@@ -86,7 +80,7 @@ const About = () => {
         </Col>
       </Row>
       <Row>
-        <p id='para' className='text-left'>
+        <p className='text-left'>
           In preaching, it’s not just that preachers need both truth and love.
           Gospel truth has not reached its goal until it produces love. Love has
           no living roots without gospel truth. Therefore, the goal and aim of
@@ -99,7 +93,7 @@ const About = () => {
           knowledge is at best, light without heat.
         </p>
 
-        <p id='para' className='text-left'>
+        <p className='text-left'>
           As a preacher, I sincerely want my heart burn with love each week. If
           the Spirit intends to work in the hearers of the Word, I’ve learned
           that He generally works first in the preacher of the Word. In wisdom I
@@ -110,7 +104,7 @@ const About = () => {
           (Acts 4:8, 29–33; Eph. 6:18–20)
         </p>
       </Row>
-    </>
+    </div>
   )
 }
 

@@ -5,7 +5,11 @@ import '../index.css'
 const NavTabs = () => {
   return (
     <>
-      <Container id='nav-container' className='justify-content-center'>
+      <Container
+        id='nav-container'
+        className='justify-content-center'
+        style={{ fontWeight: '700' }}
+      >
         <Row className='justify-content-md-center'>
           <Col xs={1} md={1} lg={4} />
           <Col xs={10} md={10} lg={4}>
@@ -29,24 +33,22 @@ const NavTabs = () => {
 
                 <Nav>
                   <Nav.Item>
-                    <Badge
+                    {/* <Badge
                       bg='secondary'
                       style={{
                         color: 'rgba(126, 240, 82, 0.795)',
-                        // backgroundColor:
-                        //   'rgba(109, 109, 109, 0.493) !important',
                       }}
                       className='text-center'
                     >
-                      New
-                      <Nav.Link
-                        // style={{ color: 'white' }}
-                        id='events-link'
-                        href='/events'
-                      >
-                        EVENTS
-                      </Nav.Link>
-                    </Badge>
+                      New */}
+                    <Nav.Link
+                      // style={{ color: 'white' }}
+                      id='link'
+                      href='/events'
+                    >
+                      EVENTS
+                    </Nav.Link>
+                    {/* </Badge> */}
                   </Nav.Item>
                 </Nav>
                 <Nav>
