@@ -18,7 +18,10 @@ function App() {
     <Router>
       <>
         <Header />
-        <main className='px-3 py-3 m-3'>
+        <main
+          className='p-3'
+          //  className='px-3 py-3 m-3'
+        >
           <Container>
             <NavTabs />
             <Routes>
