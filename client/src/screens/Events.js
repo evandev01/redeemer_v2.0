@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react'
-import { Row, Col, Container, Image } from 'react-bootstrap'
+import React from 'react'
+import { Row, Col, Image } from 'react-bootstrap'
 import Shoebox from '../assets/events/shoebox.jpg'
 import FoodDrive from '../assets/events/food_drive.png'
 import Bible from '../assets/events/Bible.jpg'
@@ -10,7 +10,7 @@ import Bible from '../assets/events/Bible.jpg'
 
 const Events = () => {
   return (
-    <>
+    <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
       <Row id='live-border' />
       {/* MENS BIBLE STUDY */}
       <Row className='mt-5'>
@@ -90,7 +90,7 @@ const Events = () => {
           </Col>
           <Col xs={12} sm={12} lg={6}md={1} />
         </Row> */}
-    </>
+    </div>
   )
 }
 

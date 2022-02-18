@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 import Joel from '../assets/staff/IMG_2488.jpeg'
 import Georgette from '../assets/staff/IMG_2493.jpeg'
@@ -9,7 +9,7 @@ import Bob from '../assets/staff/IMG_2475.jpeg'
 
 const Staff = () => {
   return (
-    <Fragment>
+    <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
       <Container id='staff' className='mt-5'>
         <Row className='justify-content-md-center'>
           <Col xs={12} lg={12} className='text-center'>
@@ -75,7 +75,7 @@ const Staff = () => {
         </Row>
         <div id='bottom' />
       </Container>
-    </Fragment>
+    </div>
   )
 }
 

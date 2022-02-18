@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Container, Row, Col, Button, Card, Image } from 'react-bootstrap'
+import { Row, Col, Button, Card, Image } from 'react-bootstrap'
 import VancoIcon from '../assets/vanco/vanco-mobile.png'
 import GooglePlay from '../assets/vanco/google-play.png'
 import AppStore from '../assets/vanco/app-store2.png'
