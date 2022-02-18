@@ -1,15 +1,17 @@
 import React from 'react'
-import { Container, Row, Image } from 'react-bootstrap'
+import { Col, Row, Image } from 'react-bootstrap'
 import Logo from '../assets/header/logo-3trees.png'
 
 const Header = () => {
   return (
     <>
-      <Container>
-        <Row md={12}>
-          <Image src={Logo} />
+      <header>
+        <Row className='px-1 m-1'>
+          <Col className='text-center'>
+            <Image id='header-image' src={Logo} />
+          </Col>
         </Row>
-      </Container>
+      </header>
     </>
   )
 }

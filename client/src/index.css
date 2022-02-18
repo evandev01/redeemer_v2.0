@@ -1,22 +1,47 @@
-main {
-  min-height: 80vh;
+body {
+  margin: 0;
+  color: #121212;
+  font-family: Georgia, 'Times New Roman', Times, serif !important;
+  background-image: url('./assets/bkgd//palm-leaves20.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+@media only screen and (max-width: 1079px) {
+  body {
+    background-image: url('./assets/bkgd/palm-leaves20v.jpg');
+    background-attachment: initial;
+  }
 }
 
-#events-text {
-  font-size: large;
-}
-
-#events-container {
-  border-right: 1px solid gray;
-  border-left: 1px solid gray;
+#live-border {
   border-top: 1px solid gray;
-  border-bottom: 1px solid gray;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
-#shadow {
-  max-width: 400px;
+.row {
+  margin: 0;
+}
+
+.container {
+  width: 100vw;
   height: auto;
-  box-shadow: 10px 10px 20px rgb(95, 95, 95);
+  justify-content: center;
+}
+
+p h1 h2 h3 h4 h5 {
+  font-size: x-large;
+  padding: 20px auto;
+  margin: 20px auto;
+}
+
+@media screen and (max-width: 450px) {
+  p h1 h2 h3 h4 h5 {
+    font-size: large;
+    padding: 20px auto;
+    margin: 20px auto;
+  }
 }
 
 #link {
@@ -32,89 +57,67 @@ main {
   text-shadow: 5px 5px 5px 5px rgb(0, 0, 0);
 }
 
-body {
-  background-image: url('./assets/bkgd//palm-leaves20.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}
-@media only screen and (max-width: 1079px) {
-  body {
-    background-image: url('./assets/bkgd/palm-leaves20v.jpg');
-    background-attachment: initial;
-  }
-}
-h6 h3 h5 {
-  color: rgba(0, 0, 0, 0.685);
-  font-size: large;
-  font-weight: bold;
-}
-
-#para {
-  font-size: large;
-}
-
 #photo {
   max-width: 300px;
   height: auto;
+  padding: 20px 0;
+}
+@media screen and (max-width: 450px) {
+  #photo {
+    max-width: 200px;
+    height: auto;
+    padding: 20px 0;
+  }
 }
 
-#church {
-  max-width: 400px;
-  height: auto;
-  box-shadow: 10px 10px 20px rgb(95, 95, 95);
-}
-
-#stream-container {
-  margin-top: 4rem;
-  margin-bottom: 2rem;
-}
-
-#player {
-  margin-top: 4rem;
+#header-image {
   max-width: 100%;
-  max-height: auto;
-}
-
-#video-player {
-  margin-top: 3rem;
-}
-
-#live-border {
-  border-top: 1px solid gray;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  height: 100%;
+  width: auto;
+  padding: 20px 0;
+  margin: 0px 0;
+  /* margin: 20px auto; */
+  text-align: center;
 }
 
 #joel {
+  max-height: 80%;
+  max-width: 80vw;
+  padding: 20px auto;
+  margin: 20px auto;
+  text-align: center;
+}
+
+#graphic {
+  max-height: 400px;
+  max-width: 80vw;
+  padding: 20px auto;
+  margin: 20px auto;
+  text-align: center;
+}
+
+#events-graphic {
   max-width: 400px;
   height: auto;
-  /* box-shadow: 10px 10px 20px rgb(95, 95, 95); */
+  padding: 20px auto;
+  margin: 20px auto;
+  text-align: center;
 }
 
-#watch {
-  max-width: 250px;
-  height: auto;
-}
-
-#youtube {
-  max-width: 200px;
-  height: auto;
-}
-
-#tithes {
-  max-width: 50%;
-  height: auto;
-}
-
-#app-icons {
-  max-width: 200px;
-  height: auto;
-}
-
-@media screen and (max-width: 475px) {
-  #app-icons {
-    max-width: 80px;
+@media screen and (max-width: 450px) {
+  #events-graphic {
+    max-width: 200px;
     height: auto;
+    padding: 20px auto;
+    margin: 20px auto;
+    text-align: center;
   }
+}
+
+#icon {
+  max-height: 250px;
+  max-width: 80vw;
+  padding: 20px auto;
+  margin: 20px auto;
+  text-align: center;
 }
