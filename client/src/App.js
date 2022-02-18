@@ -15,7 +15,6 @@ import Footer from './components/Footer'
 
 function App() {
   return (
-    // commit fix
     <Router>
       <>
         <main className='py-3'>
