@@ -12,7 +12,7 @@ body {
   body {
     background-image: url('./assets/bkgd/palm-leaves20v.jpg');
     background-attachment: initial;
-    overflow: hidden;
+    overflow-x: hidden;
   }
 }
 
