@@ -17,9 +17,9 @@ function App() {
   return (
     <Router>
       <>
-        <main className='py-3'>
+        <Header />
+        <main className='px-3 py-3 m-3'>
           <Container>
-            <Header />
             <NavTabs />
             <Routes>
               <Route path='/' element={<Home />} />
