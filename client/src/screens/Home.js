@@ -18,11 +18,11 @@ const Home = () => {
         </Col>
       </Row>
 
-      <Row>
-        <Col>
+      <Row className='text-center'>
+        <Col sm={12} lg={6} className='text-center'>
           <Image className='text-center' id='joel' src={Joel}></Image>
         </Col>
-        <Col className='p-3'>
+        <Col sm={12} lg={6} className='p-3'>
           <p className='text-left'>
             "so that at the name of Jesus every knee will bow in heaven and on
             earth and every tongue will confess that Jesus Christ is Lord, to
