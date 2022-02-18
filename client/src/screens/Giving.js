@@ -42,7 +42,7 @@ const Giving = () => {
               Download the Vanco Mobile App
             </Card.Text>
             <Row id='vanco-icon-row'>
-              <Col className='text-center p-3'>
+              <Col className='text-center'>
                 <Image
                   id='app-icons'
                   src={VancoIcon}

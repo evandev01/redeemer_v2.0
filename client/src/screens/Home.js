@@ -81,18 +81,22 @@ const Home = () => {
       <Row id='live-border' className='pt-4' />
 
       <Row>
-        <Col className='text-center'>
+        <Col sm={12} md={6} className='text-center'>
           <Image id='icon' src={Watch} alt='Watch live sermons' />
         </Col>
 
-        <Col className='text-center'>
+        <Col sm={12} md={6} className='text-center'>
           <Row>
             <h5>Sermons Streaming Live Now!</h5>
 
             <Row>
               <h5>Click here</h5>
               <br />
-              <a href='https://www.youtube.com/channel/UCTblLpAk1fUXwWiMm3-u6wQ'>
+              <a
+                href='https://www.youtube.com/channel/UCTblLpAk1fUXwWiMm3-u6wQ'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <Image id='icon' src={YouTube} alt='YouTube logo' />
               </a>
             </Row>
