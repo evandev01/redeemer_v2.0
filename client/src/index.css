@@ -15,20 +15,21 @@ body {
 }
 
 #live-border {
+  width: fit-content;
   border-top: 1px solid gray;
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
 
-.row {
+/* .row {
   margin: 0;
-}
+} */
 
-.container {
-  width: 100vw;
+/* .container {
+  max-width: fit-content;
   height: auto;
   justify-content: center;
-}
+} */
 
 p h1 h2 h3 h4 h5 {
   font-size: x-large;
@@ -79,7 +80,8 @@ p h1 h2 h3 h4 h5 {
 
 #joel {
   max-height: 80%;
-  max-width: 80vw;
+  max-width: 100vw;
+  text-align: center;
   padding: 20px auto;
   margin: 20px auto;
   text-align: center;
