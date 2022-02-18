@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <>
       <header>
-        <Row className='px-1 m-1'>
+        <Row>
           <Col className='text-center'>
             <Image id='header-image' src={Logo} />
           </Col>
