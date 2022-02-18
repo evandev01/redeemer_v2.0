@@ -1,5 +1,5 @@
 import React from 'react'
-import { Nav, Container, Row, Col, Navbar } from 'react-bootstrap'
+import { Nav, Container, Row, Col, Navbar, Badge } from 'react-bootstrap'
 import '../index.css'
 
 const NavTabs = () => {
@@ -29,13 +29,24 @@ const NavTabs = () => {
 
                 <Nav>
                   <Nav.Item>
-                    {/* <Badge bg='primary' style={{ color: '#007bff' }}>
+                    <Badge
+                      bg='secondary'
+                      style={{
+                        color: 'rgba(126, 240, 82, 0.795)',
+                        // backgroundColor:
+                        //   'rgba(109, 109, 109, 0.493) !important',
+                      }}
+                      className='text-center'
+                    >
                       New
-                    </Badge> */}
-                    <Nav.Link id='link' href='/events'>
-                      EVENTS
-                    </Nav.Link>
-                    {/* </Badge> */}
+                      <Nav.Link
+                        // style={{ color: 'white' }}
+                        id='events-link'
+                        href='/events'
+                      >
+                        EVENTS
+                      </Nav.Link>
+                    </Badge>
                   </Nav.Item>
                 </Nav>
                 <Nav>
