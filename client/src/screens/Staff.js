@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 import Joel from '../assets/staff/IMG_2488.jpeg'
 import Georgette from '../assets/staff/IMG_2493.jpeg'

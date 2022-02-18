@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react'
-import { Row, Col, Container, Image } from 'react-bootstrap'
+import React from 'react'
+import { Row, Col, Image } from 'react-bootstrap'
 import Shoebox from '../assets/events/shoebox.jpg'
 import FoodDrive from '../assets/events/food_drive.png'
 import Bible from '../assets/events/Bible.jpg'

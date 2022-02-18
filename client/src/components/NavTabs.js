@@ -1,5 +1,5 @@
 import React from 'react'
-import { Nav, Container, Row, Col, Navbar, Badge } from 'react-bootstrap'
+import { Nav, Container, Row, Col, Navbar } from 'react-bootstrap'
 import '../index.css'
 
 const NavTabs = () => {

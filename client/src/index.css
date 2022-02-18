@@ -20,6 +20,11 @@ body {
   }
 }
 
+#player {
+  max-width: 100%;
+  max-height: auto;
+}
+
 #live-border {
   border-top: 1px solid gray;
   margin: 10px 0;

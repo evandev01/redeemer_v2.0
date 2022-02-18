@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react'
-import { Col, Container, Row, Image } from 'react-bootstrap'
+import React from 'react'
+import { Col, Row, Image } from 'react-bootstrap'
 import JoelandNiki from '../assets/staff/IMG_2487.jpeg'
 
 const About = () => {
