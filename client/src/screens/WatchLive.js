@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Container } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import '../index.css'
 
 const WatchLive = () => {
@@ -14,7 +14,7 @@ const WatchLive = () => {
             id='player'
             width='560'
             height='315'
-            src='https://www.youtube.com/embed/ihr4KhgMPrM'
+            src='https://www.youtube.com/embed/Ds2yPPDcBLc'
             title='YouTube video player'
             frameborder='0'
             allow='accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
@@ -34,7 +34,6 @@ const WatchLive = () => {
         <Col xs={12} className='text-center m-3 py-3'>
           <iframe
             id='player'
-            title='live stream player'
             width='560'
             height='315'
             src='https://www.youtube.com/embed/z9Pm_PxXe2g'

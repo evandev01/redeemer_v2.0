@@ -90,19 +90,24 @@ const Home = () => {
           <Row>
             <h5>Sermons Streaming Live Now!</h5>
 
-            <Row>
-              <h5>Click here</h5>
-              <br />
-              <a
-                href='https://www.youtube.com/channel/UCTblLpAk1fUXwWiMm3-u6wQ'
-                target='_blank'
-                rel='noreferrer'
-              >
-                <Image id='icon' src={YouTube} alt='YouTube logo' />
-              </a>
+            <Row className='text-center'>
+              <Col className='text-center'>
+                {' '}
+                <h5>Click here</h5>
+                <br />
+                <a
+                  href='https://www.youtube.com/channel/UCTblLpAk1fUXwWiMm3-u6wQ'
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  <Image id='icon' src={YouTube} alt='YouTube logo' />
+                </a>
+              </Col>
             </Row>
-            <Row>
-              <h5>and subscribe to our channel!</h5>
+            <Row className='text-center'>
+              <Col className='text-center'>
+                <h5>and subscribe to our channel!</h5>
+              </Col>
             </Row>
           </Row>
         </Col>
