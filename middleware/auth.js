@@ -1,24 +1,42 @@
 const jwt = require('jsonwebtoken')
-require('dotenv').config()
+const User = require('../models/UserModel')
 
-module.exports = function (req, res, next) {
-  // Get token from header
-  const token = req.header('x-auth-token')
+const protect = async (req, res, next) => {
+  let token
 
-  // Check if no token
-  if (!token) {
-    res.status(401).json({ msg: 'No token, authorization denied' })
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    try {
+      // Decode token
+      token = req.headers.authorization.split(' ')[1]
+
+      const decoded = jwt.verify(token, process.env.JWT_SECRET)
+
+      req.user = await User.findById(decoded.id).select('-password')
+
+      next()
+    } catch (error) {
+      console.error(error)
+      res.status(401)
+      throw new Error('Not authorized, token failed')
+    }
   }
 
-  // Verify token
-  const secret = process.env.JWT_SECRET
-
-  try {
-    const decoded = jwt.verify(token, secret)
-
-    req.user = decoded.user
-    next()
-  } catch (err) {
-    res.status(401).json({ msg: 'Token is not valid' })
+  if (!token) {
+    res.status(401)
+    throw new Error('Not authorized, no token')
   }
 }
+
+// const admin = (req, res, next) => {
+//   if (req.user && req.user.isAdmin) {
+//     next()
+//   } else {
+//     res.status(401)
+//     throw new Error('Not authorized as an admin')
+//   }
+// }
+
+module.exports = { protect }

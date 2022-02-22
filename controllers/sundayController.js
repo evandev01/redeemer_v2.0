@@ -1,4 +1,4 @@
-const Sunday = require('../models/sundayModel')
+const Sunday = require('../models/SundayModel')
 
 // @desc    Get all Sundays
 // @route   GET /api/sunday

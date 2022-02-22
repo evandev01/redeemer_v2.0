@@ -11,30 +11,35 @@ import About from './screens/About'
 import { Container } from 'react-bootstrap'
 import NavTabs from './components/NavTabs'
 import Header from './components/Header'
-import Admin from './screens/Admin'
+import Login from './screens/Login'
+// Redux
+import { Provider } from 'react-redux'
+import store from './store'
 
-function App() {
+const App = () => {
   return (
-    <Router>
-      <div id='wrapper'>
-        <Header />
-        <main className='p-3'>
-          <Container>
-            <NavTabs />
-            <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/about' element={<About />} />
-              <Route path='/connect' element={<Connect />} />
-              <Route path='/events' element={<Events />} />
-              <Route path='/giving' element={<Giving />} />
-              <Route path='/staff' element={<Staff />} />
-              <Route path='/watchlive' element={<WatchLive />} />
-              <Route path='/admin' element={<Admin />} />
-            </Routes>
-          </Container>
-        </main>
-      </div>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <div id='wrapper'>
+          <Header />
+          <main className='p-3'>
+            <Container>
+              <NavTabs />
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/connect' element={<Connect />} />
+                <Route path='/events' element={<Events />} />
+                <Route path='/giving' element={<Giving />} />
+                <Route path='/staff' element={<Staff />} />
+                <Route path='/watchlive' element={<WatchLive />} />
+                <Route path='/login' element={<Login />} />
+              </Routes>
+            </Container>
+          </main>
+        </div>
+      </Router>
+    </Provider>
   )
 }
 

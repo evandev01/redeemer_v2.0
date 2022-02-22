@@ -2,10 +2,22 @@ import React, { useState, useEffect, Fragment } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import Loader from '../components/Loader'
-import { listSundays, updateSunday } from '../actions/sundayActions'
-import { listWednesdays, updateWednesday } from '../actions/wednesdayActions'
-import { SUNDAY_UPDATE_RESET } from '../constants/sundayConstants'
-import { WED_UPDATE_RESET } from '../constants/wednesdayConstants'
+import Message from '../components/Message'
+import { listSundays, updateSunday } from '../actions/sunday'
+import { listWednesdays, updateWednesday } from '../actions/wednesday'
+import { SUNDAY_UPDATE_RESET } from '../constants/sunday'
+import { WED_UPDATE_RESET } from '../constants/wednesday'
+
+// Sun 2/20
+// https://www.youtube.com/embed/Ds2yPPDcBLc
+// Sun 2/13
+// https://www.youtube.com/embed/ihr4KhgMPrM
+
+// Wed 2/16
+// https://www.youtube.com/embed/z9Pm_PxXe2g
+
+// Wed 2/9
+// https://www.youtube.com/embed/ocfQ_ctmo9c
 
 const WatchLive = () => {
   const [sundayURL, setSundayURL] = useState('')
@@ -40,15 +52,21 @@ const WatchLive = () => {
     error: errorUpdateWed,
   } = wedUpdate
 
-  useEffect(() => {
-    dispatch(listSundays())
-    dispatch(listWednesdays())
+  const clearForm = () => {
+    setSundayURL('')
+    setWednesdayURL('')
+  }
 
+  useEffect(() => {
     if (successUpdateSun) {
       dispatch({ type: SUNDAY_UPDATE_RESET })
-    }
-    if (successUpdateWed) {
+      clearForm()
+    } else if (successUpdateWed) {
       dispatch({ type: WED_UPDATE_RESET })
+      clearForm()
+    } else {
+      dispatch(listSundays())
+      dispatch(listWednesdays())
     }
   }, [dispatch, successUpdateSun, successUpdateWed])
 
@@ -60,7 +78,7 @@ const WatchLive = () => {
           {loadingSundays ? (
             <Loader />
           ) : errorSundays ? (
-            <h3>{errorSundays}</h3>
+            <Message variant='danger'>{errorSundays}</Message>
           ) : (
             sundays &&
             sundays.map((sunday, index) => (
@@ -125,7 +143,7 @@ const WatchLive = () => {
           {loadingWednesdays ? (
             <Loader />
           ) : errorWednesdays ? (
-            <h3>{errorWednesdays}</h3>
+            <Message variant='danger'>{errorWednesdays}</Message>
           ) : (
             wednesdays &&
             wednesdays.map((wednesday, index) => (

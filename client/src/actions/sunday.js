@@ -15,7 +15,7 @@ import {
   SUNDAY_DELETE_REQUEST,
   SUNDAY_DELETE_SUCCESS,
   SUNDAY_DELETE_FAIL,
-} from '../constants/sundayConstants'
+} from '../constants/sunday'
 
 export const createSunday = sunday => async dispatch => {
   try {
@@ -23,7 +23,7 @@ export const createSunday = sunday => async dispatch => {
       type: SUNDAY_CREATE_REQUEST,
     })
 
-    const { data } = await axios.post('/api/sunday', sunday)
+    const { data } = await axios.post('/api/embed/sunday', sunday)
 
     dispatch({
       type: SUNDAY_CREATE_SUCCESS,
@@ -47,7 +47,7 @@ export const updateSunday = sunday => async dispatch => {
       type: SUNDAY_UPDATE_REQUEST,
     })
 
-    const { data } = await axios.put(`/api/sunday/${id}`, sunday)
+    const { data } = await axios.put(`/api/embed/sunday/${id}`, sunday)
 
     dispatch({
       type: SUNDAY_UPDATE_SUCCESS,
@@ -70,7 +70,7 @@ export const listSundays = () => async dispatch => {
       type: SUNDAY_LIST_REQUEST,
     })
 
-    const { data } = await axios.get('/api/sunday')
+    const { data } = await axios.get('/api/embed/sunday')
 
     dispatch({
       type: SUNDAY_LIST_SUCCESS,
@@ -91,7 +91,7 @@ export const getSunday = id => async dispatch => {
       type: SUNDAY_GET_REQUEST,
     })
 
-    const { data } = await axios.get(`/api/sunday/${id}`)
+    const { data } = await axios.get(`/api/embed/sunday/${id}`)
 
     dispatch({
       type: SUNDAY_GET_SUCCESS,
@@ -112,7 +112,7 @@ export const deleteSunday = id => async dispatch => {
       type: SUNDAY_DELETE_REQUEST,
     })
 
-    const { data } = await axios.delete(`/api/sunday/${id}`)
+    const { data } = await axios.delete(`/api/embed/sunday/${id}`)
 
     dispatch({
       type: SUNDAY_DELETE_SUCCESS,

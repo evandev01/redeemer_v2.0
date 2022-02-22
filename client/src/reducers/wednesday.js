@@ -16,7 +16,7 @@ import {
   WED_DELETE_REQUEST,
   WED_DELETE_SUCCESS,
   WED_DELETE_FAIL,
-} from '../constants/wednesdayConstants'
+} from '../constants/wednesday'
 
 export const wedCreateReducer = (state = {}, action) => {
   switch (action.type) {

@@ -15,7 +15,7 @@ import {
   WED_DELETE_REQUEST,
   WED_DELETE_SUCCESS,
   WED_DELETE_FAIL,
-} from '../constants/wednesdayConstants'
+} from '../constants/wednesday'
 
 export const createWednesday = wednesday => async dispatch => {
   try {
@@ -23,7 +23,7 @@ export const createWednesday = wednesday => async dispatch => {
       type: WED_CREATE_REQUEST,
     })
 
-    const { data } = await axios.post('/api/wednesday', wednesday)
+    const { data } = await axios.post('/api/embed/wednesday', wednesday)
 
     dispatch({
       type: WED_CREATE_SUCCESS,
@@ -45,7 +45,7 @@ export const updateWednesday = wednesday => async dispatch => {
       type: WED_UPDATE_REQUEST,
     })
 
-    const { data } = await axios.put(`/api/wednesday/${id}`, wednesday)
+    const { data } = await axios.put(`/api/embed/wednesday/${id}`, wednesday)
 
     dispatch({
       type: WED_UPDATE_SUCCESS,
@@ -67,7 +67,7 @@ export const listWednesdays = () => async dispatch => {
       type: WED_LIST_REQUEST,
     })
 
-    const { data } = await axios.get('/api/wednesday')
+    const { data } = await axios.get('/api/embed/wednesday')
 
     dispatch({
       type: WED_LIST_SUCCESS,
@@ -88,7 +88,7 @@ export const getWednesday = id => async dispatch => {
       type: WED_GET_REQUEST,
     })
 
-    const { data } = await axios.get(`/api/wednesday/${id}`)
+    const { data } = await axios.get(`/api/embed/wednesday/${id}`)
 
     dispatch({
       type: WED_GET_SUCCESS,
@@ -109,7 +109,7 @@ export const deleteWednesday = id => async dispatch => {
       type: WED_DELETE_REQUEST,
     })
 
-    const { data } = await axios.delete(`/api/wednesday/${id}`)
+    const { data } = await axios.delete(`/api/embed/wednesday/${id}`)
 
     dispatch({
       type: WED_DELETE_SUCCESS,

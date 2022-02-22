@@ -5,7 +5,7 @@ const {
   getWednesday,
   updateWednesday,
   deleteWednesday,
-} = require('../../controllers/wednesdayController')
+} = require('../../../controllers/wednesdayController')
 
 router.route('/').post(createWednesday).get(getWednesdays)
 router

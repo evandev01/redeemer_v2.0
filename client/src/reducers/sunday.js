@@ -16,7 +16,7 @@ import {
   SUNDAY_DELETE_REQUEST,
   SUNDAY_DELETE_SUCCESS,
   SUNDAY_DELETE_FAIL,
-} from '../constants/sundayConstants'
+} from '../constants/sunday'
 
 export const sundayCreateReducer = (state = {}, action) => {
   switch (action.type) {

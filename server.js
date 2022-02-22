@@ -4,10 +4,9 @@ const dotenv = require('dotenv')
 const cors = require('cors')
 const connectDB = require('./config/db')
 const colors = require('colors')
-const emailRoute = require('./routes/emailer')
-const embedRoutes = require('./routes/embedRoutes')
-const userRoutes = require('./routes/users')
-const authRoutes = require('./routes/auth')
+const emailRoute = require('./routes/api/emailer')
+const embedRoutes = require('./routes/api/embedRoutes')
+const userRoutes = require('./routes/api/userRoutes')
 
 dotenv.config()
 
@@ -22,10 +21,9 @@ app.use(express.json())
 app.use(cors())
 
 // Define Routes
-app.use('/send', emailRoute)
-app.use('/api', embedRoutes)
-app.use('/users', userRoutes)
-app.use('/auth', authRoutes)
+app.use('/api/send', emailRoute)
+app.use('/api/embed', embedRoutes)
+app.use('/api/users', userRoutes)
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/client/build')))
