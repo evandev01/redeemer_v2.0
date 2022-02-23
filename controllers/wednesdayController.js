@@ -63,7 +63,7 @@ const updateWednesday = asyncHandler(async (req, res) => {
 // @desc    Delete Wednesday by ID for Wednesday
 // @route   DELETE /api/wednesday/:id
 // @access  Private/Admin
-const deleteWednesday = async (req, res) => {
+const deleteWednesday = asyncHandler(async (req, res) => {
   const wednesday = await Wednesday.findById({ _id: req.params.id })
 
   if (wednesday) {
@@ -73,7 +73,7 @@ const deleteWednesday = async (req, res) => {
     res.status(404).json({ message: 'Wednesday embed URL not found' })
     throw new Error('Wednesday embed URL not found')
   }
-}
+})
 
 module.exports = {
   getWednesdays,
