@@ -13,7 +13,7 @@ const getSundays = async (req, res) => {
     throw new Error('Sunday embed URLs not found.')
   }
 }
-
+//
 // @desc    Get Sunday by ID
 // @route   GET /api/sunday/:id
 // @access  Public
