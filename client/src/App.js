@@ -11,8 +11,9 @@ import About from './screens/About'
 import { Container } from 'react-bootstrap'
 import NavTabs from './components/NavTabs'
 import Header from './components/Header'
+import Login from './screens/Login'
 
-function App() {
+const App = () => {
   return (
     <Router>
       <div id='wrapper'>
@@ -28,6 +29,7 @@ function App() {
               <Route path='/giving' element={<Giving />} />
               <Route path='/staff' element={<Staff />} />
               <Route path='/watchlive' element={<WatchLive />} />
+              <Route path='/login' element={<Login />} />
             </Routes>
           </Container>
         </main>

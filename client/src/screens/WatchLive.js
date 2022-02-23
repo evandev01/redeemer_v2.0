@@ -1,55 +1,220 @@
-import React from 'react'
-import { Row, Col } from 'react-bootstrap'
-import '../index.css'
+import React, { useState, useEffect, Fragment } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Row, Col, Form, Button } from 'react-bootstrap'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
+import { listSundays, updateSunday } from '../actions/sunday'
+import { listWednesdays, updateWednesday } from '../actions/wednesday'
+import { SUNDAY_UPDATE_RESET } from '../constants/sunday'
+import { WED_UPDATE_RESET } from '../constants/wednesday'
+// Sun 2/20
+// https://www.youtube.com/embed/Ds2yPPDcBLc
+// Sun 2/13
+// https://www.youtube.com/embed/ihr4KhgMPrM
+
+// Wed 2/16
+// https://www.youtube.com/embed/z9Pm_PxXe2g
+
+// Wed 2/9
+// https://www.youtube.com/embed/ocfQ_ctmo9c
 
 const WatchLive = () => {
+  const [sundayURL, setSundayURL] = useState('')
+  const [wednesdayURL, setWednesdayURL] = useState('')
+
+  const dispatch = useDispatch()
+
+  // Sunday Redux
+  const sundayList = useSelector(state => state.sundayList)
+  const { loading: loadingSundays, error: errorSundays, sundays } = sundayList
+
+  const sundayUpdate = useSelector(state => state.sundayUpdate)
+  const {
+    loading: loadingUpdateSun,
+    success: successUpdateSun,
+    error: errorUpdateSun,
+  } = sundayUpdate
+
+  // Wednesday Redux
+  const wedList = useSelector(state => state.wedList)
+  const {
+    loading: loadingWednesdays,
+    error: errorWednesdays,
+    wednesdays,
+  } = wedList
+
+  const wedUpdate = useSelector(state => state.wedUpdate)
+  const {
+    loading: loadingUpdateWed,
+    success: successUpdateWed,
+    error: errorUpdateWed,
+  } = wedUpdate
+
+  // User Info
+  const userLogin = useSelector(state => state.userLogin)
+  const { userInfo } = userLogin
+
+  const clearForm = () => {
+    setSundayURL('')
+    setWednesdayURL('')
+  }
+
+  useEffect(() => {
+    if (successUpdateSun) {
+      dispatch({ type: SUNDAY_UPDATE_RESET })
+      clearForm()
+    } else if (successUpdateWed) {
+      dispatch({ type: WED_UPDATE_RESET })
+      clearForm()
+    } else {
+      dispatch(listSundays())
+      dispatch(listWednesdays())
+    }
+  }, [dispatch, successUpdateSun, successUpdateWed])
+
   return (
-    // <Container id='player-container'>
     <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
       <Row id='live-border' />
       {/* SUNDAY SERVICE */}
-      <Row id='stream-player' className='justify-content-center'>
-        <Col xs={12} className='text-center m-3 py-3'>
-          <iframe
-            id='player'
-            width='560'
-            height='315'
-            src='https://www.youtube.com/embed/Ds2yPPDcBLc'
-            title='YouTube video player'
-            frameborder='0'
-            allow='accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-            allowfullscreen='true'
-          ></iframe>
-        </Col>
-      </Row>
-      <Row>
-        <Col className='text-center m-3'>
-          <h3>Sunday</h3>
-        </Col>
-      </Row>
+      {loadingSundays || loadingUpdateSun ? (
+        <Loader />
+      ) : errorSundays ? (
+        <Message variant='danger'>{errorSundays}</Message>
+      ) : errorUpdateSun ? (
+        <Message variant='danger'>{errorUpdateSun}</Message>
+      ) : (
+        sundays &&
+        sundays.map((sunday, index) => (
+          <Fragment key={index}>
+            <Row id='stream-player' className='justify-content-center'>
+              <Col md='auto' />
+              <Col xs={12} className='text-center m-3 py-3'>
+                <iframe
+                  id='player'
+                  width='560'
+                  height='315'
+                  src={sunday.embedURL}
+                  title='YouTube video player'
+                  frameborder='0'
+                  allow='accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                  allowfullscreen='true'
+                ></iframe>
+              </Col>
+            </Row>
+            <Row>
+              <Col className='text-center m-3'>
+                <h3>Sunday</h3>
+              </Col>
+            </Row>
+            {userInfo && userInfo !== null && (
+              <Row className='p-5'>
+                <Col>
+                  <Form>
+                    <Form.Group className='mb-3' controlId='formBasicPassword'>
+                      <Form.Label>YouTube Embed Key</Form.Label>
+                      <Form.Control
+                        type='text'
+                        placeholder='Sunday embed URL'
+                        onChange={e => setSundayURL(e.target.value)}
+                        value={sundayURL}
+                      />
+                    </Form.Group>
+                    <Button
+                      id='updateSunday'
+                      onClick={e => {
+                        e.preventDefault()
+                        dispatch(
+                          updateSunday({
+                            _id: sunday._id,
+                            embedURL: sundayURL,
+                          })
+                        )
+                      }}
+                      variant='success'
+                      type='submit'
+                    >
+                      Submit
+                    </Button>
+                  </Form>
+                </Col>
+              </Row>
+            )}
+          </Fragment>
+        ))
+      )}
       <Row id='live-border' />
 
       {/* WEDNESDAY SERVICE */}
       <Row id='stream-player' className='justify-content-center'>
-        <Col xs={12} className='text-center m-3 py-3'>
-          <iframe
-            id='player'
-            width='560'
-            height='315'
-            src='https://www.youtube.com/embed/z9Pm_PxXe2g'
-            title='YouTube video player'
-            frameborder='0'
-            allow='accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-            allowfullscreen='true'
-          ></iframe>
-        </Col>
+        {loadingWednesdays || loadingUpdateWed ? (
+          <Loader />
+        ) : errorWednesdays ? (
+          <Message variant='danger'>{errorWednesdays}</Message>
+        ) : errorUpdateWed ? (
+          <Message variant='danger'>{errorUpdateWed}</Message>
+        ) : (
+          wednesdays &&
+          wednesdays.map((wednesday, index) => (
+            <Fragment key={index}>
+              <Row id='stream-player' className='justify-content-center'>
+                <Col xs={12} className='text-center m-3 py-3'>
+                  <iframe
+                    id='player'
+                    width='560'
+                    height='315'
+                    src={wednesday.embedURL}
+                    title='YouTube video player'
+                    frameborder='0'
+                    allow='accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                    allowfullscreen='true'
+                  ></iframe>
+                </Col>
+              </Row>
+              <Row>
+                <Col className='text-center m-3'>
+                  <h3>Wednesday</h3>
+                </Col>
+              </Row>
+              {userInfo && userInfo !== null && (
+                <Row className='p-5'>
+                  <Col>
+                    <Form>
+                      <Form.Group
+                        className='mb-3'
+                        controlId='formBasicPassword'
+                      >
+                        <Form.Label>YouTube Embed Key</Form.Label>
+                        <Form.Control
+                          type='text'
+                          placeholder='Sunday embed URL'
+                          onChange={e => setWednesdayURL(e.target.value)}
+                          value={wednesdayURL}
+                        />
+                      </Form.Group>
+                      <Button
+                        id='updateSunday'
+                        onClick={e => {
+                          e.preventDefault()
+                          dispatch(
+                            updateWednesday({
+                              _id: wednesday._id,
+                              embedURL: wednesdayURL,
+                            })
+                          )
+                        }}
+                        variant='success'
+                        type='submit'
+                      >
+                        Submit
+                      </Button>
+                    </Form>
+                  </Col>
+                </Row>
+              )}
+            </Fragment>
+          ))
+        )}
       </Row>
-      <Row>
-        <Col className='text-center m-3'>
-          <h3>Wednesday</h3>
-        </Col>
-      </Row>
-      <Row id='live-border' />
     </div>
   )
 }
