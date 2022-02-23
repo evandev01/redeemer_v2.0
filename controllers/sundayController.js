@@ -9,7 +9,7 @@ const getSundays = async (req, res) => {
   if (sundays) {
     res.json(sundays)
   } else {
-    res.status(404)
+    res.status(404).json({ message: 'Sunday embed URLs not found.' })
     throw new Error('Sunday embed URLs not found.')
   }
 }
@@ -23,7 +23,7 @@ const getSunday = async (req, res) => {
   if (sunday) {
     res.json(sunday)
   } else {
-    res.status(404)
+    res.status(404).json({ message: 'Sunday embed URL not found.' })
     throw new Error('Sunday embed URL not found.')
   }
 }
@@ -56,7 +56,7 @@ const updateSunday = async (req, res) => {
     const updatedSunday = await sunday.save()
     res.json(updatedSunday)
   } else {
-    res.status(404)
+    res.status(404).json({ message: 'Sunday embed URL not found.' })
     throw new Error('Sunday embed URL not found')
   }
 }
@@ -71,7 +71,7 @@ const deleteSunday = async (req, res) => {
     await sunday.remove()
     res.json({ message: 'Sunday embed URL removed' })
   } else {
-    res.status(404)
+    res.status(404).json({ message: 'Sunday embed URL not found.' })
     throw new Error('Sunday embed URL not found')
   }
 }

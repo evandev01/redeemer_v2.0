@@ -1,7 +1,8 @@
-import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
+import Message from '../components/Message'
+import Loader from '../components/Loader'
 import { login } from '../actions/user'
 
 const Login = () => {
@@ -31,6 +32,8 @@ const Login = () => {
         <Row className='mt-5'>
           <Col xs='auto' md={3} />
           <Col xs={12} md={6}>
+            {error && <Message variant='danger'>{error}</Message>}
+            {loading && <Loader />}
             <Form onSubmit={submitHandler}>
               <Form.Group className='mb-3' controlId='formBasicEmail'>
                 <Form.Label>Email</Form.Label>
