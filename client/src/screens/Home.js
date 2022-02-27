@@ -65,22 +65,6 @@ const Home = () => {
       <Row id='live-border' />
 
       <Row>
-        <h3 className='text-center'>- IMPORTANT ANNOUNCEMENT -</h3>
-        <Col className='text-center'>
-          <Image id='graphic' src={Cleaning} alt='Spring Cleaning' />
-        </Col>
-        <Col className='text-left' style={{ padding: '20px' }}>
-          <h3>
-            Spring cleaning will <span style={{ color: 'blue' }}>NOT</span> take
-            place this Saturday, February 26th{' '}
-          </h3>
-          <h4>Updates to follow.</h4>
-        </Col>
-      </Row>
-
-      <Row id='live-border' />
-
-      <Row>
         <Col className='text-center'>
           <Image id='graphic' src={Church} alt='Wednesday night service' />
         </Col>
