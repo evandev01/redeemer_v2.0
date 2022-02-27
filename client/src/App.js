@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './index.css'
 import Home from './screens/Home'
 import Connect from './screens/Connect'
-import Events from './screens/Events'
+import Events from './screens/Events/Events'
 import Giving from './screens/Giving'
 import Staff from './screens/Staff'
 import WatchLive from './screens/WatchLive'
@@ -12,6 +12,9 @@ import { Container } from 'react-bootstrap'
 import NavTabs from './components/NavTabs'
 import Header from './components/Header'
 import Login from './screens/Login'
+import DnD from './screens/Events/DnD'
+import Event from './screens/Events/Event'
+import EventEdit from './screens/Events/EventEdit'
 
 const App = () => {
   return (
@@ -30,6 +33,10 @@ const App = () => {
               <Route path='/staff' element={<Staff />} />
               <Route path='/watchlive' element={<WatchLive />} />
               <Route path='/login' element={<Login />} />
+              <Route path='/dnd' element={<DnD />} />
+              <Route path='/event' element={<Event />} />
+              <Route path='/event/edit' element={<EventEdit />} />
+              <Route path='/event/edit/:id' element={<EventEdit />} />
             </Routes>
           </Container>
         </main>

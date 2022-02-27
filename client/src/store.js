@@ -13,16 +13,23 @@ import {
   sundayCreateReducer,
   sundayUpdateReducer,
   sundayListReducer,
-  sundayGetReducer,
+  sundayDetailsReducer,
   sundayDeleteReducer,
 } from './reducers/sunday'
 import {
   wedCreateReducer,
   wedUpdateReducer,
   wedListReducer,
-  wedGetReducer,
+  wedDetailsReducer,
   wedDeleteReducer,
 } from './reducers/wednesday'
+import {
+  eventCreateReducer,
+  eventListReducer,
+  eventDetailsReducer,
+  eventUpdateReducer,
+  eventDeleteReducer,
+} from './reducers/event'
 
 const reducer = combineReducers({
   // User
@@ -36,14 +43,20 @@ const reducer = combineReducers({
   sundayCreate: sundayCreateReducer,
   sundayUpdate: sundayUpdateReducer,
   sundayList: sundayListReducer,
-  sundayGet: sundayGetReducer,
+  sundayDetails: sundayDetailsReducer,
   sundayDelete: sundayDeleteReducer,
   // Wednesday
   wedCreate: wedCreateReducer,
   wedUpdate: wedUpdateReducer,
   wedList: wedListReducer,
-  wedGet: wedGetReducer,
+  wedDetails: wedDetailsReducer,
   wedDelete: wedDeleteReducer,
+  // Event
+  eventCreate: eventCreateReducer,
+  eventList: eventListReducer,
+  eventDetails: eventDetailsReducer,
+  eventUpdate: eventUpdateReducer,
+  eventDelete: eventDeleteReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

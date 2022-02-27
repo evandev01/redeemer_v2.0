@@ -83,12 +83,12 @@ export const sundayListReducer = (state = { sundays: [] }, action) => {
       return state
   }
 }
-export const sundayGetReducer = (state = { sunday: {} }, action) => {
+export const sundayDetailsReducer = (state = { sunday: {} }, action) => {
   switch (action.type) {
     case SUNDAY_GET_REQUEST:
       return {
         loading: true,
-        sunday: {},
+        ...state,
       }
     case SUNDAY_GET_SUCCESS:
       return {
