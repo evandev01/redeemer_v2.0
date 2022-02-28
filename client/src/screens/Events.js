@@ -3,10 +3,8 @@ import { Row, Col, Image } from 'react-bootstrap'
 import Shoebox from '../assets/events/shoebox.jpg'
 import FoodDrive from '../assets/events/food_drive.png'
 import Bible from '../assets/events/Bible.jpg'
-// import Parents from '../assets/events/parents.png'
-// import Church from '../assets/church/church.jpg'
-// import Watch from '../assets/icons/video-icon.jpg'
-// import YouTube from '../assets/icons/youtube-logo2.png'
+import WOM from '../assets/events/wom.jpg'
+import BYBC from '../assets/events/bybc.jpg'
 
 const Events = () => {
   return (
@@ -29,6 +27,26 @@ const Events = () => {
 
       <Row id='live-border' />
 
+      {/* WOM */}
+      <Row>
+        <Col id='events-col' className='text-center' xs={12} sm={12} lg={6}>
+          <Image id='events-graphic' src={WOM} alt='WOM' />
+        </Col>
+        <Col xs={12} sm={12} lg={6} className='text-center'>
+          <h3 className='text-center'>WOM</h3>
+          <p id='events-text' className='text-center'>
+            <strong>- Tuesday, March 1st -</strong>
+            <br />
+            <strong>6:30pm</strong>
+          </p>
+          <p id='events-text'>
+            For further details, please <a href='/connect'>contact us</a>.
+          </p>
+        </Col>
+      </Row>
+
+      <Row id='live-border' />
+
       {/* FOOD DRIVE */}
       <Row>
         <Col id='events-col' className='text-center' xs={12} sm={12} lg={6}>
@@ -37,9 +55,9 @@ const Events = () => {
         <Col xs={12} sm={12} lg={6} className='text-center'>
           <h3 className='text-center'>Food Drive</h3>
           <p id='events-text' className='text-center'>
-            <strong>- February -</strong>
+            <strong>- March -</strong>
             <br />
-            Items: <strong>RICE</strong> and <strong>BEANS</strong>
+            Items: <strong>Hearty Soups with Meat</strong>
             <br />
             (Please look for 2023 expirations)
           </p>
@@ -56,9 +74,9 @@ const Events = () => {
         <Col xs={12} sm={12} lg={6} className='text-center'>
           <h3 className='text-center'>Shoebox Collection</h3>
           <p id='events-text' className='text-center'>
-            <strong>- February -</strong>
+            <strong>- March -</strong>
             <br />
-            Items: <strong>Accessories</strong>
+            Items: <strong>Handcrafted Items</strong>
           </p>
           <p id='events-text'>
             For further details, please <a href='/connect'>contact us</a>.
@@ -66,30 +84,25 @@ const Events = () => {
         </Col>
       </Row>
 
-      {/* <Row className='text-center'>
-          <Col xs={12} sm={12} lg={6}md={1} />
-          <Col xs={12} sm={12} lg={6}md={5}>
-            <Image
-              id='watch'
-              src={Watch}
-              alt='Watch live sermons'
-              className='ml-3'
-            />
-          </Col>
+      <Row id='live-border' />
 
-          <Col xs={12} sm={12} lg={6}md={5} className='text-center'>
-            <h4>Sermons Streaming Live Now!</h4>
-            <p id='events-text' className='mt-3'>
-              Click here{' '}
-              <a href='https://www.youtube.com/channel/UCTb id='events-col'lLpAk1fUXwWiMm3-u6wQ'>
-                <Image id='youtube-logo' src={YouTube} alt='YouTube logo' />
-              </a>
-              {'  '}
-              and subscribe to our channel!
-            </p>
-          </Col>
-          <Col xs={12} sm={12} lg={6}md={1} />
-        </Row> */}
+      {/* BACKYARD BIBLE CLUB */}
+      <Row>
+        <Col id='events-col' className='text-center' xs={12} sm={12} lg={6}>
+          <Image id='events-graphic' src={BYBC} alt='Backyard Bible Club' />
+        </Col>
+        <Col xs={12} sm={12} lg={6} className='text-center'>
+          <h3 className='text-center'>Backyard Bible Club</h3>
+          <p id='events-text' className='text-center'>
+            <strong>
+              Sign up Sheet in Foyer for families interested in hosting or
+              helping with Backyard Bible Club in their Neighborhood in August.
+            </strong>
+          </p>
+        </Col>
+      </Row>
+
+      <Row id='live-border' />
     </div>
   )
 }
