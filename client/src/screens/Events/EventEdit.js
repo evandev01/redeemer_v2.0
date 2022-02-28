@@ -1,16 +1,17 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
-import { updateEvent, listEventDetails, createEvent } from '../../actions/event'
+import { updateEvent, listEventDetails } from '../../actions/event'
 import { EVENT_UPDATE_RESET } from '../../constants/event'
 
-const EventEdit = ({ history }) => {
+const EventEdit = () => {
   const { id } = useParams()
   const eventId = id
+  const navigate = useNavigate()
 
   const [title, setTitle] = useState('')
   const [line1, setLine1] = useState('')
@@ -31,23 +32,15 @@ const EventEdit = ({ history }) => {
     success: successUpdate,
   } = eventUpdate
 
-  const setFields = () => {
-    setTitle(event.title)
-    setLine1(event.line1)
-    setLine2(event.line2)
-    setDesc(event.desc)
-    setImage(event.image)
-  }
-
-  useEffect(async () => {
+  useEffect(() => {
     if (eventId) {
       dispatch(listEventDetails(eventId))
     }
     if (successUpdate) {
       dispatch({ type: EVENT_UPDATE_RESET })
-      history.push('/event')
+      navigate('/event')
     }
-  }, [dispatch, history, successUpdate])
+  }, [dispatch, navigate, successUpdate, eventId])
 
   const uploadFileHandler = async e => {
     const file = e.target.files[0]
@@ -72,6 +65,14 @@ const EventEdit = ({ history }) => {
     }
   }
 
+  const clearForm = () => {
+    setTitle('')
+    setLine1('')
+    setLine2('')
+    setDesc('')
+    setImage('')
+  }
+
   const submitHandler = e => {
     e.preventDefault()
     const updatedEvent = {
@@ -82,18 +83,8 @@ const EventEdit = ({ history }) => {
       desc: desc,
       image: image,
     }
-    const event = {
-      title: title,
-      line1: line1,
-      line2: line2,
-      desc: desc,
-      image: image,
-    }
-    if (eventId) {
-      dispatch(updateEvent(updatedEvent))
-    } else {
-      dispatch(createEvent(event))
-    }
+    dispatch(updateEvent(updatedEvent))
+    clearForm()
   }
 
   return (
@@ -114,7 +105,9 @@ const EventEdit = ({ history }) => {
                 <Form.Control
                   type='text'
                   placeholder={event ? event.title : title}
+                  required={true}
                   value={title}
+                  onClick={() => (event ? setTitle(event.title) : setTitle(''))}
                   onChange={e => setTitle(e.target.value)}
                 />
               </Form.Group>
@@ -122,8 +115,10 @@ const EventEdit = ({ history }) => {
                 <Form.Label>Date</Form.Label>
                 <Form.Control
                   type='text'
+                  required={true}
                   placeholder={event ? event.line1 : line1}
                   value={line1}
+                  onClick={() => event && setLine1(event.line1)}
                   onChange={e => setLine1(e.target.value)}
                 />
                 <Form.Text>
@@ -140,6 +135,7 @@ const EventEdit = ({ history }) => {
                   type='text'
                   placeholder={event ? event.line2 : line2}
                   value={line2}
+                  onClick={() => event && setLine2(event.line2)}
                   onChange={e => setLine2(e.target.value)}
                 />
               </Form.Group>
@@ -147,8 +143,10 @@ const EventEdit = ({ history }) => {
                 <Form.Label>Description</Form.Label>
                 <Form.Control
                   type='text'
-                  placeholder={event.desc}
+                  required={true}
+                  placeholder={event ? event.desc : desc}
                   value={desc}
+                  onClick={() => event && setDesc(event.desc)}
                   onChange={e => setDesc(e.target.value)}
                 />
               </Form.Group>

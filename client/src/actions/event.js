@@ -59,11 +59,11 @@ export const listEventDetails = id => async dispatch => {
   }
 }
 
-export const createEvent = () => async dispatch => {
+export const createEvent = newEvent => async dispatch => {
   try {
     dispatch({ type: EVENT_CREATE_REQUEST })
 
-    const { data } = await axios.post('/api/events', {})
+    const { data } = await axios.post('/api/events', newEvent)
 
     dispatch({
       type: EVENT_CREATE_SUCCESS,

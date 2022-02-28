@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Row, Col, Image, Button } from 'react-bootstrap'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
+import EventModal from '../../components/EventModal'
 import { listEvents } from '../../actions/event'
-import { EVENT_UPDATE_RESET } from '../../constants/event'
 
 const Event = () => {
-  const [tier, setTier] = useState(0)
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
   const dispatch = useDispatch()
 
@@ -18,6 +20,9 @@ const Event = () => {
   const eventList = useSelector(state => state.eventList)
   const { loading, error, events } = eventList
 
+  const eventCreate = useSelector(state => state.eventCreate)
+  const { loading: loadingCreate, error: errorCreate, success } = eventCreate
+
   useEffect(() => {
     dispatch(listEvents())
   }, [dispatch])
@@ -25,6 +30,8 @@ const Event = () => {
   return (
     <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
       <Row id='live-border' />
+      <Button onClick={handleShow}>Create New</Button>
+      {show && <EventModal show={show} handleClose={handleClose} />}
 
       {loading && <Loader />}
       {error && <Message variant='danger'>{error}</Message>}

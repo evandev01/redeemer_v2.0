@@ -1,6 +1,5 @@
 const Event = require('../models/EventModel')
 const asyncHandler = require('express-async-handler')
-const { r } = require('tar')
 
 const getEvents = asyncHandler(async (req, res) => {
   const events = await Event.find({})
@@ -27,15 +26,15 @@ const getEvent = asyncHandler(async (req, res) => {
 })
 
 const createEvent = asyncHandler(async (req, res) => {
-  const { title, line1, line2, desc, photo, tier } = req.body
+  const { title, line1, line2, desc, image, tier } = req.body
 
   const event = new Event({
     title: title,
     line1: line1,
     line2: line2,
     desc: desc,
-    photo: photo,
-    tier: tier,
+    image: image,
+    tier: tier ? tier : 0,
   })
 
   const createdEvent = await event.save()
@@ -44,7 +43,7 @@ const createEvent = asyncHandler(async (req, res) => {
 })
 
 const updateEvent = asyncHandler(async (req, res) => {
-  const { title, line1, line2, desc, photo, tier } = req.body
+  const { title, line1, line2, desc, image, tier } = req.body
   const id = req.params.id
 
   const event = await Event.findById({ _id: id })
@@ -54,7 +53,7 @@ const updateEvent = asyncHandler(async (req, res) => {
     event.line1 = line1
     event.line2 = line2
     event.desc = desc
-    event.photo = photo
+    event.image = image
     event.tier = tier
 
     const updatedEvent = await event.save()
