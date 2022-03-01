@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Modal, Form, Button } from 'react-bootstrap'
 import Loader from './Loader'
-import { createEvent } from '../actions/event'
+import Message from './Message'
+import { createEvent, updateEvent } from '../actions/event'
 import { EVENT_CREATE_RESET } from '../constants/event'
 
 const EventModal = ({ show, handleClose }) => {
@@ -19,11 +20,32 @@ const EventModal = ({ show, handleClose }) => {
   const eventCreate = useSelector(state => state.eventCreate)
   const { loading, error, success } = eventCreate
 
+  const eventList = useSelector(state => state.eventList)
+  const { loading: loadingList, error: errorList, events } = eventList
+
   useEffect(() => {
     if (success) {
       dispatch({ type: EVENT_CREATE_RESET })
     }
   }, [dispatch, success])
+
+  const tierHandler = () => {
+    if (events) {
+      events.map(event =>
+        dispatch(
+          updateEvent({
+            _id: event._id,
+            title: event.title,
+            line1: event.line1,
+            line2: event.line2,
+            desc: event.desc,
+            image: event.image,
+            tier: event.tier + 1,
+          })
+        )
+      )
+    }
+  }
 
   const clearForm = () => {
     setTitle('')
@@ -58,6 +80,7 @@ const EventModal = ({ show, handleClose }) => {
 
   const submitHandler = e => {
     e.preventDefault()
+    tierHandler()
     const newEvent = {
       title: title,
       line1: line1,
@@ -72,6 +95,11 @@ const EventModal = ({ show, handleClose }) => {
 
   return (
     <>
+      {loadingList || (loading && <Loader />)}
+      {error ||
+        (errorList && (
+          <Message variant='danger'>{error ? error : errorList}</Message>
+        ))}
       <Modal show={show} onHide={() => handleClose()}>
         <Modal.Header closeButton>
           <Modal.Title>New Event</Modal.Title>

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Row, Col, Image, Button } from 'react-bootstrap'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
 import EventModal from '../../components/EventModal'
-import { listEvents } from '../../actions/event'
+import { listEvents, deleteEvent } from '../../actions/event'
+import '../../index.css'
 
 const Event = () => {
   const [show, setShow] = useState(false)
@@ -21,20 +22,44 @@ const Event = () => {
   const { loading, error, events } = eventList
 
   const eventCreate = useSelector(state => state.eventCreate)
-  const { loading: loadingCreate, error: errorCreate, success } = eventCreate
+  const { success: successCreate } = eventCreate
+
+  const eventDelete = useSelector(state => state.eventDelete)
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = eventDelete
+
+  const eventUpdate = useSelector(state => state.eventUpdate)
+  const { success: successUpdate } = eventUpdate
 
   useEffect(() => {
     dispatch(listEvents())
-  }, [dispatch])
+  }, [dispatch, successDelete, successUpdate, successCreate])
+
+  const deleteHandler = (e, id) => {
+    e.preventDefault()
+    dispatch(deleteEvent(id))
+  }
 
   return (
     <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
+      <Row>
+        <Col className='text-center'>
+          <Button onClick={handleShow}>Create New</Button>
+        </Col>
+      </Row>
       <Row id='live-border' />
-      <Button onClick={handleShow}>Create New</Button>
+
+      {loading || (loadingDelete && <Loader />)}
+      {error ||
+        (errorDelete && (
+          <Message variant='danger'>{error ? error : errorDelete}</Message>
+        ))}
+
       {show && <EventModal show={show} handleClose={handleClose} />}
 
-      {loading && <Loader />}
-      {error && <Message variant='danger'>{error}</Message>}
       {events &&
         events
           .sort((a, b) => {
@@ -70,15 +95,22 @@ const Event = () => {
                 </Col>
               </Row>
               {userInfo && (
-                <Link to={`/event/edit/${event._id}`}>
-                  <Row>
-                    <Col className='text-center'>
-                      <Button className='text-center' variant='primary'>
+                <Row>
+                  <Col className='text-end'>
+                    <Link to={`/event/edit/${event._id}`}>
+                      <Button className='text-center m-1' variant='primary'>
                         Edit
                       </Button>
-                    </Col>
-                  </Row>
-                </Link>
+                    </Link>
+                    <Button
+                      className='text-center  m-1'
+                      variant='primary'
+                      onClick={e => deleteHandler(e, event._id)}
+                    >
+                      Delete
+                    </Button>
+                  </Col>
+                </Row>
               )}
               <Row id='live-border' />
             </div>
