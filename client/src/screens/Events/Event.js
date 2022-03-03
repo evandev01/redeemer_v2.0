@@ -5,10 +5,11 @@ import { Row, Col, Image, Button } from 'react-bootstrap'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
 import EventModal from '../../components/EventModal'
-import { listEvents, deleteEvent } from '../../actions/event'
+import { listEvents, deleteEvent, updateEvent } from '../../actions/event'
 import '../../index.css'
 
 const Event = () => {
+  const [orderShow, setOrderShow] = useState(false)
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -38,19 +39,113 @@ const Event = () => {
     dispatch(listEvents())
   }, [dispatch, successDelete, successUpdate, successCreate])
 
-  const deleteHandler = (e, id) => {
+  const deleteHandler = async (e, deletedEvent, id) => {
     e.preventDefault()
+    const dTier = deletedEvent.tier
+
+    // Filter all events with a tier greater than the deleted tier and update tiers - 1
+    // This ensures that there will always be a tier 0 and no gaps in the tier numbers
+    const tEvents = events.filter(event => event.tier > dTier)
+
+    const updateTiers = () => {
+      tEvents.map(event => {
+        dispatch(
+          updateEvent({
+            _id: event._id,
+            title: event.title,
+            line1: event.line1,
+            line2: event.line2,
+            desc: event.desc,
+            desc2: event.desc2,
+            image: event.image,
+            tier: event.tier - 1,
+          })
+        )
+      })
+    }
+    await updateTiers()
     dispatch(deleteEvent(id))
   }
 
+  const upHandler = async (e, event, i) => {
+    e.preventDefault()
+    await events.map((data, index) => {
+      if (index === i - 1) {
+        dispatch(
+          updateEvent({
+            _id: data._id,
+            title: data.title,
+            line1: data.line1,
+            line2: data.line2,
+            desc: data.desc,
+            desc2: data.desc2,
+            image: data.image,
+            tier: data.tier + 1,
+          })
+        )
+      }
+    })
+    dispatch(
+      updateEvent({
+        _id: event._id,
+        title: event.title,
+        line1: event.line1,
+        line2: event.line2,
+        desc: event.desc,
+        desc2: event.desc2,
+        image: event.image,
+        tier: event.tier - 1,
+      })
+    )
+  }
+
+  const downHandler = async (e, event, i) => {
+    e.preventDefault()
+    await events.map((data, index) => {
+      if (index === i + 1) {
+        dispatch(
+          updateEvent({
+            _id: data._id,
+            title: data.title,
+            line1: data.line1,
+            line2: data.line2,
+            desc: data.desc,
+            desc2: data.desc2,
+            image: data.image,
+            tier: data.tier - 1,
+          })
+        )
+      }
+    })
+    dispatch(
+      updateEvent({
+        _id: event._id,
+        title: event.title,
+        line1: event.line1,
+        line2: event.line2,
+        desc: event.desc,
+        desc2: event.desc2,
+        image: event.image,
+        tier: event.tier + 1,
+      })
+    )
+  }
+
   return (
-    <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
-      <Row>
-        <Col className='text-center'>
-          <Button onClick={handleShow}>Create New</Button>
-        </Col>
-      </Row>
+    <div id='container-div'>
       <Row id='live-border' />
+      {userInfo && (
+        <>
+          <Row>
+            <Col className='text-center'>
+              <Button onClick={handleShow}>
+                <i className='fa-solid fa-circle-plus' /> Create New
+              </Button>
+            </Col>
+          </Row>
+          <Row id='live-border' />
+        </>
+      )}
 
       {loading || (loadingDelete && <Loader />)}
       {error ||
@@ -86,28 +181,63 @@ const Event = () => {
                   <p>
                     <strong>{event.line1}</strong>
                     <br />
-                    <strong>{event.line2}</strong>
+                    {event.line2 && (
+                      <>
+                        <strong>{event.line2}</strong>
+                        <br />
+                      </>
+                    )}
+                    {event.desc && (
+                      <>
+                        <strong>{event.desc}</strong>
+                        <br />
+                      </>
+                    )}
+                    {event.desc2 && (
+                      <>
+                        <span>{event.desc2}</span>
+                        <br />
+                      </>
+                    )}
+                    <strong>{event.tier}</strong>
                     <br />
-                    <strong>{event.desc}</strong>
-                    <br />
-                    <strong>Tier: {event.tier}</strong>
                   </p>
                 </Col>
               </Row>
               {userInfo && (
                 <Row>
-                  <Col className='text-end'>
+                  <Col className='text-center'>
+                    <Button
+                      disabled={i == 0}
+                      className='px-3 m-3'
+                      onClick={e => upHandler(e, event, i)}
+                    >
+                      <i class='fa-solid fa-angle-up'></i> Move Up
+                    </Button>
+                  </Col>
+                  <Col className='text-center'>
+                    <Button
+                      disabled={i == events.length - 1}
+                      className='px-3 m-3'
+                      onClick={e => downHandler(e, event, i)}
+                    >
+                      Move Down <i class='fa-solid fa-angle-down'></i>
+                    </Button>
+                  </Col>
+                  <Col className='text-center'>
                     <Link to={`/event/edit/${event._id}`}>
-                      <Button className='text-center m-1' variant='primary'>
-                        Edit
+                      <Button className='px-3 m-3' variant='warning'>
+                        <i className='fa-solid fa-pen-to-square' /> Edit
                       </Button>
                     </Link>
+                  </Col>
+                  <Col className='text-center'>
                     <Button
-                      className='text-center  m-1'
-                      variant='primary'
-                      onClick={e => deleteHandler(e, event._id)}
+                      className='px-3 m-3'
+                      variant='danger'
+                      onClick={e => deleteHandler(e, event, event._id)}
                     >
-                      Delete
+                      <i className='fa-solid fa-trash-can' /> Delete
                     </Button>
                   </Col>
                 </Row>

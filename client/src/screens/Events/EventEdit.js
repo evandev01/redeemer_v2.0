@@ -17,6 +17,7 @@ const EventEdit = () => {
   const [line1, setLine1] = useState('')
   const [line2, setLine2] = useState('')
   const [desc, setDesc] = useState('')
+  const [desc2, setDesc2] = useState('')
   const [image, setImage] = useState('')
   const [uploading, setUploading] = useState(false)
 
@@ -38,7 +39,7 @@ const EventEdit = () => {
     }
     if (successUpdate) {
       dispatch({ type: EVENT_UPDATE_RESET })
-      navigate('/event')
+      navigate('/events')
     }
   }, [dispatch, navigate, successUpdate, eventId])
 
@@ -71,30 +72,36 @@ const EventEdit = () => {
     setLine2('')
     setDesc('')
     setImage('')
+    setDesc2('')
   }
 
   const submitHandler = e => {
     e.preventDefault()
-    const updatedEvent = {
-      _id: eventId,
-      title: title,
-      line1: line1,
-      line2: line2,
-      desc: desc,
-      image: image,
+
+    if (event) {
+      const updatedEvent = {
+        _id: eventId,
+        title: title,
+        line1: line1,
+        line2: line2,
+        desc: desc,
+        desc2: desc2,
+        image: image,
+        tier: event.tier,
+      }
+      dispatch(updateEvent(updatedEvent))
+      clearForm()
     }
-    dispatch(updateEvent(updatedEvent))
-    clearForm()
   }
 
   return (
-    <div>
+    <div id='container-div'>
+      <Row id='live-border' />
       {loading || (loadingUpdate && <Loader />)}
       {error ||
         (errorUpdate && (
           <Message variant='danger'>{error ? error : errorUpdate}</Message>
         ))}
-
       <Container className='p-5'>
         <Row>
           <Col xs={1} sm='auto' md={3} />
@@ -142,12 +149,23 @@ const EventEdit = () => {
               <Form.Group controlId='desc' className='mb-3'>
                 <Form.Label>Description</Form.Label>
                 <Form.Control
-                  type='text'
-                  required={true}
+                  as='textarea'
+                  rows={3}
                   placeholder={event ? event.desc : desc}
                   value={desc}
                   onClick={() => event && setDesc(event.desc)}
                   onChange={e => setDesc(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group controlId='desc' className='mb-3'>
+                <Form.Label>Description 2</Form.Label>
+                <Form.Control
+                  as='textarea'
+                  rows={3}
+                  placeholder={event ? event.desc2 : desc2}
+                  value={desc2}
+                  onClick={() => event && setDesc2(event.desc2)}
+                  onChange={e => setDesc2(e.target.value)}
                 />
               </Form.Group>
 

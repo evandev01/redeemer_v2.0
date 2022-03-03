@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 import { Modal, Form, Button } from 'react-bootstrap'
 import Loader from './Loader'
 import Message from './Message'
@@ -12,10 +13,15 @@ const EventModal = ({ show, handleClose }) => {
   const [line1, setLine1] = useState('')
   const [line2, setLine2] = useState('')
   const [desc, setDesc] = useState('')
+  const [desc2, setDesc2] = useState('')
   const [image, setImage] = useState('')
   const [uploading, setUploading] = useState(false)
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const userLogin = useSelector(state => state.userLogin)
+  const { userInfo } = userLogin
 
   const eventCreate = useSelector(state => state.eventCreate)
   const { loading, error, success } = eventCreate
@@ -24,6 +30,9 @@ const EventModal = ({ show, handleClose }) => {
   const { loading: loadingList, error: errorList, events } = eventList
 
   useEffect(() => {
+    if (!userInfo) {
+      navigate('/login')
+    }
     if (success) {
       dispatch({ type: EVENT_CREATE_RESET })
     }
@@ -78,14 +87,15 @@ const EventModal = ({ show, handleClose }) => {
     }
   }
 
-  const submitHandler = e => {
+  const submitHandler = async e => {
     e.preventDefault()
-    tierHandler()
+    await tierHandler()
     const newEvent = {
       title: title,
       line1: line1,
       line2: line2,
       desc: desc,
+      desc2: desc2,
       image: image,
     }
     dispatch(createEvent(newEvent))
@@ -116,6 +126,7 @@ const EventModal = ({ show, handleClose }) => {
                 onChange={e => setTitle(e.target.value)}
               />
             </Form.Group>
+
             <Form.Group controlId='line1' className='mb-3'>
               <Form.Label>Date</Form.Label>
               <Form.Control
@@ -142,14 +153,26 @@ const EventModal = ({ show, handleClose }) => {
                 onChange={e => setLine2(e.target.value)}
               />
             </Form.Group>
+
             <Form.Group controlId='desc' className='mb-3'>
               <Form.Label>Description</Form.Label>
               <Form.Control
-                type='text'
-                required={true}
+                as='textarea'
+                rows={2}
                 placeholder={'Enter dexcription'}
                 value={desc}
                 onChange={e => setDesc(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group controlId='desc' className='mb-3'>
+              <Form.Label>Description 2</Form.Label>
+              <Form.Control
+                as='textarea'
+                rows={2}
+                placeholder={'Enter dexcription'}
+                value={desc2}
+                onChange={e => setDesc2(e.target.value)}
               />
             </Form.Group>
 
