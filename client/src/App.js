@@ -13,7 +13,6 @@ import Header from './components/Header'
 import Login from './screens/Login'
 import Event from './screens/Events/Event'
 import EventEdit from './screens/Events/EventEdit'
-import EventDnD from './screens/Events/EventDnD'
 import Events from './screens/Events/Events'
 
 const App = () => {
@@ -34,7 +33,6 @@ const App = () => {
               <Route path='/login' element={<Login />} />
               <Route path='/events' element={<Event />} />
               <Route path='/eventsold' element={<Events />} />
-              <Route path='/events/order' element={<EventDnD />} />
               <Route path='/event/edit/:id' element={<EventEdit />} />
             </Routes>
           </Container>
