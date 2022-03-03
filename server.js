@@ -7,6 +7,8 @@ const colors = require('colors')
 const emailRoute = require('./routes/api/emailer')
 const embedRoutes = require('./routes/api/embedRoutes')
 const userRoutes = require('./routes/api/userRoutes')
+const uploadRoutes = require('./routes/api/uploadRoutes')
+const eventRoutes = require('./routes/api/eventRoutes')
 
 dotenv.config()
 
@@ -24,6 +26,10 @@ app.use(cors())
 app.use('/api/send', emailRoute)
 app.use('/api/embed', embedRoutes)
 app.use('/api/users', userRoutes)
+app.use('/api/upload', uploadRoutes)
+app.use('/api/events', eventRoutes)
+
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/client/build')))
