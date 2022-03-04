@@ -7,16 +7,6 @@ import { listSundays, updateSunday } from '../actions/sunday'
 import { listWednesdays, updateWednesday } from '../actions/wednesday'
 import { SUNDAY_UPDATE_RESET } from '../constants/sunday'
 import { WED_UPDATE_RESET } from '../constants/wednesday'
-// Sun 2/20
-// https://www.youtube.com/embed/Ds2yPPDcBLc
-// Sun 2/13
-// https://www.youtube.com/embed/ihr4KhgMPrM
-
-// Wed 2/16
-// https://www.youtube.com/embed/z9Pm_PxXe2g
-
-// Wed 2/9
-// https://www.youtube.com/embed/ocfQ_ctmo9c
 
 const WatchLive = () => {
   const [sundayURL, setSundayURL] = useState('')
@@ -114,7 +104,7 @@ const WatchLive = () => {
                       <Form.Label>YouTube Embed Key</Form.Label>
                       <Form.Control
                         type='text'
-                        placeholder='Sunday embed URL'
+                        placeholder='Embed URL'
                         onChange={e => setSundayURL(e.target.value)}
                         value={sundayURL}
                       />
@@ -130,7 +120,6 @@ const WatchLive = () => {
                           })
                         )
                       }}
-                      variant='success'
                       type='submit'
                     >
                       Submit
@@ -186,13 +175,13 @@ const WatchLive = () => {
                         <Form.Label>YouTube Embed Key</Form.Label>
                         <Form.Control
                           type='text'
-                          placeholder='Sunday embed URL'
+                          placeholder='Embed URL'
                           onChange={e => setWednesdayURL(e.target.value)}
                           value={wednesdayURL}
                         />
                       </Form.Group>
                       <Button
-                        id='updateSunday'
+                        id='updateWednesday'
                         onClick={e => {
                           e.preventDefault()
                           dispatch(
@@ -202,7 +191,6 @@ const WatchLive = () => {
                             })
                           )
                         }}
-                        variant='success'
                         type='submit'
                       >
                         Submit

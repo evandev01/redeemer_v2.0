@@ -83,12 +83,12 @@ export const wedListReducer = (state = { wednesdays: [] }, action) => {
       return state
   }
 }
-export const wedGetReducer = (state = { wednesday: {} }, action) => {
+export const wedDetailsReducer = (state = { wednesday: {} }, action) => {
   switch (action.type) {
     case WED_GET_REQUEST:
       return {
         loading: true,
-        wednesday: {},
+        ...state,
       }
     case WED_GET_SUCCESS:
       return {

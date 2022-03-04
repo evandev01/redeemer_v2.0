@@ -1,10 +1,10 @@
 import React from 'react'
 import { Row, Col, Image } from 'react-bootstrap'
-import Shoebox from '../assets/events/shoebox.jpg'
-import FoodDrive from '../assets/events/food_drive.png'
-import Bible from '../assets/events/Bible.jpg'
-import WOM from '../assets/events/wom.jpg'
-import BYBC from '../assets/events/bybc.jpg'
+import Shoebox from '../../assets/events/shoebox.jpg'
+import FoodDrive from '../../assets/events/food_drive.png'
+import Bible from '../../assets/events/Bible.jpg'
+import WOM from '../../assets/events/wom.jpg'
+import BYBC from '../../assets/events/Bible.jpg'
 
 const Events = () => {
   return (
