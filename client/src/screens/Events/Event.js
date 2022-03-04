@@ -199,8 +199,6 @@ const Event = () => {
                         <br />
                       </>
                     )}
-                    <strong>{event.tier}</strong>
-                    <br />
                   </p>
                 </Col>
               </Row>
