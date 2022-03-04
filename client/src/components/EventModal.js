@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Modal, Form, Button } from 'react-bootstrap'
 import Loader from './Loader'
 import Message from './Message'
@@ -36,7 +36,7 @@ const EventModal = ({ show, handleClose }) => {
     if (success) {
       dispatch({ type: EVENT_CREATE_RESET })
     }
-  }, [dispatch, success])
+  }, [dispatch, navigate, userInfo, success])
 
   const tierHandler = () => {
     if (events) {

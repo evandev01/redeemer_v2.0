@@ -11,7 +11,6 @@ import About from './screens/About'
 import NavTabs from './components/NavTabs'
 import Header from './components/Header'
 import Login from './screens/Login'
-import Event from './screens/Events/Event'
 import EventEdit from './screens/Events/EventEdit'
 import Events from './screens/Events/Events'
 
@@ -31,8 +30,7 @@ const App = () => {
               <Route path='/staff' element={<Staff />} />
               <Route path='/watchlive' element={<WatchLive />} />
               <Route path='/login' element={<Login />} />
-              <Route path='/events' element={<Event />} />
-              <Route path='/eventsold' element={<Events />} />
+              <Route path='/events' element={<Events />} />
               <Route path='/event/edit/:id' element={<EventEdit />} />
             </Routes>
           </Container>
