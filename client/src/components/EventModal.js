@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { Modal, Form, Button } from 'react-bootstrap'
+import { Modal, Form, Button, Row, Col } from 'react-bootstrap'
 import Loader from './Loader'
 import Message from './Message'
 import { createEvent, updateEvent } from '../actions/event'
@@ -191,19 +191,16 @@ const EventModal = ({ show, handleClose }) => {
               </Form.Group>
               {uploading && <Loader />}
             </Form.Group>
-            <Button type='submit' variant='primary'>
-              Save
-            </Button>
+            <Modal.Footer>
+              <Button type='submit' variant='primary'>
+                Save Changes
+              </Button>
+              <Button variant='secondary' onClick={handleClose}>
+                Close
+              </Button>
+            </Modal.Footer>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant='secondary' onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant='primary' onClick={submitHandler}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   )
