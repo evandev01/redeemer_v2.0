@@ -9,7 +9,6 @@ import { listEvents, deleteEvent, updateEvent } from '../../actions/event'
 import '../../index.css'
 
 const Event = () => {
-  const [orderShow, setOrderShow] = useState(false)
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -33,7 +32,11 @@ const Event = () => {
   } = eventDelete
 
   const eventUpdate = useSelector(state => state.eventUpdate)
-  const { success: successUpdate } = eventUpdate
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = eventUpdate
 
   useEffect(() => {
     dispatch(listEvents())
@@ -48,7 +51,7 @@ const Event = () => {
     const tEvents = events.filter(event => event.tier > dTier)
 
     const updateTiers = () => {
-      tEvents.map(event => {
+      tEvents.map(event =>
         dispatch(
           updateEvent({
             _id: event._id,
@@ -61,7 +64,7 @@ const Event = () => {
             tier: event.tier - 1,
           })
         )
-      })
+      )
     }
     await updateTiers()
     dispatch(deleteEvent(id))
@@ -69,7 +72,7 @@ const Event = () => {
 
   const upHandler = async (e, event, i) => {
     e.preventDefault()
-    await events.map((data, index) => {
+    await events.forEach((data, index) => {
       if (index === i - 1) {
         dispatch(
           updateEvent({
@@ -101,7 +104,7 @@ const Event = () => {
 
   const downHandler = async (e, event, i) => {
     e.preventDefault()
-    await events.map((data, index) => {
+    await events.forEach((data, index) => {
       if (index === i + 1) {
         dispatch(
           updateEvent({
@@ -133,7 +136,14 @@ const Event = () => {
 
   return (
     <div id='container-div'>
+      {loading && <Loader />}
+      {loadingUpdate && <Loader />}
+      {loadingDelete && <Loader />}
+      {error && <Message variant='danger'>{error}</Message>}
+      {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
+      {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
       <Row id='live-border' />
+
       {userInfo && (
         <>
           <Row>
@@ -146,12 +156,6 @@ const Event = () => {
           <Row id='live-border' />
         </>
       )}
-
-      {loading || (loadingDelete && <Loader />)}
-      {error ||
-        (errorDelete && (
-          <Message variant='danger'>{error ? error : errorDelete}</Message>
-        ))}
 
       {show && <EventModal show={show} handleClose={handleClose} />}
 
@@ -206,7 +210,7 @@ const Event = () => {
                 <Row>
                   <Col className='text-center'>
                     <Button
-                      disabled={i == 0}
+                      disabled={i === 0}
                       className='px-3 m-3'
                       onClick={e => upHandler(e, event, i)}
                     >
@@ -215,7 +219,7 @@ const Event = () => {
                   </Col>
                   <Col className='text-center'>
                     <Button
-                      disabled={i == events.length - 1}
+                      disabled={i === events.length - 1}
                       className='px-3 m-3'
                       onClick={e => downHandler(e, event, i)}
                     >

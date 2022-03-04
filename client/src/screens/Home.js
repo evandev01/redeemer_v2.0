@@ -5,7 +5,6 @@ import Church from '../assets/church/church.jpg'
 import Joel from '../assets/joel/joel_600x800.jpg'
 import Watch from '../assets/icons/video-icon.png'
 import YouTube from '../assets/icons/youtube-logo2.png'
-import Cleaning from '../assets/events/cleaning.jpg'
 
 const Home = () => {
   return (
