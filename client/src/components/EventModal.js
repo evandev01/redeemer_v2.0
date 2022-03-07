@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { Modal, Form, Button, Row, Col } from 'react-bootstrap'
+import { Modal, Form, Button } from 'react-bootstrap'
 import Loader from './Loader'
 import Message from './Message'
 import { createEvent, updateEvent } from '../actions/event'
@@ -105,11 +105,11 @@ const EventModal = ({ show, handleClose }) => {
 
   return (
     <>
-      {loadingList || (loading && <Loader />)}
-      {error ||
-        (errorList && (
-          <Message variant='danger'>{error ? error : errorList}</Message>
-        ))}
+      {loading && <Loader />}
+      {loadingList && <Loader />}
+      {error && <Message variant='danger'>{error}</Message>}
+      {error && <Message variant='danger'>{errorList}</Message>}
+
       <Modal show={show} onHide={() => handleClose()}>
         <Modal.Header closeButton>
           <Modal.Title>New Event</Modal.Title>
@@ -159,7 +159,7 @@ const EventModal = ({ show, handleClose }) => {
               <Form.Control
                 as='textarea'
                 rows={2}
-                placeholder={'Enter dexcription'}
+                placeholder={'Enter description'}
                 value={desc}
                 onChange={e => setDesc(e.target.value)}
               />
@@ -170,7 +170,7 @@ const EventModal = ({ show, handleClose }) => {
               <Form.Control
                 as='textarea'
                 rows={2}
-                placeholder={'Enter dexcription'}
+                placeholder={'Enter description'}
                 value={desc2}
                 onChange={e => setDesc2(e.target.value)}
               />
