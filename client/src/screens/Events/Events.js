@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Row, Col, Image, Button } from 'react-bootstrap'
+import { Row, Col, Image, Button, Container } from 'react-bootstrap'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
 import EventModal from '../../components/EventModal'
@@ -209,45 +209,54 @@ const Event = () => {
                 </Col>
               </Row>
               {userInfo && (
-                <Row>
-                  <Col className='text-center'>
-                    <Button
-                      disabled={i === 0}
-                      className='px-3 m-3'
-                      onClick={e => upHandler(e, event, i)}
-                    >
-                      <i class='fa-solid fa-angle-up'></i> Move Up
-                    </Button>
-                  </Col>
-                  <Col className='text-center'>
-                    <Button
-                      disabled={i === events.length - 1}
-                      className='px-3 m-3'
-                      onClick={e => downHandler(e, event, i)}
-                    >
-                      Move Down <i class='fa-solid fa-angle-down'></i>
-                    </Button>
-                  </Col>
-                  <Col className='text-center'>
-                    <Link to={`/event/edit/${event._id}`}>
-                      <Button className='px-3 m-3' variant='warning'>
-                        <i className='fa-solid fa-pen-to-square' /> Edit
-                      </Button>
-                    </Link>
-                  </Col>
-                  <Col className='text-center'>
-                    <Button
-                      className='px-3 m-3'
-                      variant='danger'
-                      onClick={e => {
-                        const result = window.confirm('Are you sure?')
-                        deleteHandler(e, result, event, event._id)
-                      }}
-                    >
-                      <i className='fa-solid fa-trash-can' /> Delete
-                    </Button>
-                  </Col>
-                </Row>
+                <>
+                  <Container>
+                    <Row className='text-center'>
+                      <table style={{ backgroundColor: 'rgba(255,255,255)' }}>
+                        <tr>
+                          <th>Move</th>
+                          <th>Actions</th>
+                        </tr>
+                        <tr>
+                          <td>
+                            <Button
+                              disabled={i === 0}
+                              className='px-3 m-3'
+                              onClick={e => upHandler(e, event, i)}
+                            >
+                              <i class='fa-solid fa-angle-up'></i> Up
+                            </Button>
+                            <Button
+                              disabled={i === events.length - 1}
+                              className='px-3 m-3'
+                              onClick={e => downHandler(e, event, i)}
+                            >
+                              Down <i class='fa-solid fa-angle-down'></i>
+                            </Button>
+                          </td>
+
+                          <td>
+                            <Link to={`/event/edit/${event._id}`}>
+                              <Button className='px-3 m-3' variant='warning'>
+                                <i className='fa-solid fa-pen-to-square' /> Edit
+                              </Button>
+                            </Link>
+                            <Button
+                              className='px-3 m-3'
+                              variant='danger'
+                              onClick={e => {
+                                const result = window.confirm('Are you sure?')
+                                deleteHandler(e, result, event, event._id)
+                              }}
+                            >
+                              <i className='fa-solid fa-trash-can' /> Delete
+                            </Button>
+                          </td>
+                        </tr>
+                      </table>
+                    </Row>
+                  </Container>
+                </>
               )}
               <Row id='live-border' />
             </div>
