@@ -1,10 +1,14 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { Nav, Container, Row, Col, Navbar } from 'react-bootstrap'
 import '../index.css'
 import { logout } from '../actions/user'
+import { Navigate } from 'react-router-dom'
 
 const NavTabs = () => {
+  const navigate = useNavigate()
+
   const dispatch = useDispatch()
 
   const userLogin = useSelector(state => state.userLogin)
@@ -12,6 +16,7 @@ const NavTabs = () => {
 
   const logoutHandler = () => {
     dispatch(logout())
+    navigate('/')
   }
   return (
     <>

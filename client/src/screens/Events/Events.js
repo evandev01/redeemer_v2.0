@@ -155,7 +155,7 @@ const Event = () => {
               </Button>
             </Col>
             <Col className='text-center'>
-              <Link to='/instructions'>
+              <Link to='/instructions' target='_blank'>
                 <Button>
                   <i class='fa-solid fa-circle-info'></i> Instructions
                 </Button>
