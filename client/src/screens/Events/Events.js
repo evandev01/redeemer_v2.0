@@ -154,6 +154,13 @@ const Event = () => {
                 <i className='fa-solid fa-circle-plus' /> Create New
               </Button>
             </Col>
+            <Col className='text-center'>
+              <Link to='/instructions'>
+                <Button>
+                  <i class='fa-solid fa-circle-info'></i> Instructions
+                </Button>
+              </Link>
+            </Col>
           </Row>
           <Row id='live-border' />
         </>

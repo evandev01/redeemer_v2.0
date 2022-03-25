@@ -111,12 +111,19 @@ const EventEdit = () => {
                 <Form.Label>Title</Form.Label>
                 <Form.Control
                   type='text'
-                  placeholder={event ? event.title : title}
+                  placeholder={event && event.title}
                   required={true}
                   value={title}
-                  onClick={() => (event ? setTitle(event.title) : setTitle(''))}
                   onChange={e => setTitle(e.target.value)}
                 />
+                <Button
+                  className='mt-1 mb-1'
+                  size='sm'
+                  onClick={() => setTitle(event && event.title)}
+                >
+                  <i className='fa-solid fa-arrow-rotate-left' /> Reset
+                </Button>
+                <Form.Text>{'  '}Click to set original text.</Form.Text>
               </Form.Group>
               <Form.Group controlId='line1' className='mb-3'>
                 <Form.Label>Date</Form.Label>
@@ -125,16 +132,18 @@ const EventEdit = () => {
                   required={true}
                   placeholder={event ? event.line1 : line1}
                   value={line1}
-                  onClick={() => event && setLine1(event.line1)}
                   onChange={e => setLine1(e.target.value)}
                 />
-                <Form.Text>
-                  Examples:
-                  <br />
-                  1: -February-
-                  <br />
-                  2: June 26th, 2022
-                </Form.Text>
+                <Form.Text>Date may be any format.</Form.Text>
+                <br />
+                <Button
+                  className='mt-1 mb-1'
+                  size='sm'
+                  onClick={() => setLine1(event && event.line1)}
+                >
+                  <i className='fa-solid fa-arrow-rotate-left' /> Reset
+                </Button>
+                <Form.Text>{'  '}Click to set original text.</Form.Text>
               </Form.Group>
               <Form.Group controlId='line2' className='mb-3'>
                 <Form.Label>Time</Form.Label>
@@ -142,9 +151,16 @@ const EventEdit = () => {
                   type='text'
                   placeholder={event ? event.line2 : line2}
                   value={line2}
-                  onClick={() => event && setLine2(event.line2)}
                   onChange={e => setLine2(e.target.value)}
                 />
+                <Button
+                  className='mt-1 mb-1'
+                  size='sm'
+                  onClick={() => setLine2(event && event.line2)}
+                >
+                  <i className='fa-solid fa-arrow-rotate-left' /> Reset
+                </Button>
+                <Form.Text>{'  '}Click to set original text.</Form.Text>
               </Form.Group>
               <Form.Group controlId='desc' className='mb-3'>
                 <Form.Label>Description</Form.Label>
@@ -153,9 +169,16 @@ const EventEdit = () => {
                   rows={3}
                   placeholder={event ? event.desc : desc}
                   value={desc}
-                  onClick={() => event && setDesc(event.desc)}
                   onChange={e => setDesc(e.target.value)}
                 />
+                <Button
+                  className='mt-1 mb-1'
+                  size='sm'
+                  onClick={() => setDesc(event && event.desc)}
+                >
+                  <i className='fa-solid fa-arrow-rotate-left' /> Reset
+                </Button>
+                <Form.Text>{'  '}Click to set original text.</Form.Text>
               </Form.Group>
               <Form.Group controlId='desc' className='mb-3'>
                 <Form.Label>Description 2</Form.Label>
@@ -164,9 +187,16 @@ const EventEdit = () => {
                   rows={3}
                   placeholder={event ? event.desc2 : desc2}
                   value={desc2}
-                  onClick={() => event && setDesc2(event.desc2)}
                   onChange={e => setDesc2(e.target.value)}
                 />
+                <Button
+                  className='mt-1 mb-1'
+                  size='sm'
+                  onClick={() => setDesc2(event && event.desc2)}
+                >
+                  <i className='fa-solid fa-arrow-rotate-left' /> Reset
+                </Button>
+                <Form.Text>{'  '}Click to set original text.</Form.Text>
               </Form.Group>
 
               <Form.Group controlId='image' className='mb-3'>
@@ -177,6 +207,14 @@ const EventEdit = () => {
                   value={image}
                   onChange={e => setImage(e.target.value)}
                 ></Form.Control>
+                <Button
+                  className='mt-1 mb-1'
+                  size='sm'
+                  onClick={() => setImage(event && event.image)}
+                >
+                  <i className='fa-solid fa-arrow-rotate-left' /> Reset
+                </Button>
+                <Form.Text>{'  '}Click to set original image.</Form.Text>
 
                 <Form.Group controlId='formFile' className='mt-3 mb-3'>
                   <Form.Label>Upload Image</Form.Label>
@@ -185,7 +223,7 @@ const EventEdit = () => {
                 {uploading && <Loader />}
               </Form.Group>
               <Button type='submit' variant='primary'>
-                Save
+                Update
               </Button>
             </Form>
           </Col>

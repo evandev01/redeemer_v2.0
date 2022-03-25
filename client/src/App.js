@@ -13,6 +13,7 @@ import Header from './components/Header'
 import Login from './screens/Login'
 import EventEdit from './screens/Events/EventEdit'
 import Events from './screens/Events/Events'
+import Instructions from './screens/Events/Instructions'
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
               <Route path='/watchlive' element={<WatchLive />} />
               <Route path='/login' element={<Login />} />
               <Route path='/events' element={<Events />} />
+              <Route path='/instructions' element={<Instructions />} />
               <Route path='/event/edit/:id' element={<EventEdit />} />
             </Routes>
           </Container>

@@ -48,6 +48,7 @@ const EventModal = ({ show, handleClose }) => {
             line1: event.line1,
             line2: event.line2,
             desc: event.desc,
+            desc2: event.desc2,
             image: event.image,
             tier: event.tier + 1,
           })
@@ -61,6 +62,7 @@ const EventModal = ({ show, handleClose }) => {
     setLine1('')
     setLine2('')
     setDesc('')
+    setDesc2('')
     setImage('')
   }
 
@@ -165,7 +167,7 @@ const EventModal = ({ show, handleClose }) => {
               />
             </Form.Group>
 
-            <Form.Group controlId='desc' className='mb-3'>
+            <Form.Group controlId='desc2' className='mb-3'>
               <Form.Label>Description 2</Form.Label>
               <Form.Control
                 as='textarea'
@@ -193,7 +195,7 @@ const EventModal = ({ show, handleClose }) => {
             </Form.Group>
             <Modal.Footer>
               <Button type='submit' variant='primary'>
-                Save Changes
+                Save
               </Button>
               <Button variant='secondary' onClick={handleClose}>
                 Close

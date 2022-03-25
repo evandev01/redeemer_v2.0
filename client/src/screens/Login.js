@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import Message from '../components/Message'
@@ -9,6 +10,8 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const navigate = useNavigate()
+
   const dispatch = useDispatch()
 
   const userLogin = useSelector(state => state.userLogin)
@@ -16,7 +19,7 @@ const Login = () => {
 
   useEffect(() => {
     if (userInfo) {
-      window.location.href = '/watchlive'
+      navigate('/watchlive')
     }
   }, [userInfo])
 
