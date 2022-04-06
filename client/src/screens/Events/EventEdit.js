@@ -1,25 +1,43 @@
-import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
+import { storage } from '../../firebase/config'
 import { useDispatch, useSelector } from 'react-redux'
-import { Container, Row, Col, Form, Button } from 'react-bootstrap'
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  Button,
+  Tooltip,
+  OverlayTrigger,
+} from 'react-bootstrap'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
-import { updateEvent, listEventDetails } from '../../actions/event'
-import { EVENT_UPDATE_RESET } from '../../constants/event'
+import {
+  updateEvent,
+  listEventDetails,
+  createEvent,
+  listEvents,
+} from '../../actions/event'
+import { EVENT_UPDATE_RESET, EVENT_CREATE_RESET } from '../../constants/event'
+import { createImage } from '../../actions/image'
 
 const EventEdit = () => {
   const { id } = useParams()
   const eventId = id
   const navigate = useNavigate()
+  let myRef = React.createRef()
 
   const [title, setTitle] = useState('')
   const [line1, setLine1] = useState('')
   const [line2, setLine2] = useState('')
   const [desc, setDesc] = useState('')
   const [desc2, setDesc2] = useState('')
-  const [image, setImage] = useState('')
-  const [uploading, setUploading] = useState(false)
+
+  const [url, setUrl] = useState('')
+  const [imageError, setImageError] = useState(null)
+  const [progress, setProgress] = useState(0)
 
   const dispatch = useDispatch()
 
@@ -33,7 +51,20 @@ const EventEdit = () => {
     success: successUpdate,
   } = eventUpdate
 
+  const eventCreate = useSelector(state => state.eventCreate)
+  const {
+    loading: loadingCreate,
+    success: successCreate,
+    error: errorCreate,
+  } = eventCreate
+
+  const eventList = useSelector(state => state.eventList)
+  const { events } = eventList
+
   useEffect(() => {
+    if (!eventId) {
+      dispatch(listEvents())
+    }
     if (eventId) {
       dispatch(listEventDetails(eventId))
     }
@@ -41,28 +72,32 @@ const EventEdit = () => {
       dispatch({ type: EVENT_UPDATE_RESET })
       navigate('/events')
     }
-  }, [dispatch, navigate, successUpdate, eventId])
+    if (successCreate) {
+      dispatch({ type: EVENT_CREATE_RESET })
+      navigate('/events')
+    }
+  }, [dispatch, navigate, successUpdate, successCreate, eventId])
 
-  const uploadFileHandler = async e => {
-    const file = e.target.files[0]
-    const formData = new FormData()
-    formData.append('image', file)
-    setUploading(true)
+  for (var i = 0; i < 15; i++) {
+    dispatch(createImage({ image: 'hello' }))
+  }
 
-    try {
-      const config = {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }
-
-      const { data } = await axios.post('/api/upload', formData, config)
-
-      setImage(data)
-      setUploading(false)
-    } catch (error) {
-      console.log(error)
-      setUploading(false)
+  const tierHandler = () => {
+    if (events) {
+      events.map(event =>
+        dispatch(
+          updateEvent({
+            _id: event._id,
+            title: event.title,
+            line1: event.line1,
+            line2: event.line2,
+            desc: event.desc,
+            desc2: event.desc2,
+            image: event.image,
+            tier: event.tier + 1,
+          })
+        )
+      )
     }
   }
 
@@ -71,14 +106,45 @@ const EventEdit = () => {
     setLine1('')
     setLine2('')
     setDesc('')
-    setImage('')
+    setUrl('')
     setDesc2('')
   }
 
-  const submitHandler = e => {
+  const types = ['image/png', 'image/jpeg', 'image/jpg']
+
+  const changeHandler = async e => {
+    e.preventDefault()
+    const file = e.target.files[0]
+    if (file && types.includes(file.type)) {
+      await uploadFileHandler(file)
+    }
+  }
+
+  const uploadFileHandler = file => {
+    if (!file) return
+    const storageRef = ref(storage, `/files/${file.name}`)
+    const uploadTask = uploadBytesResumable(storageRef, file)
+
+    uploadTask.on(
+      'state_changed',
+      snapshot => {
+        const prog = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        )
+
+        setProgress(prog)
+      },
+      err => setImageError(err),
+      async () => {
+        await getDownloadURL(uploadTask.snapshot.ref).then(url => setUrl(url))
+      }
+    )
+  }
+
+  const submitHandler = async e => {
     e.preventDefault()
 
-    if (event) {
+    if (event && eventId) {
       const updatedEvent = {
         _id: eventId,
         title: title,
@@ -86,10 +152,22 @@ const EventEdit = () => {
         line2: line2,
         desc: desc,
         desc2: desc2,
-        image: image,
+        image: url,
         tier: event.tier,
       }
       dispatch(updateEvent(updatedEvent))
+      clearForm()
+    } else {
+      await tierHandler()
+      const newEvent = {
+        title,
+        line1,
+        line2,
+        desc,
+        desc2,
+        image: url,
+      }
+      dispatch(createEvent(newEvent))
       clearForm()
     }
   }
@@ -97,18 +175,19 @@ const EventEdit = () => {
   return (
     <div id='container-div'>
       <Row id='live-border' />
-      {loading || (loadingUpdate && <Loader />)}
-      {error ||
-        (errorUpdate && (
-          <Message variant='danger'>{error ? error : errorUpdate}</Message>
-        ))}
+      {loading && <Loader />}
+      {loadingUpdate && <Loader />}
+      {loadingCreate && <Loader />}
+      {error && <Message variant='danger'>{error}</Message>}
+      {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
+      {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
       <Container className='p-5'>
         <Row>
           <Col xs={1} sm='auto' md={3} />
           <Col xs={10} sm={12} md={6}>
             <Form onSubmit={submitHandler}>
-              <Form.Group controlId='title' className='mb-3'>
-                <Form.Label>Title</Form.Label>
+              <Form.Group controlId='title' className='mb-4 text-center'>
+                <Form.Label style={{ fontWeight: 'bold' }}>Title</Form.Label>
                 <Form.Control
                   type='text'
                   placeholder={event && event.title}
@@ -116,17 +195,10 @@ const EventEdit = () => {
                   value={title}
                   onChange={e => setTitle(e.target.value)}
                 />
-                <Button
-                  className='mt-1 mb-1'
-                  size='sm'
-                  onClick={() => setTitle(event && event.title)}
-                >
-                  <i className='fa-solid fa-arrow-rotate-left' /> Reset
-                </Button>
-                <Form.Text>{'  '}Click to set original text.</Form.Text>
               </Form.Group>
-              <Form.Group controlId='line1' className='mb-3'>
-                <Form.Label>Date</Form.Label>
+
+              <Form.Group controlId='line1' className='mb-4 text-center'>
+                <Form.Label style={{ fontWeight: 'bold' }}>Date</Form.Label>
                 <Form.Control
                   type='text'
                   required={true}
@@ -136,34 +208,22 @@ const EventEdit = () => {
                 />
                 <Form.Text>Date may be any format.</Form.Text>
                 <br />
-                <Button
-                  className='mt-1 mb-1'
-                  size='sm'
-                  onClick={() => setLine1(event && event.line1)}
-                >
-                  <i className='fa-solid fa-arrow-rotate-left' /> Reset
-                </Button>
-                <Form.Text>{'  '}Click to set original text.</Form.Text>
               </Form.Group>
-              <Form.Group controlId='line2' className='mb-3'>
-                <Form.Label>Time</Form.Label>
+
+              <Form.Group controlId='line2' className='mb-4 text-center'>
+                <Form.Label style={{ fontWeight: 'bold' }}>Time</Form.Label>
                 <Form.Control
                   type='text'
                   placeholder={event ? event.line2 : line2}
                   value={line2}
                   onChange={e => setLine2(e.target.value)}
                 />
-                <Button
-                  className='mt-1 mb-1'
-                  size='sm'
-                  onClick={() => setLine2(event && event.line2)}
-                >
-                  <i className='fa-solid fa-arrow-rotate-left' /> Reset
-                </Button>
-                <Form.Text>{'  '}Click to set original text.</Form.Text>
               </Form.Group>
-              <Form.Group controlId='desc' className='mb-3'>
-                <Form.Label>Description</Form.Label>
+
+              <Form.Group controlId='desc' className='mb-4 text-center'>
+                <Form.Label style={{ fontWeight: 'bold' }}>
+                  Description
+                </Form.Label>
                 <Form.Control
                   as='textarea'
                   rows={3}
@@ -171,17 +231,12 @@ const EventEdit = () => {
                   value={desc}
                   onChange={e => setDesc(e.target.value)}
                 />
-                <Button
-                  className='mt-1 mb-1'
-                  size='sm'
-                  onClick={() => setDesc(event && event.desc)}
-                >
-                  <i className='fa-solid fa-arrow-rotate-left' /> Reset
-                </Button>
-                <Form.Text>{'  '}Click to set original text.</Form.Text>
               </Form.Group>
-              <Form.Group controlId='desc' className='mb-3'>
-                <Form.Label>Description 2</Form.Label>
+
+              <Form.Group controlId='desc' className='mb-4 text-center'>
+                <Form.Label style={{ fontWeight: 'bold' }}>
+                  Description 2
+                </Form.Label>
                 <Form.Control
                   as='textarea'
                   rows={3}
@@ -189,42 +244,103 @@ const EventEdit = () => {
                   value={desc2}
                   onChange={e => setDesc2(e.target.value)}
                 />
-                <Button
-                  className='mt-1 mb-1'
-                  size='sm'
-                  onClick={() => setDesc2(event && event.desc2)}
-                >
-                  <i className='fa-solid fa-arrow-rotate-left' /> Reset
-                </Button>
-                <Form.Text>{'  '}Click to set original text.</Form.Text>
               </Form.Group>
 
-              <Form.Group controlId='image' className='mb-3'>
-                <Form.Label>Image</Form.Label>
+              <Form.Group controlId='image' className='mb-4 text-center'>
+                <Form.Label style={{ fontWeight: 'bold' }}>Image</Form.Label>
                 <Form.Control
                   type='text'
-                  placeholder={event ? event.image : image}
-                  value={image}
-                  onChange={e => setImage(e.target.value)}
-                ></Form.Control>
-                <Button
-                  className='mt-1 mb-1'
-                  size='sm'
-                  onClick={() => setImage(event && event.image)}
-                >
-                  <i className='fa-solid fa-arrow-rotate-left' /> Reset
-                </Button>
-                <Form.Text>{'  '}Click to set original image.</Form.Text>
-
-                <Form.Group controlId='formFile' className='mt-3 mb-3'>
-                  <Form.Label>Upload Image</Form.Label>
-                  <Form.Control type='file' onChange={uploadFileHandler} />
-                </Form.Group>
-                {uploading && <Loader />}
+                  placeholder={
+                    event && event.image != null
+                      ? event.image
+                      : 'Enter Image URL'
+                  }
+                  value={url ? url : ''}
+                  onChange={e => setUrl(e.target.value)}
+                />
               </Form.Group>
-              <Button type='submit' variant='primary'>
-                Update
-              </Button>
+              <Form.Group
+                controlId='formFile'
+                className='mt-3 mb-3 text-center'
+              >
+                <Form.Label style={{ fontWeight: 'bold' }}>
+                  Upload Image
+                </Form.Label>
+                <Form.Control
+                  type='file'
+                  ref={myRef}
+                  onChange={changeHandler}
+                />{' '}
+                <h5>{progress}%</h5>
+                <Row>
+                  <Col className='flex-start'>
+                    <OverlayTrigger
+                      placement={'top'}
+                      overlay={
+                        <Tooltip>
+                          Click to view and choose from currently stored images.
+                        </Tooltip>
+                      }
+                    >
+                      <Button variant='secondary'>Choose from Images</Button>
+                    </OverlayTrigger>
+                  </Col>
+                </Row>
+              </Form.Group>
+
+              <div className='progress-bar' style={{ width: progress + '%' }} />
+              {/* <h5>{progress}%</h5> */}
+              {imageError && <Message variant='danger'>{imageError}</Message>}
+              {progress === 100 && <h5>Image uploaded.</h5>}
+
+              <div id='live-border' />
+
+              <Row>
+                <Col>
+                  <Button
+                    type='submit'
+                    variant='warning'
+                    className='py-3 m-1'
+                    style={{ width: '100px' }}
+                  >
+                    Save
+                  </Button>
+                </Col>
+                {event && eventId && (
+                  <Col className='text-end'>
+                    <OverlayTrigger
+                      placement={'top'}
+                      overlay={
+                        <Tooltip>
+                          Click to set all fields to original values.
+                        </Tooltip>
+                      }
+                    >
+                      <Button
+                        className='py-3 m-1'
+                        onClick={async e => {
+                          setTitle(event && event.title)
+                          setLine1(event && event.line1)
+                          setLine2(event && event.line2)
+                          setDesc(event && event.desc)
+                          setDesc2(event && event.desc2)
+                          if (event && event.image !== '') {
+                            setUrl(event.image)
+                            setProgress(100)
+                          } else {
+                            setUrl('')
+                            setProgress(0)
+                            myRef.current.value = ''
+                          }
+                        }}
+                        style={{ width: '100px' }}
+                      >
+                        <i className='fa-solid fa-arrow-rotate-left' /> Reset
+                      </Button>
+                    </OverlayTrigger>
+                  </Col>
+                )}
+              </Row>
             </Form>
           </Col>
           <Col xs={1} sm='auto' md={3} />

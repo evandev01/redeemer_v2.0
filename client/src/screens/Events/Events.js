@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Row, Col, Image, Button, Container } from 'react-bootstrap'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
-import EventModal from '../../components/EventModal'
 import { listEvents, deleteEvent, updateEvent } from '../../actions/event'
 import '../../index.css'
 
 const Event = () => {
-  const [show, setShow] = useState(false)
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
+  const navigate = useNavigate()
 
   const dispatch = useDispatch()
 
@@ -150,14 +147,21 @@ const Event = () => {
         <>
           <Row>
             <Col className='text-center'>
-              <Button onClick={handleShow}>
+              {/* <Link to='/event/edit'> */}
+              <Button
+                onClick={e => {
+                  e.preventDefault()
+                  navigate('/event/edit')
+                }}
+              >
                 <i className='fa-solid fa-circle-plus' /> Create New
               </Button>
+              {/* </Link> */}
             </Col>
             <Col className='text-center'>
               <Link to='/instructions' target='_blank'>
                 <Button>
-                  <i class='fa-solid fa-circle-info'></i> Instructions
+                  <i className='fa-solid fa-circle-info'></i> Instructions
                 </Button>
               </Link>
             </Col>
@@ -165,8 +169,6 @@ const Event = () => {
           <Row id='live-border' />
         </>
       )}
-
-      {show && <EventModal show={show} handleClose={handleClose} />}
 
       {events &&
         events
@@ -220,46 +222,55 @@ const Event = () => {
                   <Container>
                     <Row className='text-center'>
                       <table style={{ backgroundColor: 'rgba(255,255,255)' }}>
-                        <tr>
-                          <th>Move</th>
-                          <th>Actions</th>
-                        </tr>
-                        <tr>
-                          <td>
-                            <Button
-                              disabled={i === 0}
-                              className='px-3 m-3'
-                              onClick={e => upHandler(e, event, i)}
-                            >
-                              <i class='fa-solid fa-angle-up'></i> Up
-                            </Button>
-                            <Button
-                              disabled={i === events.length - 1}
-                              className='px-3 m-3'
-                              onClick={e => downHandler(e, event, i)}
-                            >
-                              Down <i class='fa-solid fa-angle-down'></i>
-                            </Button>
-                          </td>
+                        <thead>
+                          <tr>
+                            <th>Move</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <Button
+                                disabled={i === 0}
+                                className='px-3 m-3'
+                                onClick={e => upHandler(e, event, i)}
+                              >
+                                <i className='fa-solid fa-angle-up'></i> Up
+                              </Button>
+                              <Button
+                                disabled={i === events.length - 1}
+                                className='px-3 m-3'
+                                onClick={e => downHandler(e, event, i)}
+                              >
+                                Down <i className='fa-solid fa-angle-down'></i>
+                              </Button>
+                            </td>
 
-                          <td>
-                            <Link to={`/event/edit/${event._id}`}>
-                              <Button className='px-3 m-3' variant='warning'>
+                            <td>
+                              <Button
+                                className='px-3 m-3'
+                                variant='warning'
+                                onClick={e => {
+                                  e.preventDefault()
+                                  navigate(`/event/edit/${event._id}`)
+                                }}
+                              >
                                 <i className='fa-solid fa-pen-to-square' /> Edit
                               </Button>
-                            </Link>
-                            <Button
-                              className='px-3 m-3'
-                              variant='danger'
-                              onClick={e => {
-                                const result = window.confirm('Are you sure?')
-                                deleteHandler(e, result, event, event._id)
-                              }}
-                            >
-                              <i className='fa-solid fa-trash-can' /> Delete
-                            </Button>
-                          </td>
-                        </tr>
+                              <Button
+                                className='px-3 m-3'
+                                variant='danger'
+                                onClick={e => {
+                                  const result = window.confirm('Are you sure?')
+                                  deleteHandler(e, result, event, event._id)
+                                }}
+                              >
+                                <i className='fa-solid fa-trash-can' /> Delete
+                              </Button>
+                            </td>
+                          </tr>
+                        </tbody>
                       </table>
                     </Row>
                   </Container>

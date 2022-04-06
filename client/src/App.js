@@ -14,6 +14,7 @@ import Login from './screens/Login'
 import EventEdit from './screens/Events/EventEdit'
 import Events from './screens/Events/Events'
 import Instructions from './screens/Events/Instructions'
+import Images from './screens/Events/Images'
 
 const App = () => {
   return (
@@ -33,7 +34,9 @@ const App = () => {
               <Route path='/login' element={<Login />} />
               <Route path='/events' element={<Events />} />
               <Route path='/instructions' element={<Instructions />} />
+              <Route path='/event/edit' element={<EventEdit />} />
               <Route path='/event/edit/:id' element={<EventEdit />} />
+              <Route path='/images' element={<Images />} />
             </Routes>
           </Container>
         </main>

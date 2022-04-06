@@ -13,7 +13,7 @@ const Instructions = () => {
     if (!userInfo) {
       navigate('/')
     }
-  }, [userInfo])
+  }, [userInfo, navigate])
 
   return (
     userInfo && (

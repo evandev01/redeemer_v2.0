@@ -1,7 +1,8 @@
-import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { ref, uploadBytesResumable, getDownloadURL } from '@firebase/storage'
+import { storage } from '../firebase/config'
 import { Modal, Form, Button } from 'react-bootstrap'
 import Loader from './Loader'
 import Message from './Message'
@@ -14,8 +15,9 @@ const EventModal = ({ show, handleClose }) => {
   const [line2, setLine2] = useState('')
   const [desc, setDesc] = useState('')
   const [desc2, setDesc2] = useState('')
-  const [image, setImage] = useState('')
-  const [uploading, setUploading] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const [url, setUrl] = useState(null)
+  const [imageError, setImageError] = useState(null)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -63,30 +65,38 @@ const EventModal = ({ show, handleClose }) => {
     setLine2('')
     setDesc('')
     setDesc2('')
-    setImage('')
+    setUrl('')
   }
 
-  const uploadFileHandler = async e => {
+  const types = ['image/png', 'image/jpeg', 'image/jpg']
+
+  const changeHandler = async e => {
+    e.preventDefault()
     const file = e.target.files[0]
-    const formData = new FormData()
-    formData.append('image', file)
-    setUploading(true)
-
-    try {
-      const config = {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }
-
-      const { data } = await axios.post('/api/upload', formData, config)
-
-      setImage(data)
-      setUploading(false)
-    } catch (error) {
-      console.log(error)
-      setUploading(false)
+    if (file && types.includes(file.type)) {
+      await uploadFileHandler(file)
     }
+  }
+
+  const uploadFileHandler = file => {
+    if (!file) return
+    const storageRef = ref(storage, `/files/${file.name}`)
+    const uploadTask = uploadBytesResumable(storageRef, file)
+
+    uploadTask.on(
+      'state_changed',
+      snapshot => {
+        const prog = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        )
+
+        setProgress(prog)
+      },
+      err => setImageError(err),
+      async () => {
+        await getDownloadURL(uploadTask.snapshot.ref).then(url => setUrl(url))
+      }
+    )
   }
 
   const submitHandler = async e => {
@@ -98,7 +108,7 @@ const EventModal = ({ show, handleClose }) => {
       line2: line2,
       desc: desc,
       desc2: desc2,
-      image: image,
+      image: url,
     }
     dispatch(createEvent(newEvent))
     clearForm()
@@ -110,14 +120,14 @@ const EventModal = ({ show, handleClose }) => {
       {loading && <Loader />}
       {loadingList && <Loader />}
       {error && <Message variant='danger'>{error}</Message>}
-      {error && <Message variant='danger'>{errorList}</Message>}
+      {errorList && <Message variant='danger'>{errorList}</Message>}
 
       <Modal show={show} onHide={() => handleClose()}>
         <Modal.Header closeButton>
           <Modal.Title>New Event</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={submitHandler}>
+          <Form>
             <Form.Group controlId='title' className='mb-3'>
               <Form.Label>Title</Form.Label>
               <Form.Control
@@ -183,18 +193,29 @@ const EventModal = ({ show, handleClose }) => {
               <Form.Control
                 type='text'
                 placeholder={'Enter Image URL'}
-                value={image}
-                onChange={e => setImage(e.target.value)}
+                value={url}
+                onChange={e => setUrl(e.target.value)}
               ></Form.Control>
 
-              <Form.Group controlId='formFile' className='mt-3 mb-3'>
-                <Form.Label>Upload Image</Form.Label>
-                <Form.Control type='file' onChange={uploadFileHandler} />
-              </Form.Group>
-              {uploading && <Loader />}
+              <>
+                <Form.Group controlId='formFile' className='mt-3 mb-3'>
+                  <Form.Label>Upload Image</Form.Label>
+                  <Form.Control type='file' onChange={changeHandler} />
+                </Form.Group>
+
+                <>
+                  <div
+                    className='progress-bar'
+                    style={{ width: progress + '%' }}
+                  />
+                  <h5>{progress}%</h5>
+                </>
+                {imageError && <Message variant='danger'>{imageError}</Message>}
+                {progress === 100 && <h5>Image uploaded.</h5>}
+              </>
             </Form.Group>
             <Modal.Footer>
-              <Button type='submit' variant='primary'>
+              <Button type='submit' onClick={submitHandler} variant='primary'>
                 Save
               </Button>
               <Button variant='secondary' onClick={handleClose}>

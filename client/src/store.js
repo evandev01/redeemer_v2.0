@@ -30,6 +30,13 @@ import {
   eventUpdateReducer,
   eventDeleteReducer,
 } from './reducers/event'
+import {
+  imageCreateReducer,
+  imageListReducer,
+  imageDetailsReducer,
+  imageUpdateReducer,
+  imageDeleteReducer,
+} from './reducers/image'
 
 const reducer = combineReducers({
   // User
@@ -57,6 +64,12 @@ const reducer = combineReducers({
   eventDetails: eventDetailsReducer,
   eventUpdate: eventUpdateReducer,
   eventDelete: eventDeleteReducer,
+  // Image
+  imageCreate: imageCreateReducer,
+  imageList: imageListReducer,
+  imageDetails: imageDetailsReducer,
+  imageUpdate: imageUpdateReducer,
+  imageDelete: imageDeleteReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

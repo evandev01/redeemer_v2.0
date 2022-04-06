@@ -21,7 +21,7 @@ const Login = () => {
     if (userInfo) {
       navigate('/watchlive')
     }
-  }, [userInfo])
+  }, [userInfo, navigate])
 
   const submitHandler = e => {
     e.preventDefault()

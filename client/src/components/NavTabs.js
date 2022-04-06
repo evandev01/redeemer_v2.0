@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { Nav, Container, Row, Col, Navbar } from 'react-bootstrap'
 import '../index.css'
 import { logout } from '../actions/user'
-import { Navigate } from 'react-router-dom'
 
 const NavTabs = () => {
   const navigate = useNavigate()

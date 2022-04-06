@@ -272,3 +272,19 @@ p h1 h2 h3 h4 h5 {
     height: auto;
   }
 }
+
+.progress-bar {
+  height: 5px;
+  background-color: rgb(66, 66, 233);
+  margin-top: 20px;
+}
+
+#selected {
+  max-width: 300px;
+  max-height: 300px;
+}
+#not-selected {
+  max-width: 300px;
+  max-width: 300px;
+  border: 5px groove blue;
+}
