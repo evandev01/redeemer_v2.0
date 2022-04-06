@@ -29,6 +29,7 @@ const Images = () => {
 
   useEffect(() => {
     dispatch(listImages())
+    console.log(process.env.MEASUREMENT_ID)
   }, [dispatch])
 
   return (
