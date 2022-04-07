@@ -7,16 +7,11 @@ const {
   getUserById,
   updateUser,
 } = require('../../controllers/userController')
-const { protect } = require('../../middleware/auth')
 
 // Calls functions in controller
 
-router.route('/').post(registerUser).get(protect, getUsers)
+router.route('/').post(registerUser).get(getUsers)
 router.post('/login', authUser)
-router
-  .route('/:id')
-  .delete(protect, deleteUser)
-  .get(protect, getUserById)
-  .put(protect, updateUser)
+router.route('/:id').delete(deleteUser).get(getUserById).put(updateUser)
 
 module.exports = router

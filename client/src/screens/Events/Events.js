@@ -5,7 +5,6 @@ import { Row, Col, Image, Button, Container } from 'react-bootstrap'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
 import { listEvents, deleteEvent, updateEvent } from '../../actions/event'
-import '../../index.css'
 
 const Event = () => {
   const navigate = useNavigate()
@@ -147,7 +146,6 @@ const Event = () => {
         <>
           <Row>
             <Col className='text-center'>
-              {/* <Link to='/event/edit'> */}
               <Button
                 onClick={e => {
                   e.preventDefault()
@@ -156,7 +154,6 @@ const Event = () => {
               >
                 <i className='fa-solid fa-circle-plus' /> Create New
               </Button>
-              {/* </Link> */}
             </Col>
             <Col className='text-center'>
               <Link to='/instructions' target='_blank'>

@@ -29,11 +29,6 @@ app.use('/api/users', userRoutes)
 app.use('/api/events', eventRoutes)
 app.use('/api/images', imageRoutes)
 
-// Static uploads folder for Heroku - only works with paid plan above hobby
-// const uploadRoutes = require('./routes/api/uploadRoutes')
-// app.use('/api/upload', uploadRoutes)
-// app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
-
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/client/build')))
   app.get('/*', (req, res) => {

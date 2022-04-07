@@ -50,6 +50,7 @@ export const eventDetailsReducer = (state = { event: {} }, action) => {
     case EVENT_DETAILS_SUCCESS:
       return {
         loading: false,
+        success: true,
         event: action.payload,
       }
     case EVENT_DETAILS_FAIL:

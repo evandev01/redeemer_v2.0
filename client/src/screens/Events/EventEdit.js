@@ -21,7 +21,6 @@ import {
   listEvents,
 } from '../../actions/event'
 import { EVENT_UPDATE_RESET, EVENT_CREATE_RESET } from '../../constants/event'
-import { createImage } from '../../actions/image'
 
 const EventEdit = () => {
   const { id } = useParams()
@@ -34,15 +33,15 @@ const EventEdit = () => {
   const [line2, setLine2] = useState('')
   const [desc, setDesc] = useState('')
   const [desc2, setDesc2] = useState('')
-
   const [url, setUrl] = useState('')
   const [imageError, setImageError] = useState(null)
   const [progress, setProgress] = useState(0)
+  const [image, setImage] = useState('')
 
   const dispatch = useDispatch()
 
   const eventDetails = useSelector(state => state.eventDetails)
-  const { loading, error, event } = eventDetails
+  const { loading, success: successDetails, error, event } = eventDetails
 
   const eventUpdate = useSelector(state => state.eventUpdate)
   const {
@@ -61,11 +60,18 @@ const EventEdit = () => {
   const eventList = useSelector(state => state.eventList)
   const { events } = eventList
 
+  const titleFromStorage = localStorage.getItem('title')
+  const line1FromStorage = localStorage.getItem('line1')
+  const line2FromStorage = localStorage.getItem('line2')
+  const descFromStorage = localStorage.getItem('desc')
+  const desc2FromStorage = localStorage.getItem('desc2')
+  const imageFromStorage = localStorage.getItem('image')
+
   useEffect(() => {
     if (!eventId) {
       dispatch(listEvents())
     }
-    if (eventId) {
+    if (eventId && !successDetails) {
       dispatch(listEventDetails(eventId))
     }
     if (successUpdate) {
@@ -76,11 +82,40 @@ const EventEdit = () => {
       dispatch({ type: EVENT_CREATE_RESET })
       navigate('/events')
     }
-  }, [dispatch, navigate, successUpdate, successCreate, eventId])
 
-  for (var i = 0; i < 15; i++) {
-    dispatch(createImage({ image: 'hello' }))
-  }
+    if (titleFromStorage) {
+      setTitle(titleFromStorage)
+    } else setTitle('')
+    if (line1FromStorage) {
+      setLine1(line1FromStorage)
+    } else setLine1('')
+    if (line2FromStorage) {
+      setLine2(line2FromStorage)
+    } else setLine2('')
+    if (descFromStorage) {
+      setDesc(descFromStorage)
+    } else setDesc('')
+    if (desc2FromStorage) {
+      setDesc2(desc2FromStorage)
+    } else setDesc2('')
+    if (imageFromStorage) {
+      setUrl(imageFromStorage)
+      setProgress(100)
+    } else setImage('')
+  }, [
+    dispatch,
+    navigate,
+    successUpdate,
+    successCreate,
+    successDetails,
+    eventId,
+    titleFromStorage,
+    line1FromStorage,
+    line2FromStorage,
+    descFromStorage,
+    desc2FromStorage,
+    imageFromStorage,
+  ])
 
   const tierHandler = () => {
     if (events) {
@@ -141,6 +176,26 @@ const EventEdit = () => {
     )
   }
 
+  const removeLocalStorage = () => {
+    if (titleFromStorage) {
+      localStorage.removeItem('title')
+    }
+    if (line1FromStorage) {
+      localStorage.removeItem('line1')
+    }
+    if (line2FromStorage) {
+      localStorage.removeItem('line2')
+    }
+    if (descFromStorage) {
+      localStorage.removeItem('desc')
+    }
+    if (desc2FromStorage) {
+      localStorage.removeItem('desc2')
+    }
+    if (imageFromStorage) {
+      localStorage.removeItem('image')
+    }
+  }
   const submitHandler = async e => {
     e.preventDefault()
 
@@ -156,6 +211,7 @@ const EventEdit = () => {
         tier: event.tier,
       }
       dispatch(updateEvent(updatedEvent))
+      removeLocalStorage()
       clearForm()
     } else {
       await tierHandler()
@@ -168,6 +224,7 @@ const EventEdit = () => {
         image: url,
       }
       dispatch(createEvent(newEvent))
+      removeLocalStorage()
       clearForm()
     }
   }
@@ -190,7 +247,7 @@ const EventEdit = () => {
                 <Form.Label style={{ fontWeight: 'bold' }}>Title</Form.Label>
                 <Form.Control
                   type='text'
-                  placeholder={event && event.title}
+                  placeholder={eventId && event && event.title}
                   required={true}
                   value={title}
                   onChange={e => setTitle(e.target.value)}
@@ -202,7 +259,7 @@ const EventEdit = () => {
                 <Form.Control
                   type='text'
                   required={true}
-                  placeholder={event ? event.line1 : line1}
+                  placeholder={eventId && event ? event.line1 : line1}
                   value={line1}
                   onChange={e => setLine1(e.target.value)}
                 />
@@ -214,7 +271,7 @@ const EventEdit = () => {
                 <Form.Label style={{ fontWeight: 'bold' }}>Time</Form.Label>
                 <Form.Control
                   type='text'
-                  placeholder={event ? event.line2 : line2}
+                  placeholder={eventId && event ? event.line2 : line2}
                   value={line2}
                   onChange={e => setLine2(e.target.value)}
                 />
@@ -227,7 +284,7 @@ const EventEdit = () => {
                 <Form.Control
                   as='textarea'
                   rows={3}
-                  placeholder={event ? event.desc : desc}
+                  placeholder={eventId && event ? event.desc : desc}
                   value={desc}
                   onChange={e => setDesc(e.target.value)}
                 />
@@ -240,7 +297,7 @@ const EventEdit = () => {
                 <Form.Control
                   as='textarea'
                   rows={3}
-                  placeholder={event ? event.desc2 : desc2}
+                  placeholder={eventId && event ? event.desc2 : desc2}
                   value={desc2}
                   onChange={e => setDesc2(e.target.value)}
                 />
@@ -251,11 +308,13 @@ const EventEdit = () => {
                 <Form.Control
                   type='text'
                   placeholder={
-                    event && event.image != null
+                    eventId && event && event.image != null
                       ? event.image
+                      : image
+                      ? image
                       : 'Enter Image URL'
                   }
-                  value={url ? url : ''}
+                  value={url ? url : image ? image : ''}
                   onChange={e => setUrl(e.target.value)}
                 />
               </Form.Group>
@@ -271,7 +330,6 @@ const EventEdit = () => {
                   ref={myRef}
                   onChange={changeHandler}
                 />{' '}
-                <h5>{progress}%</h5>
                 <Row>
                   <Col className='flex-start'>
                     <OverlayTrigger
@@ -282,16 +340,39 @@ const EventEdit = () => {
                         </Tooltip>
                       }
                     >
-                      <Button variant='secondary'>Choose from Images</Button>
+                      <Button
+                        variant='secondary'
+                        onClick={e => {
+                          e.preventDefault()
+                          if (title !== '') {
+                            localStorage.setItem('title', title)
+                          }
+                          if (line1 !== '') {
+                            localStorage.setItem('line1', line1)
+                          }
+                          if (line2 !== '') {
+                            localStorage.setItem('line2', line2)
+                          }
+                          if (desc !== '') {
+                            localStorage.setItem('desc', desc)
+                          }
+                          if (desc2 !== '') {
+                            localStorage.setItem('desc2', desc2)
+                          }
+                          navigate('/images')
+                        }}
+                      >
+                        Choose from Images
+                      </Button>
                     </OverlayTrigger>
                   </Col>
                 </Row>
               </Form.Group>
 
               <div className='progress-bar' style={{ width: progress + '%' }} />
-              {/* <h5>{progress}%</h5> */}
               {imageError && <Message variant='danger'>{imageError}</Message>}
               {progress === 100 && <h5>Image uploaded.</h5>}
+              <h5>{progress}%</h5>
 
               <div id='live-border' />
 
@@ -319,6 +400,9 @@ const EventEdit = () => {
                       <Button
                         className='py-3 m-1'
                         onClick={async e => {
+                          if (imageFromStorage) {
+                            localStorage.removeItem('image')
+                          }
                           setTitle(event && event.title)
                           setLine1(event && event.line1)
                           setLine2(event && event.line2)

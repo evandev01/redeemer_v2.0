@@ -13,6 +13,6 @@ router
   .route('/:id')
   .get(protect, getImage)
   .put(protect, updateImage)
-  .delete(protect, deleteImage)
+  .delete(deleteImage)
 
 module.exports = router

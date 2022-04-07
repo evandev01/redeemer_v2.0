@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col, Button, Form } from 'react-bootstrap'
 
 const Instructions = () => {
   const navigate = useNavigate()
@@ -33,15 +33,26 @@ const Instructions = () => {
               <br />
               <p>
                 1. Click{' '}
-                <Button className='px-2 m-2'>
+                <Button>
                   <i className='fa-solid fa-circle-plus' /> Create New
                 </Button>
               </p>
 
               <p>2. Fill out fields. (Fields may also be left blank.)</p>
+              <p>3. Upload an image from your computer by clicking: </p>
+              <Form.Control type='file' className='mt-3 mb-3' />
+              <p>4. Or choose from currently stored images by clicking:</p>
+              <Button variant='secondary' className='mt-3 mb-3'>
+                Choose from Images
+              </Button>
               <p>
-                3. Click{' '}
-                <Button variant='primary' className='px-2 m-2'>
+                5. Click{' '}
+                <Button
+                  type='submit'
+                  variant='warning'
+                  className='py-3 mt-3 mb-3'
+                  style={{ width: '100px' }}
+                >
                   Save
                 </Button>
               </p>

@@ -1,58 +1,73 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Container, Row, Col, Image } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
+import { Container, Row, Col, Image, Button } from 'react-bootstrap'
+import Loader from '../../components/Loader'
+import Message from '../../components/Message'
 import { listImages } from '../../actions/image'
+require('dotenv').config({ path: '../../.env' })
 
 const Images = () => {
-  const [isActive, setIsActive] = useState(false)
-
-  const style1 = {
-    maxWidth: '300px',
-    maxHeight: '300px',
-  }
-  // const style2 = {
-  //   maxWidth: '300px',
-  //   maxHeight: '300px',
-  //   border: '5px groove blue',
-  // }
-  // const [selectedStyle, setSelectedStyle] = useState(style1)
+  const navigate = useNavigate()
 
   const dispatch = useDispatch()
 
-  const imageList = useSelector(state => state.imageList)
-  const { images, success: successImages, error: errorImages } = imageList
+  const userLogin = useSelector(state => state.userLogin)
+  const { userInfo } = userLogin
 
-  const toggleClass = () => {
-    // e.preventDefault()
-    setIsActive(!isActive)
-  }
+  const imageList = useSelector(state => state.imageList)
+  const { images, loading, error } = imageList
 
   useEffect(() => {
-    dispatch(listImages())
-    console.log(process.env.MEASUREMENT_ID)
-  }, [dispatch])
+    if (!userInfo) {
+      navigate('/login')
+    } else {
+      dispatch(listImages())
+    }
+  }, [dispatch, userInfo, navigate])
+
+  const chooseImageHandler = (e, image) => {
+    e.preventDefault()
+    const chosenImage = image.image
+    console.log(chosenImage)
+    const confirmed = window.confirm('Choose this image?')
+    if (confirmed) {
+      localStorage.setItem('image', chosenImage)
+      navigate(-1)
+    } else return
+  }
 
   return (
     <>
       <Container>
+        {loading && <Loader />}
+        {error && <Message variant='danger'>{error}</Message>}
         <Row>
-          <Col className='text-center'>
-            {images &&
-              images.map((image, i) => (
+          {images &&
+            images.map((image, i) => (
+              <Col
+                key={i}
+                style={{ height: '325px' }}
+                className='m-3 p-3 text-center'
+              >
                 <Image
-                  key={i}
                   className='m-3 p-3'
-                  // id={isActive ? 'selected' : 'not-selected'}
                   src={image.image}
                   onClick={e => {
                     console.log(e.target.style)
                     console.log(image.image)
                     console.log(images[i])
                   }}
-                  style={style1}
+                  style={{ height: '150px', width: 'auto' }}
                 />
-              ))}
-          </Col>
+                <Button
+                  id='choose-img'
+                  onClick={e => chooseImageHandler(e, image)}
+                >
+                  Choose
+                </Button>
+              </Col>
+            ))}
         </Row>
       </Container>
     </>
