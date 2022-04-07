@@ -53,19 +53,18 @@ const Images = () => {
                 <Image
                   className='m-3 p-3'
                   src={image.image}
-                  onClick={e => {
-                    console.log(e.target.style)
-                    console.log(image.image)
-                    console.log(images[i])
-                  }}
                   style={{ height: '150px', width: 'auto' }}
                 />
-                <Button
-                  id='choose-img'
-                  onClick={e => chooseImageHandler(e, image)}
-                >
-                  Choose
-                </Button>
+                <Row className='text-center'>
+                  <Col>
+                    <Button
+                      id='choose-img'
+                      onClick={e => chooseImageHandler(e, image)}
+                    >
+                      Choose
+                    </Button>
+                  </Col>
+                </Row>
               </Col>
             ))}
         </Row>

@@ -9,6 +9,7 @@ const embedRoutes = require('./routes/api/embedRoutes')
 const userRoutes = require('./routes/api/userRoutes')
 const eventRoutes = require('./routes/api/eventRoutes')
 const imageRoutes = require('./routes/api/imageRoutes')
+const firebaseRoutes = require('./routes/api/firebaseRoutes')
 
 dotenv.config()
 
@@ -28,6 +29,7 @@ app.use('/api/embed', embedRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/events', eventRoutes)
 app.use('/api/images', imageRoutes)
+app.use('/api/firebase', firebaseRoutes)
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/client/build')))

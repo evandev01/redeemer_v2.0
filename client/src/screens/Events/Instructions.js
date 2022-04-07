@@ -48,9 +48,8 @@ const Instructions = () => {
               <p>
                 5. Click{' '}
                 <Button
-                  type='submit'
                   variant='warning'
-                  className='py-3 mt-3 mb-3'
+                  className='py-3 m-3'
                   style={{ width: '100px' }}
                 >
                   Save
@@ -69,37 +68,41 @@ const Instructions = () => {
               <br />
               <p>
                 1. Click{' '}
-                <Button className='px-2 m-2' variant='warning'>
+                <Button className='px-3 m-3' variant='warning'>
                   <i className='fa-solid fa-pen-to-square' /> Edit
                 </Button>
               </p>
-              <p>2. Fill out fields. (Fields may also be left blank.)</p>
+              <p>2. Follow instructions 2-5 for adding a new event.</p>
               <p>
-                3. Reset Instructions: Clicking{' '}
-                <Button className='mt-1 mb-1' size='sm'>
+                3. <strong>Reset Instructions:</strong> Clicking{' '}
+                <Button className='py-3 m-3' style={{ width: '100px' }}>
                   <i className='fa-solid fa-arrow-rotate-left' /> Reset
-                </Button>{' '}
-                will set the text field's value to the original event text for
-                that field.
+                </Button>
+                all field's value to the original event text for that field.
               </p>
               <h5>
                 <span style={{ fontWeight: 'bold' }}>Important!</span>
               </h5>
               <h5>
-                - If you do not click reset or enter in text, the field will be
+                If you do not click reset or enter in text, the field will be
                 blank.
-                <br />- If you want it to remain the{' '}
-                <span style={{ fontWeight: 'bold' }}>SAME</span>, you{' '}
+                <br />
+                If you want the original values to remain, you{' '}
                 <span style={{ fontWeight: 'bold' }}>MUST</span> click{' '}
-                <Button className='mt-1 mb-1' size='sm'>
+                <Button className='py-3 m-3' style={{ width: '100px' }}>
                   <i className='fa-solid fa-arrow-rotate-left' /> Reset
                 </Button>
-                <br />- Going back to the previous page or closing the browser
-                window without saving will NOT have any affect on the event. So,
-                don't worry if you leave the page. The event will remain as is.
+                <br />
+                Going back to the previous page or closing the browser window
+                without saving will NOT have any affect on the event. So, don't
+                worry if you leave the page. The event will remain as is.
               </h5>
               4. Click{' '}
-              <Button variant='primary' className='px-2 m-2'>
+              <Button
+                variant='warning'
+                className='py-3 m-3'
+                style={{ width: '100px' }}
+              >
                 Save
               </Button>
             </Col>

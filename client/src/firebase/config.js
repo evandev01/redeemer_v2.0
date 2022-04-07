@@ -10,9 +10,7 @@ const firebaseConfig = {
   appId: '1:83861672984:web:3d20aea9d764775f179f6d',
   measurementId: 'G-TWZ713T2Z1',
 }
-
 // Create a reference under which you want to list
-
 const firebaseApp = initializeApp(firebaseConfig)
 const storage = getStorage(firebaseApp)
 

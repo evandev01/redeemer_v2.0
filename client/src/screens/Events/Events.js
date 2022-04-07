@@ -149,6 +149,30 @@ const Event = () => {
               <Button
                 onClick={e => {
                   e.preventDefault()
+                  const imageFromStorage = localStorage.getItem('image')
+                  const titleFromStorage = localStorage.getItem('title')
+                  const line1FromStorage = localStorage.getItem('line1')
+                  const line2FromStorage = localStorage.getItem('line2')
+                  const descFromStorage = localStorage.getItem('desc')
+                  const desc2FromStorage = localStorage.getItem('desc2')
+                  if (imageFromStorage) {
+                    localStorage.removeItem('image')
+                  }
+                  if (titleFromStorage) {
+                    localStorage.removeItem('title')
+                  }
+                  if (line1FromStorage) {
+                    localStorage.removeItem('line1')
+                  }
+                  if (line2FromStorage) {
+                    localStorage.removeItem('line2')
+                  }
+                  if (descFromStorage) {
+                    localStorage.removeItem('desc')
+                  }
+                  if (desc2FromStorage) {
+                    localStorage.removeItem('desc2')
+                  }
                   navigate('/event/edit')
                 }}
               >
