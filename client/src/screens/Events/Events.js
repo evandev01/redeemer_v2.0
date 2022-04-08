@@ -4,7 +4,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Row, Col, Image, Button, Container } from 'react-bootstrap'
 import Loader from '../../components/Loader'
 import Message from '../../components/Message'
-import { listEvents, deleteEvent, updateEvent } from '../../actions/event'
+import {
+  listEvents,
+  deleteEvent,
+  updateEvent,
+  listEventDetails,
+} from '../../actions/event'
 
 const Event = () => {
   const navigate = useNavigate()
@@ -274,6 +279,7 @@ const Event = () => {
                                 variant='warning'
                                 onClick={e => {
                                   e.preventDefault()
+                                  dispatch(listEventDetails(event._id))
                                   navigate(`/event/edit/${event._id}`)
                                 }}
                               >

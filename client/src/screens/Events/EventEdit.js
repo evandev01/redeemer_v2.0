@@ -67,11 +67,32 @@ const EventEdit = () => {
   const desc2FromStorage = localStorage.getItem('desc2')
   const imageFromStorage = localStorage.getItem('image')
 
+  const resetHandler = e => {
+    e.preventDefault()
+    if (eventId && event) {
+      if (imageFromStorage) {
+        localStorage.removeItem('image')
+      }
+      setTitle(event && event.title)
+      setLine1(event && event.line1)
+      setLine2(event && event.line2)
+      setDesc(event && event.desc)
+      setDesc2(event && event.desc2)
+      if (event && event.image !== '') {
+        setUrl(event.image)
+        setProgress(100)
+      } else {
+        setUrl('')
+        setProgress(0)
+        myRef.current.value = ''
+      }
+    }
+  }
   useEffect(() => {
     if (!eventId) {
       dispatch(listEvents())
     }
-    if (eventId && !successDetails) {
+    if (eventId) {
       dispatch(listEventDetails(eventId))
     }
     if (successUpdate) {
@@ -102,6 +123,15 @@ const EventEdit = () => {
       setUrl(imageFromStorage)
       setProgress(100)
     } else setImage('')
+
+    // if (successDetails){
+    //   setTitle('')
+    //   setLine1('')
+    //   setLine2('')
+    //   setDesc('')
+    //   setDesc2('')
+    //   setUrl(imageFromStorage)
+    // }
   }, [
     dispatch,
     navigate,
@@ -229,6 +259,7 @@ const EventEdit = () => {
     }
   }
 
+  const [isActive, setIsActive] = useState(false)
   return (
     <div id='container-div'>
       <Row id='live-border' />
@@ -247,7 +278,8 @@ const EventEdit = () => {
                 <Form.Label style={{ fontWeight: 'bold' }}>Title</Form.Label>
                 <Form.Control
                   type='text'
-                  placeholder={eventId && event && event.title}
+                  placeholder={'Enter Title'}
+                  // onClick={setTitle(event && event.title)}
                   required={true}
                   value={title}
                   onChange={e => setTitle(e.target.value)}
@@ -259,7 +291,7 @@ const EventEdit = () => {
                 <Form.Control
                   type='text'
                   required={true}
-                  placeholder={eventId && event ? event.line1 : line1}
+                  placeholder={'Enter Date'}
                   value={line1}
                   onChange={e => setLine1(e.target.value)}
                 />
@@ -271,7 +303,7 @@ const EventEdit = () => {
                 <Form.Label style={{ fontWeight: 'bold' }}>Time</Form.Label>
                 <Form.Control
                   type='text'
-                  placeholder={eventId && event ? event.line2 : line2}
+                  placeholder={'Enter Time'}
                   value={line2}
                   onChange={e => setLine2(e.target.value)}
                 />
@@ -284,7 +316,7 @@ const EventEdit = () => {
                 <Form.Control
                   as='textarea'
                   rows={3}
-                  placeholder={eventId && event ? event.desc : desc}
+                  placeholder={'Enter Description'}
                   value={desc}
                   onChange={e => setDesc(e.target.value)}
                 />
@@ -297,7 +329,7 @@ const EventEdit = () => {
                 <Form.Control
                   as='textarea'
                   rows={3}
-                  placeholder={eventId && event ? event.desc2 : desc2}
+                  placeholder={'Enter Description'}
                   value={desc2}
                   onChange={e => setDesc2(e.target.value)}
                 />
@@ -308,11 +340,7 @@ const EventEdit = () => {
                 <Form.Control
                   type='text'
                   placeholder={
-                    eventId && event && event.image != null
-                      ? event.image
-                      : image
-                      ? image
-                      : 'Enter Image URL'
+                    'Enter text' !== null || '' ? image : 'Enter Image URL'
                   }
                   value={url ? url : image ? image : ''}
                   onChange={e => setUrl(e.target.value)}
@@ -399,24 +427,7 @@ const EventEdit = () => {
                     >
                       <Button
                         className='py-3 m-1'
-                        onClick={async e => {
-                          if (imageFromStorage) {
-                            localStorage.removeItem('image')
-                          }
-                          setTitle(event && event.title)
-                          setLine1(event && event.line1)
-                          setLine2(event && event.line2)
-                          setDesc(event && event.desc)
-                          setDesc2(event && event.desc2)
-                          if (event && event.image !== '') {
-                            setUrl(event.image)
-                            setProgress(100)
-                          } else {
-                            setUrl('')
-                            setProgress(0)
-                            myRef.current.value = ''
-                          }
-                        }}
+                        onClick={e => resetHandler(e)}
                         style={{ width: '100px' }}
                       >
                         <i className='fa-solid fa-arrow-rotate-left' /> Reset
