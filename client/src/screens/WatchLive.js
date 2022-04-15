@@ -65,6 +65,30 @@ const WatchLive = () => {
   return (
     <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
       <Row id='live-border' />
+
+      {/* GOOD FRIDAY */}
+      <Row id='stream-player' className='justify-content-center'>
+        <Col md='auto' />
+        <Col xs={12} className='text-center m-3 py-3'>
+          <iframe
+            id='player'
+            width='560'
+            height='315'
+            src='https://www.youtube.com/embed/vKX6DzStKyw'
+            title='YouTube video player'
+            frameborder='0'
+            allow='accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowfullscreen='true'
+          ></iframe>
+        </Col>
+      </Row>
+      <Row>
+        <Col className='text-center m-3'>
+          <h3>Good Friday Service</h3>
+        </Col>
+      </Row>
+      <Row id='live-border' />
+
       {/* SUNDAY SERVICE */}
       {loadingSundays || loadingUpdateSun ? (
         <Loader />
