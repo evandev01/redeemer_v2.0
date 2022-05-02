@@ -66,29 +66,6 @@ const WatchLive = () => {
     <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
       <Row id='live-border' />
 
-      {/* EASTER SERVICE */}
-      <Row id='stream-player' className='justify-content-center'>
-        <Col md='auto' />
-        <Col xs={12} className='text-center m-3 py-3'>
-          <iframe
-            id='player'
-            width='560'
-            height='315'
-            src='https://www.youtube.com/embed/z8fDSz2mvHY'
-            title='YouTube video player'
-            frameborder='0'
-            allow='accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-            allowfullscreen='true'
-          ></iframe>
-        </Col>
-      </Row>
-      <Row>
-        <Col className='text-center m-3'>
-          <h3>Easter Service</h3>
-        </Col>
-      </Row>
-      <Row id='live-border' />
-
       {/* SUNDAY SERVICE */}
       {loadingSundays || loadingUpdateSun ? (
         <Loader />
@@ -232,3 +209,30 @@ const WatchLive = () => {
 }
 
 export default WatchLive
+
+{
+  /* HOLIDAY SERVICES */
+}
+{
+  /* <Row id='stream-player' className='justify-content-center'>
+        <Col md='auto' />
+        <Col xs={12} className='text-center m-3 py-3'>
+          <iframe
+            id='player'
+            width='560'
+            height='315'
+            src='https://www.youtube.com/embed/z8fDSz2mvHY'
+            title='YouTube video player'
+            frameborder='0'
+            allow='accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowfullscreen='true'
+          ></iframe>
+        </Col>
+      </Row>
+      <Row>
+        <Col className='text-center m-3'>
+          <h3>Easter Service</h3>
+        </Col>
+      </Row>
+      <Row id='live-border' /> */
+}
