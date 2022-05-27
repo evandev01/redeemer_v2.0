@@ -258,8 +258,6 @@ const EventEdit = () => {
       clearForm()
     }
   }
-
-  const [isActive, setIsActive] = useState(false)
   return (
     <div id='container-div'>
       <Row id='live-border' />
