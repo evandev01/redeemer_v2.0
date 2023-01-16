@@ -46,23 +46,15 @@ const NavTabs = () => {
 
 								<Nav>
 									<Nav.Item>
-										{/* <Badge
-                      bg='secondary'
-                      style={{
-                        color: 'rgba(126, 240, 82, 0.795)',
-                      }}
-                      className='text-center'
-                    >
-                      New */}
 										<Nav.Link
 											// style={{ color: 'white' }}
 											id='link'
 											href='/events'>
 											EVENTS
 										</Nav.Link>
-										{/* </Badge> */}
 									</Nav.Item>
 								</Nav>
+
 								<Nav>
 									<Nav.Item>
 										<Nav.Link id='link' href='/watchlive'>
@@ -70,6 +62,7 @@ const NavTabs = () => {
 										</Nav.Link>
 									</Nav.Item>
 								</Nav>
+
 								<Nav>
 									<Nav.Item>
 										<Nav.Link id='link' href='/connect'>
@@ -77,6 +70,7 @@ const NavTabs = () => {
 										</Nav.Link>
 									</Nav.Item>
 								</Nav>
+
 								<Nav>
 									<Nav.Item>
 										<Nav.Link id='link' href='/staff'>
@@ -84,7 +78,16 @@ const NavTabs = () => {
 										</Nav.Link>
 									</Nav.Item>
 								</Nav>
-								{userInfo && userInfo !== null ? (
+
+								{/* <Nav>
+									<Nav.Item>
+										<Nav.Link id='link' href='/Bible-reading'>
+											BIBLE READING
+										</Nav.Link>
+									</Nav.Item>
+								</Nav> */}
+
+								{userInfo && userInfo !== null && (
 									<Nav>
 										<Nav.Item>
 											<Nav.Link
@@ -92,14 +95,6 @@ const NavTabs = () => {
 												onClick={logoutHandler}
 												style={{ color: 'blue' }}>
 												LOGOUT
-											</Nav.Link>
-										</Nav.Item>
-									</Nav>
-								) : (
-									<Nav>
-										<Nav.Item>
-											<Nav.Link id='link' href='/login'>
-												ADMIN
 											</Nav.Link>
 										</Nav.Item>
 									</Nav>

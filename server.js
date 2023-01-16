@@ -10,6 +10,7 @@ const userRoutes = require('./routes/api/userRoutes')
 const eventRoutes = require('./routes/api/eventRoutes')
 const imageRoutes = require('./routes/api/imageRoutes')
 const firebaseRoutes = require('./routes/api/firebaseRoutes')
+const readingRoutes = require('./routes/api/readingRoutes')
 
 dotenv.config()
 
@@ -30,24 +31,25 @@ app.use('/api/users', userRoutes)
 app.use('/api/events', eventRoutes)
 app.use('/api/images', imageRoutes)
 app.use('/api/firebase', firebaseRoutes)
+app.use('/api/reading', readingRoutes)
 
 if (process.env.NODE_ENV === 'production') {
-  const enforce = require('express-sslify')
-  app.use(enforce.HTTPS({ trustProtoHeader: true }))
-  app.use(express.static(path.join(__dirname, '/client/build')))
-  app.get('/*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-  })
+	const enforce = require('express-sslify')
+	app.use(enforce.HTTPS({ trustProtoHeader: true }))
+	app.use(express.static(path.join(__dirname, '/client/build')))
+	app.get('/*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+	})
 } else {
-  app.get('/', (req, res) => {
-    res.send('API is running...')
-  })
+	app.get('/', (req, res) => {
+		res.send('API is running...')
+	})
 }
 
 const PORT = process.env.PORT || 5000
 //
 app.listen(PORT, () => {
-  console.log(
-    `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.blue.bold
-  )
+	console.log(
+		`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.blue.bold
+	)
 })
