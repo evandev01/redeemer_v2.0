@@ -36,7 +36,7 @@ const App = () => {
 							<Route path='/event/edit' element={<EventEdit />} />
 							<Route path='/event/edit/:id' element={<EventEdit />} />
 							<Route path='/images' element={<Images />} />
-							<Route path='/Bible-reading' element={<Reading />} />
+							<Route path='/Bible' element={<Reading />} />
 						</Routes>
 					</Container>
 				</main>

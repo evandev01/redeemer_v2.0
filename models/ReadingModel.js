@@ -7,7 +7,7 @@ const readingSchema = mongoose.Schema(
 		verses: [
 			{
 				type: String,
-				required: true,
+				required: false,
 			},
 		],
 	},

@@ -1,128 +1,148 @@
+.nav-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.nav-row {
+	display: flex;
+	justify-content: center;
+}
+.reading-row {
+	display: flex;
+	justify-content: center;
+}
+
+.reading-col {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 body #wrapper {
-  overflow-x: hidden;
+	overflow-x: hidden;
 }
 body {
-  margin: 0;
-  color: #121212;
-  font-family: Copperplate, 'Copperplate Gothic Light', fantasy !important;
-  /* font-family: Georgia, 'Times New Roman', Times, serif !important; */
-  background-image: url('./assets/bkgd//palm-leaves20.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  overflow-x: hidden;
+	margin: 0;
+	color: #121212;
+	font-family: Copperplate, 'Copperplate Gothic Light', fantasy !important;
+	/* font-family: Georgia, 'Times New Roman', Times, serif !important; */
+	background-image: url('./assets/bkgd//palm-leaves20.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	overflow-x: hidden;
 }
 @media only screen and (max-width: 1079px) {
-  body {
-    background-image: url('./assets/bkgd/palm-leaves20v.jpg');
-    background-attachment: initial;
-    overflow-x: hidden;
-  }
+	body {
+		background-image: url('./assets/bkgd/palm-leaves20v.jpg');
+		background-attachment: initial;
+		overflow-x: hidden;
+	}
 }
 
 p h1 h2 h3 h4 h5 {
-  font-size: x-large;
-  padding: 20px auto;
-  margin: 20px auto;
+	font-size: x-large;
+	padding: 20px auto;
+	margin: 20px auto;
 }
 
 #container-div {
-  background-color: rgba(255, 255, 255, 0.5);
+	background-color: rgba(255, 255, 255, 0.5);
 }
 
 #player {
-  max-width: 100%;
-  max-height: auto;
+	max-width: 100%;
+	max-height: auto;
 }
 
 #live-border {
-  border-top: 1px solid gray;
-  margin: 10px 0;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  text-align: center;
+	border-top: 1px solid gray;
+	margin: 10px 0;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	text-align: center;
 }
 
 #about-div {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 500;
-  line-height: 30px;
-  font-style: normal;
-  font-size: medium;
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 40px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 500;
+	line-height: 30px;
+	font-style: normal;
+	font-size: medium;
+	background-color: rgba(255, 255, 255, 0.5);
+	padding: 40px;
 }
 @media screen and (max-width: 767px) {
-  #about-div {
-    font-weight: 500;
-    line-height: 24px;
-    font-style: normal;
-    font-size: small;
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 10px;
-  }
+	#about-div {
+		font-weight: 500;
+		line-height: 24px;
+		font-style: normal;
+		font-size: small;
+		background-color: rgba(255, 255, 255, 0.5);
+		padding: 10px;
+	}
 }
 @media screen and (min-width: 991px) {
-  #about-div {
-    font-weight: 500;
-    line-height: 40px;
-    font-style: normal;
-    font-size: medium;
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 80px;
-  }
+	#about-div {
+		font-weight: 500;
+		line-height: 40px;
+		font-style: normal;
+		font-size: medium;
+		background-color: rgba(255, 255, 255, 0.5);
+		padding: 80px;
+	}
 }
 @media screen and (min-width: 992px) {
-  #about-div {
-    font-weight: 500;
-    line-height: 40px;
-    font-style: normal;
-    font-size: large;
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 80px;
-  }
+	#about-div {
+		font-weight: 500;
+		line-height: 40px;
+		font-style: normal;
+		font-size: large;
+		background-color: rgba(255, 255, 255, 0.5);
+		padding: 80px;
+	}
 }
 
 #app-icons {
-  max-width: 200px;
-  height: auto;
+	max-width: 200px;
+	height: auto;
 }
 
 #tithe-container {
-  background-color: rgba(255, 255, 255, 0.5);
+	background-color: rgba(255, 255, 255, 0.5);
 }
 #tithes {
-  max-width: 100%;
-  height: auto;
-  padding: 20px;
-  text-align: center;
-  background-color: rgba(255, 255, 255, 0.5);
+	max-width: 100%;
+	height: auto;
+	padding: 20px;
+	text-align: center;
+	background-color: rgba(255, 255, 255, 0.5);
 }
 #tithe-graphic {
-  max-width: 60%;
-  margin-left: 20%;
-  margin-right: 20%;
-  height: auto;
-  padding: 20px;
-  vertical-align: middle !important;
+	max-width: 60%;
+	margin-left: 20%;
+	margin-right: 20%;
+	height: auto;
+	padding: 20px;
+	vertical-align: middle !important;
 }
 @media screen and(max-width: 767px) {
-  #tithe-graphic {
-    width: 100%;
-    /* margin-left: 20%;
+	#tithe-graphic {
+		width: 100%;
+		/* margin-left: 20%;
     margin-right: 20%; */
-    height: auto;
-    padding: 20px;
-  }
+		height: auto;
+		padding: 20px;
+	}
 }
 @media screen and(min-width: 200px) {
-  #tithe-graphic {
-    max-width: 100%;
-    /* margin-left: 20%;
+	#tithe-graphic {
+		max-width: 100%;
+		/* margin-left: 20%;
     margin-right: 20%; */
-    height: auto;
-    padding: 20px;
-  }
+		height: auto;
+		padding: 20px;
+	}
 }
 /* @media screen and(max-width: 767px) {
   #tithe-graphic {
@@ -134,157 +154,157 @@ p h1 h2 h3 h4 h5 {
   }
 } */
 #online-giving-btn {
-  width: 40%;
+	width: 40%;
 }
 
 @media screen and (max-width: 450px) {
-  p h1 h2 h3 h4 h5 {
-    font-size: large;
-    padding: 20px auto;
-    margin: 20px auto;
-  }
+	p h1 h2 h3 h4 h5 {
+		font-size: large;
+		padding: 20px auto;
+		margin: 20px auto;
+	}
 }
 
 #link {
-  color: rgba(63, 63, 63, 0.795);
-  background-color: rgba(233, 233, 233, 0.356);
-  font-size: large;
+	color: rgba(63, 63, 63, 0.795);
+	background-color: rgba(233, 233, 233, 0.356);
+	font-size: large;
 }
 #link:hover {
-  color: rgba(126, 240, 82, 0.795);
-  font-size: large;
-  background-color: rgba(109, 109, 109, 0.493);
-  text-shadow: 5px 5px 5px 5px rgb(0, 0, 0);
+	color: rgba(126, 240, 82, 0.795);
+	font-size: large;
+	background-color: rgba(109, 109, 109, 0.493);
+	text-shadow: 5px 5px 5px 5px rgb(0, 0, 0);
 }
 #events-link {
-  color: white;
-  background-color: rgba(233, 233, 233, 0.356);
-  font-size: large;
+	color: white;
+	background-color: rgba(233, 233, 233, 0.356);
+	font-size: large;
 }
 #events-link:hover {
-  color: rgba(126, 240, 82, 0.795);
-  font-size: large;
-  background-color: rgba(109, 109, 109, 0.493);
-  text-shadow: 5px 5px 5px 5px rgb(0, 0, 0);
+	color: rgba(126, 240, 82, 0.795);
+	font-size: large;
+	background-color: rgba(109, 109, 109, 0.493);
+	text-shadow: 5px 5px 5px 5px rgb(0, 0, 0);
 }
 
 #photo {
-  max-width: 300px;
-  height: auto;
-  padding: 20px 0;
+	max-width: 300px;
+	height: auto;
+	padding: 20px 0;
 }
 @media screen and (max-width: 450px) {
-  #photo {
-    max-width: 200px;
-    height: auto;
-    padding: 20px 0;
-  }
+	#photo {
+		max-width: 200px;
+		height: auto;
+		padding: 20px 0;
+	}
 }
 
 #header-image {
-  max-width: 100%;
-  height: auto;
-  padding: 20px 0;
-  text-align: center;
+	max-width: 100%;
+	height: auto;
+	padding: 20px 0;
+	text-align: center;
 }
 
 #joel {
-  max-height: 400px;
-  max-width: 80vw;
-  padding: 20px auto;
-  margin: 20px auto;
-  text-align: center;
+	max-height: 400px;
+	max-width: 80vw;
+	padding: 20px auto;
+	margin: 20px auto;
+	text-align: center;
 }
 
 @media screen and (min-width: 768px) {
-  #joel {
-    max-height: 500px;
-    max-width: 80vw;
-    padding: 20px auto;
-    margin: 20px auto;
-    text-align: center;
-  }
+	#joel {
+		max-height: 500px;
+		max-width: 80vw;
+		padding: 20px auto;
+		margin: 20px auto;
+		text-align: center;
+	}
 }
 
 #graphic {
-  max-height: 400px;
-  max-width: 80vw;
-  padding: 20px auto;
-  margin: 20px auto;
-  text-align: center;
+	max-height: 400px;
+	max-width: 80vw;
+	padding: 20px auto;
+	margin: 20px auto;
+	text-align: center;
 }
 
 #events-graphic {
-  max-width: 300px;
-  height: auto;
-  padding: 20px auto;
-  margin: 20px auto;
-  text-align: center;
+	max-width: 300px;
+	height: auto;
+	padding: 20px auto;
+	margin: 20px auto;
+	text-align: center;
 }
 
 @media screen and (max-width: 450px) {
-  #events-graphic {
-    max-width: 200px;
-    height: auto;
-    padding: 20px auto;
-    margin: 20px auto;
-    text-align: center;
-  }
+	#events-graphic {
+		max-width: 200px;
+		height: auto;
+		padding: 20px auto;
+		margin: 20px auto;
+		text-align: center;
+	}
 }
 
 #events-order-graphic {
-  max-height: 100px;
-  max-width: 100px;
-  width: auto;
-  padding: 20px auto;
-  margin: 20px auto;
-  text-align: center;
+	max-height: 100px;
+	max-width: 100px;
+	width: auto;
+	padding: 20px auto;
+	margin: 20px auto;
+	text-align: center;
 }
 
 #icon {
-  max-width: 200px;
-  height: auto;
-  padding: 20px auto;
-  margin: 20px auto;
-  text-align: center;
+	max-width: 200px;
+	height: auto;
+	padding: 20px auto;
+	margin: 20px auto;
+	text-align: center;
 }
 
 @media screen and (max-width: 475px) {
-  #icon {
-    max-width: 80px;
-    height: auto;
-  }
+	#icon {
+		max-width: 80px;
+		height: auto;
+	}
 }
 
 #app-icons {
-  max-width: 200px;
-  height: auto;
+	max-width: 200px;
+	height: auto;
 }
 @media screen and (max-width: 768px) {
-  #app-icons {
-    max-width: 150px;
-    height: auto;
-  }
+	#app-icons {
+		max-width: 150px;
+		height: auto;
+	}
 }
 @media screen and (max-width: 600px) {
-  #app-icons {
-    max-width: 80px;
-    height: auto;
-  }
+	#app-icons {
+		max-width: 80px;
+		height: auto;
+	}
 }
 
 .progress-bar {
-  height: 5px;
-  background-color: rgb(66, 66, 233);
-  margin-top: 20px;
+	height: 5px;
+	background-color: rgb(66, 66, 233);
+	margin-top: 20px;
 }
 
 #selected {
-  max-width: 300px;
-  max-height: 300px;
+	max-width: 300px;
+	max-height: 300px;
 }
 #not-selected {
-  max-width: 300px;
-  max-width: 300px;
-  border: 5px groove blue;
+	max-width: 300px;
+	max-width: 300px;
+	border: 5px groove blue;
 }
