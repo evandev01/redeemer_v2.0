@@ -284,18 +284,6 @@ const Reading = () => {
 																	Exit
 																</Button>
 															</div>
-															<div className='reading-col'>
-																<Button
-																	onClick={setOriginal}
-																	variant='primary'
-																	type='submit'
-																	style={{ padding: '1rem', margin: '1rem' }}>
-																	Set Original
-																</Button>
-																<p style={{ fontSize: 'small' }}>
-																	Click to set original verses in order to edit.
-																</p>
-															</div>
 														</>
 													)}
 												</div>
