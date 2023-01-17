@@ -2,7 +2,6 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Nav, Container, Row, Col, Navbar } from 'react-bootstrap'
-import '../index.css'
 import { logout } from '../actions/user'
 
 const NavTabs = () => {
@@ -24,13 +23,13 @@ const NavTabs = () => {
 					<Navbar expand='md'>
 						<Navbar.Toggle aria-controls='basic-navbar-nav' />
 						<Navbar.Collapse id='basic-navbar-nav'>
-							<Navbar>
+							<Nav>
 								<Nav.Item>
 									<Nav.Link id='link' href='/'>
 										HOME
 									</Nav.Link>
 								</Nav.Item>
-							</Navbar>
+							</Nav>
 							<Nav>
 								<Nav.Item>
 									<Nav.Link id='link' href='/about'>
