@@ -45,6 +45,8 @@ import {
 	readingDeleteReducer,
 } from './reducers/reading'
 
+import { emailSendReducer } from './reducers/email'
+
 const reducer = combineReducers({
 	// User
 	userLogin: userLoginReducer,
@@ -83,6 +85,9 @@ const reducer = combineReducers({
 	readingDetails: readingDetailsReducer,
 	readingUpdate: readingUpdateReducer,
 	readingDelete: readingDeleteReducer,
+
+	// Email
+	emailSend: emailSendReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo')
