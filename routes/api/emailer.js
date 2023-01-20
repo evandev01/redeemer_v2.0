@@ -14,12 +14,19 @@ router.post('/', async (req, res) => {
 		subject: subject,
 		text: text,
 		html: `
-		<img style="margin: 0;" src="https://www.redeemerchurch.life/images/red_logo01.png" />
-    <h3>Name: <strong>${name}</strong></h3>
-    <h3>Email: <strong>${email}</strong></h3>
-    <h3>Subject: <strong>${subject}</strong></h3>
-    <h3>Message:</h3>
-    <h4><strong>${text}</strong></h4>`,
+		<div style="display: block;>
+    <div style="width: 100%; margin: auto;">
+      <img src="https://www.redeemerchurch.life/images/red_logo01.png" />
+    </div>
+    <div style="border-bottom: 1px solid rgba(0,0,0,0.5)"></div>
+    <div style="text-align: flex-start;">
+      <h4>Sender: ${name}</h4>
+      <h4>Email: ${email}</h4>
+      <h4>Subject: ${subject}</h4>
+      <h4>Message:</h4>
+      <p style="line-height: 2em;">${text}</p>
+    </div>
+  </div>`,
 	}
 	await sgMail.send(msg).then(
 		() => {
