@@ -18,6 +18,7 @@ const Connect = () => {
 	const { success, error, loading, message } = emailSend
 
 	const resetForm = () => {
+		setName('')
 		setEmail('')
 		setSubject('')
 		setText('')
