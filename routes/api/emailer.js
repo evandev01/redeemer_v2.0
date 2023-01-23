@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
 	sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 	const msg = {
 		to: `<${process.env.EMAIL}>`,
-		from: `${name}(redeemerchurch.life)<${email}>`,
+		from: `${name}(redeemerchurch.life)<${process.env.EMAIL}>`,
 		subject: subject,
 		text: text,
 		html: `
